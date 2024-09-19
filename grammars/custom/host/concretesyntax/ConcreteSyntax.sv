@@ -6,6 +6,7 @@ synthesized attribute ast<a>::a;
 synthesized attribute exprs::[Expr];
 synthesized attribute ids::[String];
 
+
 {- File -}
 
 closed nonterminal File_c with ast<File>, location;
@@ -57,6 +58,7 @@ top::TopDecl_c ::= 'fun' id::Id_t ':' ty::Type_c '::=' cs::Children_c '='
 { top.ast = functionDecl(id.lexeme, ty.ast, cs.ast, e.ast, 
                          location=top.location); }
 
+
 {- AttrType -}
 
 nonterminal AttrType_c with ast<AttrType>, location;
@@ -68,6 +70,7 @@ top::AttrType_c ::= 'syn'
 concrete production inhAttrType
 top::AttrType_c ::= 'inh'
 { top.ast = attrTypeInh(location=top.location); }
+
 
 {- IdList -}
 
@@ -185,12 +188,8 @@ top::FactorExpr_c ::= 'false'
 { top.ast = boolExpr(false, location=top.location); }
 
 concrete production ref_c
-top::FactorExpr_c ::= id::Id_t
-{ top.ast = refExpr(id.lexeme, location=top.location); }
-
-concrete production fieldAccess_c
-top::FactorExpr_c ::= f::FactorExpr_c '.' id::Id_t
-{ top.ast = fieldAccessExpr(f.ast, id.lexeme, location=top.location); }
+top::FactorExpr_c ::= r::Ref_c
+{ top.ast = refExpr(r.ast, location=top.location); }
 
 concrete production prodArgs_c
 top::FactorExpr_c ::= id::Id_t '(' es::Exprs_c ')'
@@ -212,6 +211,19 @@ top::FactorExpr_c ::= '[' es::Exprs_c ']'
 concrete production listExprNil_c
 top::FactorExpr_c ::= '[' ']'
 { top.ast = listExpr(exprsNil(location=top.location), location=top.location); }
+
+
+{- Ref -}
+
+nonterminal Ref_c with ast<Ref>, location;
+
+concrete production fieldAccessRef_c
+top::Ref_c ::= f::Ref_c '.' id::Id_t
+{ top.ast = fieldAccessRef(f.ast, id.lexeme, location=top.location); }
+
+concrete production nameRef_c
+top::Ref_c ::= id::Id_t
+{ top.ast = nameRef(id.lexeme, location=top.location); }
 
 {- LHS -}
 

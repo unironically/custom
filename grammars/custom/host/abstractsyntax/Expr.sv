@@ -28,11 +28,7 @@ top::Expr ::= elements::Exprs
 {}
 
 abstract production refExpr
-top::Expr ::= id::String
-{}
-
-abstract production fieldAccessExpr
-top::Expr ::= e::Expr id::String
+top::Expr ::= r::Ref
 {}
 
 
@@ -44,4 +40,15 @@ top::Exprs ::= e::Expr es::Exprs
 
 abstract production exprsNil
 top::Exprs ::=
+{}
+
+
+nonterminal Ref with location;
+
+abstract production fieldAccessRef
+top::Ref ::= r::Ref id::String
+{}
+
+abstract production nameRef
+top::Ref ::= id::String
 {}

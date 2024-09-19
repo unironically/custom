@@ -85,7 +85,8 @@ nt VarRef with scope;
 prod vref: VarRef ::= id:String
 { 
   local r:Ref = mkVarRef(id);
-  this.type = head(r.decls).type;
+  local b:Bind = head(r.res);
+  this.type = b.type;
 }
 
 
