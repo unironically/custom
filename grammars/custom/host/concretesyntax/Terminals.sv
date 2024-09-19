@@ -22,6 +22,7 @@ terminal Attr_t   'attr'   lexer classes {KEYWORD};
 terminal Occurs_t 'occurs' lexer classes {KEYWORD};
 terminal On_t     'on'     lexer classes {KEYWORD};
 terminal Prod_t   'prod'   lexer classes {KEYWORD};
+terminal Fun_t    'fun'    lexer classes {KEYWORD};
 terminal Local_t  'local'  lexer classes {KEYWORD};
 
 

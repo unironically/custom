@@ -36,24 +36,38 @@ concrete production nonterminalDecl_c
 top::TopDecl_c ::= 'nt' id::Id_t ';'
 { top.ast = nonterminalDecl(id.lexeme, location=top.location); }
 
-concrete production synAttributeDecl_c
-top::TopDecl_c ::= 'syn' 'attr' id::Id_t ':' ty::Type_c ';'
-{ top.ast = synAttributeDecl(id.lexeme, ty.ast, location=top.location); }
-
-concrete production inhAttributeDecl_c
-top::TopDecl_c ::= 'inh' 'attr' id::Id_t ':' ty::Type_c ';'
-{ top.ast = inhAttributeDecl(id.lexeme, ty.ast, location=top.location); }
+concrete production attributeDecl_c
+top::TopDecl_c ::= at::AttrType_c 'attr' id::Id_t ':' ty::Type_c ';'
+{ top.ast = attributeDecl(at.ast, id.lexeme, ty.ast, 
+                          location=top.location); }
 
 concrete production occursDecl_c
 top::TopDecl_c ::= 'attr' idl::IdList_c 'occurs' 'on' ty::Type_c ';'
 { top.ast = occursDecl(idl.ids, ty.ast, location=top.location); }
 
 concrete production productionDecl_c
-top::TopDecl_c ::= 'prod' id::Id_t ':' ty::Type_c '::=' ps::Params_c
+top::TopDecl_c ::= 'prod' id::Id_t ':' ty::Type_c '::=' cs::Children_c
                    '{' eq::Equations_c '}'
-{ top.ast = productionDecl(id.lexeme, ty.ast, ps.ast, eq.ast, 
+{ top.ast = productionDecl(id.lexeme, ty.ast, cs.ast, eq.ast, 
                            location=top.location);}
 
+concrete production functionDecl_c
+top::TopDecl_c ::= 'fun' id::Id_t ':' ty::Type_c '::=' cs::Children_c '='
+                   e::Expr_c
+{ top.ast = functionDecl(id.lexeme, ty.ast, cs.ast, e.ast, 
+                         location=top.location); }
+
+{- AttrType -}
+
+nonterminal AttrType_c with ast<AttrType>, location;
+
+concrete production synAttrType
+top::AttrType_c ::= 'syn'
+{ top.ast = attrTypeSyn(location=top.location); }
+
+concrete production inhAttrType
+top::AttrType_c ::= 'inh'
+{ top.ast = attrTypeInh(location=top.location); }
 
 {- IdList -}
 
@@ -68,26 +82,26 @@ top::IdList_c ::= id::Id_t
 { top.ids = []; }
 
 
-{- Params -}
+{- Children -}
 
-closed nonterminal Params_c with ast<Params>, location;
+closed nonterminal Children_c with ast<Children>, location;
 
-concrete production paramsCons_c
-top::Params_c ::= p::Param_c ',' ps::Params_c
-{ top.ast = paramsCons(p.ast, ps.ast, location=top.location); }
+concrete production childrenCons_c
+top::Children_c ::= c::Child_c ps::Children_c
+{ top.ast = childrenCons(c.ast, ps.ast, location=top.location); }
 
-concrete production paramsOne_c
-top::Params_c ::= p::Param_c
-{ top.ast = paramsNil(location=top.location); }
+concrete production childrenNil_c
+top::Children_c ::=
+{ top.ast = childrenNil(location=top.location); }
 
 
-{- Param -}
+{- Child -}
 
-closed nonterminal Param_c with ast<Param>, location;
+closed nonterminal Child_c with ast<Child>, location;
 
-concrete production param_c
-top::Param_c ::= id::Id_t ':' ty::Type_c
-{ top.ast = param(id.lexeme, ty.ast, location=top.location); }
+concrete production child_c
+top::Child_c ::= id::Id_t ':' ty::Type_c
+{ top.ast = child(id.lexeme, ty.ast, location=top.location); }
 
 
 {- Equations -}
