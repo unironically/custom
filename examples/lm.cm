@@ -1,0 +1,98 @@
+inh attr scope:Scope; 
+
+syn attr vars:[Scope];
+syn attr mods:[Scope];
+syn attr imps:[Scope];
+
+syn attr type:Type;
+
+
+nt Main;
+
+prod main: Main ::= ds:Dcls
+{
+  local s:Scope = mkScope();
+  s.vars = ds.vars;
+  s.mods = ds.mods;
+  s.imps = ds.imps;
+  s.lex = nothing();
+  ds.scope = s;
+}
+
+
+nt Dcls with scope, vars, mods, imps;
+
+prod dsCons: Dcls ::= d:Dcl ds:Dcls
+{
+  d.scope = this.scope;
+  ds.scope = this.scope;
+  this.vars = d.vars ++ ds.vars;
+  this.mods = d.mods ++ ds.mods;
+  this.imps = d.imps ++ ds.imps;
+}
+
+prod dsNil: Dcls ::= {}
+
+
+nt Dcl with scope, vars, mods, imps;
+
+prod dMod: Dcl ::= id:String ds:Dcls
+{
+  local s:Scope = mkMod(id);
+  s.lex = this.scope; 
+  s.imps = ds.imps;
+  s.vars = ds.vars;  
+  s.mods = ds.mods;
+  ds.scope = s;
+}
+
+prod dDcl: Dcl ::= b:Bind
+{
+  b.scope = this.scope;
+  this.vars = b.vars;
+}
+
+prod dImp: Dcl ::= r:ModRef
+{
+  this.imps = r.imps;
+  r.scope = this.scope;
+}
+
+
+nt Bind with scope, vars, type;
+
+prod bnd: Bind ::= id:String e:Exp
+{  
+  local d:Scope = mkVar(id);
+  this.type = e.type;
+  this.vars = [d];
+  e.scope = this.scope;
+}
+
+
+nt ModRef with scope, imps;
+
+prod mref: ModRef ::= id:String
+{ 
+  local r:Ref = mkModRef(id);
+  r.lex = this.scope;
+  this.imps = r.decls;
+}
+
+
+nt VarRef with scope;
+
+prod vref: VarRef ::= id:String
+{ 
+  local r:Ref = mkVarRef(id);
+  this.type = head(r.decls).type;
+}
+
+
+nt Exp with scope, type;
+
+prod eRef: Exp ::= r:VarRef
+{ 
+  this.type = r.type;
+  r.scope = this.scope;
+}

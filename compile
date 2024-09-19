@@ -1,0 +1,5 @@
+#!/bin/sh
+
+silver -I .. --mwda --onejar $@ -o Custom.jar -I grammars/ custom:composed
+
+rm build.xml > /dev/null 2>&1
