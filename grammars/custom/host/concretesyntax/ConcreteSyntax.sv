@@ -8,11 +8,11 @@ synthesized attribute ids::[String];
 
 {- File -}
 
-closed nonterminal File_c;
+closed nonterminal File_c with ast<File>, location;
 
 concrete production file_c
 top::File_c ::= ds::TopDecls_c
-{}
+{ top.ast = file(ds.ast, location=top.location); }
 
 
 {- Top declarations -}
@@ -118,15 +118,16 @@ top::Equation_c ::= lhs::LHS_c '=' e::Expr_c ';'
 
 {- Exprs -}
 
-closed nonterminal Exprs_c with exprs, location;
+closed nonterminal Exprs_c with ast<Exprs>, location;
 
 concrete production exprsCons_c
 top::Exprs_c ::= e::Expr_c ',' es::Exprs_c
-{ top.exprs = e.ast :: es.exprs; }
+{ top.ast = exprsCons(e.ast, es.ast, location=top.location); }
 
 concrete production exprOne_C
 top::Exprs_c ::= e::Expr_c
-{ top.exprs = []; }
+{ top.ast = exprsCons(e.ast, exprsNil(location=top.location), 
+                      location=top.location); }
 
 
 {- Expr -}
@@ -179,11 +180,12 @@ top::FactorExpr_c ::= f::FactorExpr_c '.' id::Id_t
 
 concrete production prodArgs_c
 top::FactorExpr_c ::= id::Id_t '(' es::Exprs_c ')'
-{ top.ast = callExpr(id.lexeme, es.exprs, location=top.location); }
+{ top.ast = callExpr(id.lexeme, es.ast, location=top.location); }
 
 concrete production prodNoArgs_c
 top::FactorExpr_c ::= id::Id_t '(' ')'
-{ top.ast = callExpr(id.lexeme, [], location=top.location); }
+{ top.ast = callExpr(id.lexeme, exprsNil(location=top.location), 
+                     location=top.location); }
 
 concrete production parensExpr_c
 top::FactorExpr_c ::= '(' e::Expr_c ')'
@@ -191,11 +193,11 @@ top::FactorExpr_c ::= '(' e::Expr_c ')'
 
 concrete production listExpr_c
 top::FactorExpr_c ::= '[' es::Exprs_c ']'
-{ top.ast = listExpr(es.exprs, location=top.location); }
+{ top.ast = listExpr(es.ast, location=top.location); }
 
 concrete production listExprNil_c
 top::FactorExpr_c ::= '[' ']'
-{ top.ast = listExpr([], location=top.location); }
+{ top.ast = listExpr(exprsNil(location=top.location), location=top.location); }
 
 {- LHS -}
 

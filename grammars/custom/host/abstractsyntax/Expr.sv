@@ -20,11 +20,11 @@ top::Expr ::= b::Boolean
 {}
 
 abstract production callExpr
-top::Expr ::= id::String args::[Expr]
+top::Expr ::= id::String args::Exprs
 {}
 
 abstract production listExpr
-top::Expr ::= elements::[Expr]
+top::Expr ::= elements::Exprs
 {}
 
 abstract production refExpr
@@ -33,4 +33,15 @@ top::Expr ::= id::String
 
 abstract production fieldAccessExpr
 top::Expr ::= e::Expr id::String
+{}
+
+
+nonterminal Exprs with location;
+
+abstract production exprsCons
+top::Exprs ::= e::Expr es::Exprs
+{}
+
+abstract production exprsNil
+top::Exprs ::=
 {}
