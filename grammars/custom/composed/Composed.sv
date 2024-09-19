@@ -2,6 +2,7 @@ grammar custom:composed;
 
 -- host language
 exports custom:host:concretesyntax;
+exports custom:host:abstractsyntax;
 
 -- extensions
 exports custom:attributewith:concretesyntax;
