@@ -1,0 +1,39 @@
+inh attr scope:Scope; 
+
+---------------------------
+
+-- LM
+
+nt Main;
+
+prod main: Main ::= ds:Dcls name:String
+{
+  local s:Scope = mkScope();
+  s.vars = ds.vars;
+  s.lex  = [];
+  ds.scope = s;
+}
+
+
+nt Dcls;
+
+attr scope occurs on Dcls;
+attr vars occurs on Dcls;
+
+
+---------------------------
+
+
+-- scope graphs library stuff
+
+syn attr lex:[Scope];
+syn attr vars:[Scope];
+
+nt Scope;
+attr lex occurs on Scope;
+attr vars occurs on Scope;
+
+prod mkScope: Scope ::= {}
+
+
+---------------------------

@@ -1,9 +1,4 @@
 inh attr scope:Scope; 
-
-syn attr vars:[Scope];
-syn attr mods:[Scope];
-syn attr imps:[Scope];
-
 syn attr type:Type;
 
 
@@ -15,12 +10,17 @@ prod main: Main ::= ds:Dcls
   s.vars = ds.vars;
   s.mods = ds.mods;
   s.imps = ds.imps;
-  s.lex = nothing();
+  s.lex  = [];
   ds.scope = s;
 }
 
 
-nt Dcls with scope, vars, mods, imps;
+nt Dcls;
+
+attr scope occurs on Dcls;
+attr vars occurs on Dcls;
+attr mods occurs on Dcls;
+attr imps occurs on Dcls;
 
 prod dsCons: Dcls ::= d:Dcl ds:Dcls
 {
@@ -34,32 +34,50 @@ prod dsCons: Dcls ::= d:Dcl ds:Dcls
 prod dsNil: Dcls ::= {}
 
 
-nt Dcl with scope, vars, mods, imps;
+nt Dcl;
+attr scope occurs on Dcl;
+attr vars occurs on Dcl;
+attr mods occurs on Dcl;
+attr imps occurs on Dcl;
 
 prod dMod: Dcl ::= id:String ds:Dcls
 {
   local s:Scope = mkMod(id);
-  s.lex = this.scope; 
+  s.lex  = [this.scope]; 
   s.imps = ds.imps;
   s.vars = ds.vars;  
   s.mods = ds.mods;
+  
   ds.scope = s;
+
+  this.vars = [];
+  this.mods = [s];
+  this.imps = [];
 }
 
 prod dDcl: Dcl ::= b:Bind
 {
   b.scope = this.scope;
+
   this.vars = b.vars;
+  this.mods = [];
+  this.imps = [];
 }
 
 prod dImp: Dcl ::= r:ModRef
 {
-  this.imps = r.imps;
   r.scope = this.scope;
+  
+  this.vars = [];
+  this.mods = [];
+  this.imps = r.imps;
 }
 
 
-nt Bind with scope, vars, type;
+nt Bind;
+attr scope occurs on Bind;
+attr vars occurs on Bind;
+attr type occurs on Bind;
 
 prod bnd: Bind ::= id:String e:Exp
 {  
@@ -70,30 +88,82 @@ prod bnd: Bind ::= id:String e:Exp
 }
 
 
-nt ModRef with scope, imps;
+nt ModRef;
+attr scope occurs on ModRef;
+attr imps occurs on ModRef;
 
 prod mref: ModRef ::= id:String
 { 
   local r:Ref = mkModRef(id);
-  r.lex = this.scope;
-  this.imps = r.decls;
+  r.lex = [this.scope];
+  this.imps = r.res;
 }
 
 
-nt VarRef with scope;
+nt VarRef;
+attr scope occurs on VarRef;
+attr res occurs on VarRef;
 
 prod vref: VarRef ::= id:String
 { 
   local r:Ref = mkVarRef(id);
-  local b:Bind = head(r.res);
-  this.type = b.type;
+  r.lex = [this.scope];
+  this.res = r.res;
 }
 
 
-nt Exp with scope, type;
+nt Exp;
+attr scope occurs on Exp;
+attr type occurs on Exp;
 
 prod eRef: Exp ::= r:VarRef
 { 
   this.type = r.type;
   r.scope = this.scope;
 }
+
+prod eInt: Exp ::= i::Integer
+{
+  this.type = typeInt();
+}
+
+---------------------------
+
+-- sg library stuff
+
+syn attr res:[Scope];
+syn attr lex:[Scope];
+syn attr vars:[Scope];
+syn attr mods:[Scope];
+syn attr imps:[Scope];
+
+
+nt Scope;
+attr lex occurs on Scope;
+attr vars occurs on Scope;
+attr imps occurs on Scope;
+attr mods occurs on Scope;
+
+prod mkScope: Scope ::= {}
+prod mkMod: Scope ::= s:String {}
+prod mkVar: Scope ::= s:String {}
+
+
+nt Ref;
+attr res occurs on Ref;
+attr lex occurs on Ref;
+attr type occurs on Ref;
+
+prod mkVarRef: Ref ::= s:String {}
+prod mkModRef: Ref ::= s:String {}
+
+
+---------------------------
+
+-- other
+-- implement polymorphic lists later
+
+nt List;
+
+prod head: List ::= ss:[Scope]
+{}

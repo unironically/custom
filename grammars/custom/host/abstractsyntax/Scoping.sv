@@ -1,2 +1,0 @@
-grammar custom:host:abstractsyntax;
-

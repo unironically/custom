@@ -12,11 +12,11 @@ top::TopDecl ::= attrType::AttrType id::String ty::Type
 {}
 
 abstract production occursDecl
-top::TopDecl ::= ids::[String] ty::Type
+top::TopDecl ::= attrId::String nontId::String
 {}
 
 abstract production productionDecl
-top::TopDecl ::= id::String ty::Type ps::Children eq::Equations
+top::TopDecl ::= id::String nont::String ps::Children eq::Equations
 {}
 
 abstract production functionDecl

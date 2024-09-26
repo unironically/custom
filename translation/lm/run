@@ -1,0 +1,9 @@
+#!/bin/bash
+
+javac -Xlint:unchecked *.java
+
+pushd .. &> /dev/null
+
+java -cp . lm.Driver
+
+popd &> /dev/null

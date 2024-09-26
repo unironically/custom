@@ -43,13 +43,13 @@ top::TopDecl_c ::= at::AttrType_c 'attr' id::Id_t ':' ty::Type_c ';'
                           location=top.location); }
 
 concrete production occursDecl_c
-top::TopDecl_c ::= 'attr' idl::IdList_c 'occurs' 'on' ty::Type_c ';'
-{ top.ast = occursDecl(idl.ids, ty.ast, location=top.location); }
+top::TopDecl_c ::= 'attr' attrId::Id_t 'occurs' 'on' nontId::Id_t ';'
+{ top.ast = occursDecl(attrId.lexeme, nontId.lexeme, location=top.location); }
 
 concrete production productionDecl_c
-top::TopDecl_c ::= 'prod' id::Id_t ':' ty::Type_c '::=' cs::Children_c
+top::TopDecl_c ::= 'prod' id::Id_t ':' nont::Id_t '::=' cs::Children_c
                    '{' eq::Equations_c '}'
-{ top.ast = productionDecl(id.lexeme, ty.ast, cs.ast, eq.ast, 
+{ top.ast = productionDecl(id.lexeme, nont.lexeme, cs.ast, eq.ast, 
                            location=top.location);}
 
 concrete production functionDecl_c
@@ -70,19 +70,6 @@ top::AttrType_c ::= 'syn'
 concrete production inhAttrType
 top::AttrType_c ::= 'inh'
 { top.ast = attrTypeInh(location=top.location); }
-
-
-{- IdList -}
-
-nonterminal IdList_c with ids, location;
-
-concrete production idListCons_c
-top::IdList_c ::= id::Id_t ',' idl::IdList_c
-{ top.ids = id.lexeme :: idl.ids; }
-
-concrete production idListOne_c
-top::IdList_c ::= id::Id_t
-{ top.ids = []; }
 
 
 {- Children -}

@@ -22,3 +22,27 @@ top::Type ::= content::Type
 abstract production nonterminalType
 top::Type ::= id::String
 {}
+
+abstract production errType
+top::Type ::=
+{}
+
+
+instance Eq Type {
+  eq = tyEq;
+  neq = tyNeq;
+}
+
+fun tyEq Boolean ::= t1::Type t2::Type =
+  case t1, t2 of
+  | intType(), intType() -> true
+  | boolType(), boolType() -> true
+  | stringType(), stringType() -> true
+  | listType(lt1), listType(lt2) -> lt1 == lt2
+  | nonterminalType(s1), nonterminalType(s2) -> s1 == s2
+  | errType(), _ -> true
+  | _, errType() -> true
+  | _, _ -> false
+  end;
+
+fun tyNeq Boolean ::= t1::Type t2::Type = !tyEq(t1, t2);

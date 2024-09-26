@@ -5,7 +5,8 @@ exports custom:host:concretesyntax;
 exports custom:host:abstractsyntax;
 
 -- extensions
-exports custom:attributewith:concretesyntax;
+--exports custom:attributewith:concretesyntax;
+exports custom:sg_lib;
 
 ------------------------------------------------------
 
@@ -24,19 +25,31 @@ IO<Integer> ::= largs::[String]
 
         let result :: ParseResult<File_c> = 
           custom:composed:parse(file, filePath);
-        --let ast :: Main = result.parseTree.ast;
+        let ast :: File = result.parseTree.ast;
 
         --let fileNameExt::String = last(explode("/", filePath));
         --let fileNameExplode::[String] = explode(".", fileNameExt);
         --let fileName::String = head(fileNameExplode);
 
-        --let viz::String = graphvizScopes(ast.allScopes, ast.allRefs);
+        let viz::String = graphvizScopes(ast.allScopes, []);
 
         if result.parseSuccess
-          then do {
-            print("[✔] Parse success\n");
-            return 0;
-          }
+          then 
+            if null(ast.errs) then do {
+              print("[✔] Success\n");
+              mkdir("out");
+              system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
+                    fileName ++ ".svg");
+              return 0;
+            } 
+            else do {
+              print("[✗] Errors found!\n");
+              print(strErrs(ast.errs, filePath));
+              mkdir("out");
+              system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
+                    fileName ++ ".svg");
+              return -1;
+            }
           else do {
             print("[✗] Parse failure\n" ++ result.parseErrors ++ "\n");
             return -1;
@@ -47,3 +60,16 @@ IO<Integer> ::= largs::[String]
             return -1;
       };
 }
+
+fun strErrs String ::= errs::[ErrMessage] file::String =
+  concat (
+    map (
+      (\e::ErrMessage ->
+        case e of
+        | errMessage(s, l) -> 
+            file ++ ":" ++ toString(l.line) ++ ":" ++ toString(l.column) ++ 
+            ": error: " ++ s ++ "\n"
+        end),
+      errs
+    )
+  );
