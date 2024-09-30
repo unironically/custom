@@ -24,6 +24,10 @@ terminal On_t     'on'     lexer classes {KEYWORD};
 terminal Prod_t   'prod'   lexer classes {KEYWORD};
 terminal Fun_t    'fun'    lexer classes {KEYWORD};
 terminal Local_t  'local'  lexer classes {KEYWORD};
+terminal If_t     'if'     lexer classes {KEYWORD};
+terminal Then_t   'then'   lexer classes {KEYWORD};
+terminal Else_t   'else'   lexer classes {KEYWORD};
+terminal End_t    'end'    lexer classes {KEYWORD};
 
 
 {- Types -}

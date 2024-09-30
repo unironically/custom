@@ -6,7 +6,7 @@ exports custom:host:abstractsyntax;
 
 -- extensions
 --exports custom:attributewith:concretesyntax;
-exports custom:sg_lib;
+--exports custom:sg_lib;
 
 ------------------------------------------------------
 
@@ -31,25 +31,25 @@ IO<Integer> ::= largs::[String]
         --let fileNameExplode::[String] = explode(".", fileNameExt);
         --let fileName::String = head(fileNameExplode);
 
-        let viz::String = graphvizScopes(ast.allScopes, []);
+        --let viz::String = graphvizScopes(ast.allScopes, []);
 
         if result.parseSuccess
-          then 
-            if null(ast.errs) then do {
+          then do {
+            --if null(ast.errs) then do {
               print("[✔] Success\n");
-              mkdir("out");
-              system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
-                    fileName ++ ".svg");
+              --mkdir("out");
+              --system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
+              --      fileName ++ ".svg");
               return 0;
             } 
-            else do {
-              print("[✗] Errors found!\n");
-              print(strErrs(ast.errs, filePath));
-              mkdir("out");
-              system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
-                    fileName ++ ".svg");
-              return -1;
-            }
+            --else do {
+            --  print("[✗] Errors found!\n");
+            --  print(strErrs(ast.errs, filePath));
+            --  mkdir("out");
+            --  system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
+            --        fileName ++ ".svg");
+            --  return -1;
+            --}
           else do {
             print("[✗] Parse failure\n" ++ result.parseErrors ++ "\n");
             return -1;

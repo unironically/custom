@@ -31,6 +31,18 @@ abstract production refExpr
 top::Expr ::= r::Ref
 {}
 
+abstract production ifExpr
+top::Expr ::= c::Expr e1::Expr e2::Expr
+{}
+
+abstract production gtExpr
+top::Expr ::= e1::Expr e2::Expr
+{}
+
+abstract production ltExpr
+top::Expr ::= e1::Expr e2::Expr
+{}
+
 
 nonterminal Exprs with location;
 
@@ -46,7 +58,7 @@ top::Exprs ::=
 nonterminal Ref with location;
 
 abstract production fieldAccessRef
-top::Ref ::= r::Ref id::String
+top::Ref ::= e::Expr id::String
 {}
 
 abstract production nameRef

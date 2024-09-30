@@ -1,7 +1,7 @@
 package lm;
 
 abstract class Type extends TreeNode {
-  
+
 }
 
 class intType extends Type {

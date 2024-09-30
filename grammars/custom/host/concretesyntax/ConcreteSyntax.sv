@@ -151,11 +151,27 @@ top::Expr_c ::= e::AddExpr_c
 closed nonterminal AddExpr_c with ast<Expr>, location;
 
 concrete production plus_c
-top::AddExpr_c ::= e1::AddExpr_c '+' e2::FactorExpr_c
+top::AddExpr_c ::= e1::AddExpr_c '+' e2::CompExpr_c
 { top.ast = plusExpr(e1.ast, e2.ast, location=top.location); }
 
+concrete production comp_c
+top::AddExpr_c ::= e::CompExpr_c
+{ top.ast = e.ast; }
+
+--
+
+closed nonterminal CompExpr_c with ast<Expr>, location;
+
+concrete production gt_c
+top::CompExpr_c ::= e1::CompExpr_c '>' e2::FactorExpr_c
+{ top.ast = gtExpr(e1.ast, e2.ast, location=top.location); }
+
+concrete production lt_c
+top::CompExpr_c ::= e1::CompExpr_c '<' e2::FactorExpr_c
+{ top.ast = ltExpr(e1.ast, e2.ast, location=top.location); }
+
 concrete production factor_c
-top::AddExpr_c ::= e::FactorExpr_c
+top::CompExpr_c ::= e::FactorExpr_c
 { top.ast = e.ast; }
 
 --
@@ -199,14 +215,17 @@ concrete production listExprNil_c
 top::FactorExpr_c ::= '[' ']'
 { top.ast = listExpr(exprsNil(location=top.location), location=top.location); }
 
+concrete production ifExpr_c
+top::FactorExpr_c ::= 'if' c::Expr_c 'then' e1::Expr_c 'else' e2::Expr_c 'end'
+{ top.ast = ifExpr(c.ast, e1.ast, e2.ast, location=top.location); }
 
 {- Ref -}
 
 nonterminal Ref_c with ast<Ref>, location;
 
 concrete production fieldAccessRef_c
-top::Ref_c ::= f::Ref_c '.' id::Id_t
-{ top.ast = fieldAccessRef(f.ast, id.lexeme, location=top.location); }
+top::Ref_c ::= e::FactorExpr_c '.' id::Id_t
+{ top.ast = fieldAccessRef(e.ast, id.lexeme, location=top.location); }
 
 concrete production nameRef_c
 top::Ref_c ::= id::Id_t
@@ -225,7 +244,7 @@ top::LHS_c ::= lhs::LHS_c '.' id::Id_t
 { top.ast = fieldAccessLHS(lhs.ast, id.lexeme, location=top.location); }
 
 
-{- Types -}
+{- Type -}
 
 closed nonterminal Type_c with ast<Type>, location;
 
@@ -248,3 +267,23 @@ top::Type_c ::= '[' ty::Type_c ']'
 concrete production nonterminalType_c
 top::Type_c ::= id::Id_t
 { top.ast = nonterminalType(id.lexeme, location=top.location); }
+
+concrete production funType_c
+top::Type_c ::= '(' ret::Type_c '::=' ts::Types_c ')'
+{ top.ast = funType(ret.ast, ts.ast, location=top.location); }
+
+concrete production parenType_c
+top::Type_c ::= '(' t::Type_c ')'
+{ top.ast = t.ast; }
+
+{- Types -}
+
+closed nonterminal Types_c with ast<Types>, location;
+
+concrete production typesCons_c
+top::Types_c ::= t::Type_c ts::Types_c
+{ top.ast = typesCons(t.ast, ts.ast, location=top.location); }
+
+concrete production typesNil_c
+top::Types_c ::=
+{ top.ast = typesNil(location=top.location); }

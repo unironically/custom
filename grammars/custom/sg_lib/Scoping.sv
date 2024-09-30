@@ -479,6 +479,35 @@ top::Expr ::= r::Ref
   top.ty = r.ty;
 }
 
+aspect production ifExpr
+top::Expr ::= c::Expr e1::Expr e2::Expr
+{
+  top.ty = case c.ty, e1.ty, e2.ty of
+           | just(boolType()), just(t1), just(t2) when t1 == t2 -> e1.ty
+           | _, _, _ -> nothing()
+           end;
+}
+
+aspect production gtExpr
+top::Expr ::= e1::Expr e2::Expr
+{
+  top.ty = case e1.ty, e2.ty of
+           | just(t1), just(t2) when t1 == t2 -> 
+               just(boolType(location=top.location))
+           | _, _ -> nothing()
+           end;
+}
+
+aspect production ltExpr
+top::Expr ::= e1::Expr e2::Expr
+{
+  top.ty = case e1.ty, e2.ty of
+           | just(t1), just(t2) when t1 == t2 -> 
+               just(boolType(location=top.location))
+           | _, _ -> nothing()
+           end;
+}
+
 --------------------------------------------------
 
 synthesized attribute exprTys::[Maybe<Type>];
@@ -505,7 +534,7 @@ propagate scope, errs on Ref;
 
 aspect production fieldAccessRef
 top::Ref ::= 
-r::Ref id::String
+e::Expr id::String
 {
   -- qualified reference, `NONT ATTR`
   local ref::SGRef = mkRef(id, nontAttrDFA(), location=top.location);

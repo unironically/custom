@@ -23,6 +23,10 @@ abstract production nonterminalType
 top::Type ::= id::String
 {}
 
+abstract production funType
+top::Type ::= ret::Type params::Types
+{}
+
 abstract production errType
 top::Type ::=
 {}
@@ -46,3 +50,19 @@ fun tyEq Boolean ::= t1::Type t2::Type =
   end;
 
 fun tyNeq Boolean ::= t1::Type t2::Type = !tyEq(t1, t2);
+
+
+
+nonterminal Types with location;
+
+abstract production typesCons
+top::Types ::= t::Type ts::Types
+{
+
+}
+
+abstract production typesNil
+top::Types ::=
+{
+
+}
