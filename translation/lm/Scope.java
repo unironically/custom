@@ -3,14 +3,8 @@ package lm;
 import java.util.ArrayList;
 
 abstract class Scope<T extends haschild_Scope<T>> 
-  extends TreeNode {
+  extends TreeNode<T> {
 
-  protected T parent;
-  public void setParent(T parent, int childId) {
-    this.parent = parent;
-    this.childId = childId;
-  }
-  
   protected ArrayList<Scope<? extends haschild_Scope<?>>> var = null;
   protected Boolean var_computed = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> var() { return null; }
@@ -179,7 +173,7 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-abstract class Datum extends TreeNode {
+abstract class Datum extends TreeNode<Scope> {
   
   protected String id_value = null;
   protected Boolean id_computed = false;

@@ -2,47 +2,13 @@ package lm;
 
 import java.util.ArrayList;
 
-abstract class Query extends TreeNode {
-
-  protected ArrayList<Scope<? extends haschild_Scope<?>>> res = null;
-  protected Boolean res_computed = false;
-
-  public ArrayList<Scope<? extends haschild_Scope<?>>> res() { return null; }
-
-}
-
-class query extends Query {
-
-  private Ref r;
-  private DFA d;
-  private Scope<? extends haschild_Scope<?>> s;
-
-  public query(Ref r, DFA d, Scope<? extends haschild_Scope<?>> s) {
-    this.r = r;
-    this.d = d;
-    this.s = s;
-  }
-
-  /* SYNTHESIZED ATTRIBUTES */
-
-  public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
-    if (this.res_computed) return this.res;
-    this.res = this.d.decls(r, s);
-    this.res_computed = true;
-    return this.res;
-  }
-
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-abstract class DFA extends TreeNode {
+abstract class DFA<T> extends TreeNode<T> {
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-    decls(Ref r, Scope<? extends haschild_Scope<?>> s) { return null; }
+    decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { return null; }
 }
 
-class varDFA extends DFA
-implements haschild_DFAState<varDFA> {
+class varDFA<T> extends DFA<T>
+implements haschild_DFAState<varDFA<T>> {
 
   /* Children
    * 0: local stateLex:dfaState
@@ -54,44 +20,44 @@ implements haschild_DFAState<varDFA> {
   /* LOCALS */
 
   // local stateLex:DFAState = dfaState()
-  private DFAState<varDFA> stateLex = null;
+  private DFAState<varDFA<T>> stateLex = null;
   private Boolean stateLex_computed = false;
-  public DFAState<varDFA> stateLex() {
+  public DFAState<varDFA<T>> stateLex() {
     if (this.stateLex_computed) return this.stateLex;
-    this.stateLex = new dfaState<varDFA>();
+    this.stateLex = new dfaState<varDFA<T>>();
     this.stateLex.setParent(this, 0);
     this.stateLex_computed = true;
     return this.stateLex;
   }
 
   // local stateImp:DFAState = dfaState()
-  private DFAState<varDFA> stateImp = null;
+  private DFAState<varDFA<T>> stateImp = null;
   private Boolean stateImp_computed = false;
-  public DFAState<varDFA> stateImp() {
+  public DFAState<varDFA<T>> stateImp() {
     if (this.stateImp_computed) return this.stateImp;
-    this.stateImp = new dfaState<varDFA>();
+    this.stateImp = new dfaState<varDFA<T>>();
     this.stateImp.setParent(this, 1);
     this.stateImp_computed = true;
     return this.stateImp;
   }
 
   // local stateFinal:DFAState = dfaStateFinal()
-  private DFAState<varDFA> stateFinal = null;
+  private DFAState<varDFA<T>> stateFinal = null;
   private Boolean stateFinal_computed = false;
-  public DFAState<varDFA> stateFinal() {
+  public DFAState<varDFA<T>> stateFinal() {
     if (this.stateFinal_computed) return this.stateFinal;
-    this.stateFinal = new dfaStateFinal<varDFA>();
+    this.stateFinal = new dfaStateFinal<varDFA<T>>();
     this.stateFinal.setParent(this, 2);
     this.stateFinal_computed = true;
     return this.stateFinal;
   }
 
   // local stateSink:DFAState = dfaStateSink()
-  private DFAState<varDFA> stateSink = null;
+  private DFAState<varDFA<T>> stateSink = null;
   private Boolean stateSink_computed = false;
-  public DFAState<varDFA> stateSink() {
+  public DFAState<varDFA<T>> stateSink() {
     if (this.stateSink_computed) return this.stateSink;
-    this.stateSink = new dfaStateSink<varDFA>();
+    this.stateSink = new dfaStateSink<varDFA<T>>();
     this.stateSink.setParent(this, 3);
     this.stateSink_computed = true;
     return this.stateSink;
@@ -104,7 +70,7 @@ implements haschild_DFAState<varDFA> {
    * stateFinal.lexT = stateSink
    * stateSink.lexT  = stateSink
    */
-  public DFAState<varDFA> lexT(int childId) {
+  public DFAState<varDFA<T>> lexT(int childId) {
     if (childId == 0) {
       return this.stateLex();
     }
@@ -125,7 +91,7 @@ implements haschild_DFAState<varDFA> {
    * stateFinal.varT = stateSink
    * stateSink.varT  = stateSink
    */
-  public DFAState<varDFA> varT(int childId) {
+  public DFAState<varDFA<T>> varT(int childId) {
     if (childId == 0) {
       return this.stateFinal();
     }
@@ -146,7 +112,7 @@ implements haschild_DFAState<varDFA> {
    * stateFinal.modT = stateSink
    * stateSink.modT  = stateSink
    */
-  public DFAState<varDFA> modT(int childId) {
+  public DFAState<varDFA<T>> modT(int childId) {
     if (childId == 0) {
       return this.stateSink();
     }
@@ -167,7 +133,7 @@ implements haschild_DFAState<varDFA> {
    * stateFinal.impT = stateSink
    * stateSink.impT  = stateSink
    */
-  public DFAState<varDFA> impT(int childId) {
+  public DFAState<varDFA<T>> impT(int childId) {
     if (childId == 0) {
       return this.stateImp();
     }
@@ -186,14 +152,14 @@ implements haschild_DFAState<varDFA> {
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-  decls(Ref r, Scope<? extends haschild_Scope<?>> s) { 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s){ 
     return this.stateLex().decls(r, s);
   }
 
 }
 
-class modDFA extends DFA
-implements haschild_DFAState<modDFA> {
+class modDFA<T> extends DFA<T>
+implements haschild_DFAState<modDFA<T>> {
 
   /* Children
    * 0: local stateLex:dfaState
@@ -205,44 +171,44 @@ implements haschild_DFAState<modDFA> {
   /* LOCALS */
 
   // local stateLex:DFAState = dfaState()
-  private DFAState<modDFA> stateLex = null;
+  private DFAState<modDFA<T>> stateLex = null;
   private Boolean stateLex_computed = false;
-  public DFAState<modDFA> stateLex() {
+  public DFAState<modDFA<T>> stateLex() {
     if (this.stateLex_computed) return this.stateLex;
-    this.stateLex = new dfaState<modDFA>();
+    this.stateLex = new dfaState<modDFA<T>>();
     this.stateLex.setParent(this, 0);
     this.stateLex_computed = true;
     return this.stateLex;
   }
 
   // local stateImp:DFAState = dfaState()
-  private DFAState<modDFA> stateImp = null;
+  private DFAState<modDFA<T>> stateImp = null;
   private Boolean stateImp_computed = false;
-  public DFAState<modDFA> stateImp() {
+  public DFAState<modDFA<T>> stateImp() {
     if (this.stateImp_computed) return this.stateImp;
-    this.stateImp = new dfaState<modDFA>();
+    this.stateImp = new dfaState<modDFA<T>>();
     this.stateImp.setParent(this, 1);
     this.stateImp_computed = true;
     return this.stateImp;
   }
 
   // local stateFinal:DFAState = dfaStateFinal()
-  private DFAState<modDFA> stateFinal = null;
+  private DFAState<modDFA<T>> stateFinal = null;
   private Boolean stateFinal_computed = false;
-  public DFAState<modDFA> stateFinal() {
+  public DFAState<modDFA<T>> stateFinal() {
     if (this.stateFinal_computed) return this.stateFinal;
-    this.stateFinal = new dfaStateFinal<modDFA>();
+    this.stateFinal = new dfaStateFinal<modDFA<T>>();
     this.stateFinal.setParent(this, 2);
     this.stateFinal_computed = true;
     return this.stateFinal;
   }
 
   // local stateSink:DFAState = dfaStateSink()
-  private DFAState<modDFA> stateSink = null;
+  private DFAState<modDFA<T>> stateSink = null;
   private Boolean stateSink_computed = false;
-  public DFAState<modDFA> stateSink() {
+  public DFAState<modDFA<T>> stateSink() {
     if (this.stateSink_computed) return this.stateSink;
-    this.stateSink = new dfaStateSink<modDFA>();
+    this.stateSink = new dfaStateSink<modDFA<T>>();
     this.stateSink.setParent(this, 3);
     this.stateSink_computed = true;
     return this.stateSink;
@@ -255,7 +221,7 @@ implements haschild_DFAState<modDFA> {
    * stateFinal.lexT = stateSink
    * stateSink.lexT  = stateSink
    */
-  public DFAState<modDFA> lexT(int childId) {
+  public DFAState<modDFA<T>> lexT(int childId) {
     if (childId == 0) {
       return this.stateLex();
     }
@@ -276,7 +242,7 @@ implements haschild_DFAState<modDFA> {
    * stateFinal.varT = stateSink
    * stateSink.varT  = stateSink
    */
-  public DFAState<modDFA> varT(int childId) {
+  public DFAState<modDFA<T>> varT(int childId) {
     if (childId == 0) {
       return this.stateFinal();
     }
@@ -297,7 +263,7 @@ implements haschild_DFAState<modDFA> {
    * stateFinal.modT = stateSink
    * stateSink.modT  = stateSink
    */
-  public DFAState<modDFA> modT(int childId) {
+  public DFAState<modDFA<T>> modT(int childId) {
     if (childId == 0) {
       return this.stateFinal();
     }
@@ -318,7 +284,7 @@ implements haschild_DFAState<modDFA> {
    * stateFinal.impT = stateSink
    * stateSink.impT  = stateSink
    */
-  public DFAState<modDFA> impT(int childId) {
+  public DFAState<modDFA<T>> impT(int childId) {
     if (childId == 0) {
       return this.stateImp();
     }
@@ -337,7 +303,7 @@ implements haschild_DFAState<modDFA> {
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-  decls(Ref r, Scope<? extends haschild_Scope<?>> s) { 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
     return this.stateLex().decls(r, s);
   }
 
@@ -347,13 +313,7 @@ implements haschild_DFAState<modDFA> {
 ////////////////////////////////////////////////////////////////////////////////
 
 abstract class DFAState<T extends haschild_DFAState<T>>
-extends TreeNode {
-
-  protected T parent;
-  public void setParent(T parent, int childId) {
-    this.parent = parent;
-    this.childId = childId;
-  }
+extends TreeNode<T> {
 
   protected DFAState<T> lexT = null;
   protected Boolean lexT_computed = false;
@@ -368,7 +328,7 @@ extends TreeNode {
   protected Boolean impT_computed = false;
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-    decls(Ref r, Scope<? extends haschild_Scope<?>> s) { return null; }
+    decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { return null; }
 
   protected String pp = null;
   protected Boolean pp_computed = false;
@@ -420,7 +380,7 @@ extends DFAState<T> {
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-  decls(Ref r, Scope<? extends haschild_Scope<?>> s) { 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
 
     ArrayList<Scope<? extends haschild_Scope<?>>> varRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
@@ -505,7 +465,7 @@ extends DFAState<T> {
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-  decls(Ref r, Scope<? extends haschild_Scope<?>> s) { 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
 
     ArrayList<Scope<? extends haschild_Scope<?>>> res = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
@@ -568,7 +528,7 @@ extends DFAState<T> {
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-  decls(Ref r, Scope<? extends haschild_Scope<?>> s) { 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
 
     System.out.println("\tSink state");
 

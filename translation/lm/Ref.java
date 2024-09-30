@@ -2,13 +2,7 @@ package lm;
 
 import java.util.ArrayList;
 
-abstract class Ref<T extends haschild_Ref<T>> extends TreeNode {
-
-  public T parent;
-  public void setParent(T parent, int childId) {
-    this.parent = parent;
-    this.childId = childId;
-  }
+abstract class Ref<T extends haschild_Ref<T>> extends TreeNode<T> {
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> lex = null;
   protected Boolean lex_computed = false;
@@ -45,11 +39,11 @@ class mkVarRef<T extends haschild_Ref<T>> extends Ref<T> {
   
   /* LOCALS */
 
-  private DFA dfa = null;
+  private DFA<mkVarRef<T>> dfa = null;
   private Boolean dfa_computed = false;
-  protected DFA dfa () {
+  protected DFA<mkVarRef<T>> dfa () {
     if (this.dfa_computed) return this.dfa;
-    this.dfa = new varDFA();
+    this.dfa = new varDFA<mkVarRef<T>>();
     this.dfa_computed = true;
     return this.dfa;
   }
@@ -121,11 +115,11 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   /* LOCALS */
 
-  private DFA dfa = null;
+  private DFA<mkModRef<T>> dfa = null;
   private Boolean dfa_computed = false;
-  protected DFA dfa () {
+  protected DFA<mkModRef<T>> dfa () {
     if (this.dfa_computed) return this.dfa;
-    this.dfa = new modDFA();
+    this.dfa = new modDFA<mkModRef<T>>();
     this.dfa_computed = true;
     return this.dfa;
   }

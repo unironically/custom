@@ -3,13 +3,7 @@ import lm.*;
 
 import java.util.ArrayList;
 
-abstract class Exp<T extends haschild_Exp<T>> extends TreeNode {
-
-  protected T parent;
-  public void setParent(T parent, int childId) {
-    this.parent = parent;
-    this.childId = childId;
-  }
+abstract class Exp<T extends haschild_Exp<T>> extends TreeNode<T> {
 
   protected Scope scope            = null;
   protected Boolean scope_computed = false;

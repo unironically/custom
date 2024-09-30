@@ -4,7 +4,7 @@ import lm.*;
 import java.util.ArrayList;
 
 // nt Main
-abstract class Main extends TreeNode {
+abstract class Main extends TreeNode<Driver> {
 
   protected String pp = "";
   protected Boolean pp_computed  = false;
