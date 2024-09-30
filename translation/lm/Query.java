@@ -385,6 +385,7 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> varRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
     for (Scope<? extends haschild_Scope<?>> sVar: s.var()) {
+      if (scopeTrace)
       System.out.println("In resolving " + r.pp() + " in state " + this.pp() + ", traversing a VAR " + "edge from " + s.pp() + " to " + sVar.pp() + ", and traversing DFA to state " + this.varT().pp());
       varRes.addAll(this.varT().decls(r, sVar));
     }
@@ -392,6 +393,7 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> modRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
     for (Scope<? extends haschild_Scope<?>> sMod: s.mod()) {
+      if (scopeTrace)
       System.out.println("In resolving " + r.pp() + " in state " + this.pp() + ", traversing a MOD " + "edge from " + s.pp() + " to " + sMod.pp() + ", and traversing DFA to state " + this.modT().pp());
       modRes.addAll(this.modT().decls(r, sMod));
     }
@@ -399,6 +401,7 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> impRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
     for (Scope<? extends haschild_Scope<?>> sImp: s.imp()) {
+      if (scopeTrace)
       System.out.println("In resolving " + r.pp() + " in state " + this.pp() + ", traversing a IMP " + "edge from " + s.pp() + " to " + sImp.pp() + ", and traversing DFA to state " + this.impT().pp());
       impRes.addAll(this.impT().decls(r, sImp));
     }
@@ -406,6 +409,7 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> lexRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
     for (Scope<? extends haschild_Scope<?>> sLex: s.lex()) {
+      if (scopeTrace)
       System.out.println("In resolving " + r.pp() + " in state " + this.pp() + ", traversing a LEX " + "edge from " + s.pp() + " to " + sLex.pp() + ", and traversing DFA to state " + this.lexT().pp());
       lexRes.addAll(this.lexT().decls(r, sLex));
     }
@@ -472,8 +476,10 @@ extends DFAState<T> {
 
     if (s.datum().str().equals(r.str())) {
       res.add(s);
+      if (scopeTrace)
       System.out.println("\tFinal state: " + r.pp() + ", found a good match " + s.pp());
     } else {
+      if (scopeTrace)
       System.out.println("\tFinal state: " + r.pp() + ", found a bad match " + s.pp());
     }
 
@@ -529,8 +535,7 @@ extends DFAState<T> {
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
   decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
-
-    System.out.println("\tSink state");
+    if (scopeTrace) System.out.println("\tSink state");
 
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   
