@@ -240,8 +240,8 @@ top::LHS_c ::= id::Id_t
 { top.ast = refLHS(id.lexeme, location=top.location); }
 
 concrete production fieldAccessLHS_c
-top::LHS_c ::= lhs::LHS_c '.' id::Id_t
-{ top.ast = fieldAccessLHS(lhs.ast, id.lexeme, location=top.location); }
+top::LHS_c ::= id1::Id_t '.' id2::Id_t
+{ top.ast = fieldAccessLHS(id1.lexeme, id2.lexeme, location=top.location); }
 
 
 {- Type -}

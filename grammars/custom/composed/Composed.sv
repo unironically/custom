@@ -3,6 +3,7 @@ grammar custom:composed;
 -- host language
 exports custom:host:concretesyntax;
 exports custom:host:abstractsyntax;
+exports custom:host:translation;
 
 -- extensions
 --exports custom:attributewith:concretesyntax;
@@ -40,7 +41,8 @@ IO<Integer> ::= largs::[String]
               --mkdir("out");
               --system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
               --      fileName ++ ".svg");
-              return 0;
+              ret::Integer <- writeFiles(ast.filesToWrite);
+              return ret;
             } 
             --else do {
             --  print("[✗] Errors found!\n");
@@ -73,3 +75,14 @@ fun strErrs String ::= errs::[ErrMessage] file::String =
       errs
     )
   );
+
+
+fun writeFiles IO<Integer> ::= filesToWrite::[(String, String)] =
+  case filesToWrite of
+  | [] -> do { return 0; }
+  | (fName, fContent)::t -> 
+      do {
+        writeFile(fName, fContent);
+        writeFiles(t);
+      }
+  end;

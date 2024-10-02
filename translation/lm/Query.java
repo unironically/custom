@@ -536,9 +536,7 @@ extends DFAState<T> {
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
   decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
     if (scopeTrace) System.out.println("\tSink state");
-
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
-  
   } 
 
 }

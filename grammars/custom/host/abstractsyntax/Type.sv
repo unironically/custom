@@ -1,6 +1,22 @@
 grammar custom:host:abstractsyntax;
 
 
+type TyEnv = [(String, Type)];
+
+inherited attribute tyEnvInh::TyEnv;
+synthesized attribute tyEnvSyn::TyEnv;
+
+function lookupTyEnv
+Maybe<Type> ::= s::String tyEnv::TyEnv
+{
+  local filtered::[(String, Type)] = 
+    filter((\p::(String, Type) -> p.1 == s), tyEnv);
+  return 
+    if !null(filtered)
+    then just(head(filtered).2)
+    else nothing();
+}
+
 nonterminal Type with location;
 
 abstract production intType

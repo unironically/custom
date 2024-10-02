@@ -15,11 +15,30 @@ prod main: Main ::= ds:Dcls name:String
 }
 
 
-nt Dcls;
 
+nt Dcls;
 attr scope occurs on Dcls;
 attr vars occurs on Dcls;
 
+prod dclsCons: Dcls ::= d:Dcl ds:Dcls
+{
+  local s:Scope = mkScope();
+  local s2:Scope = mkScope();
+  local i:Integer = 1;
+
+  d.scope = this.scope;
+  ds.scope = this.scope;
+}
+
+prod dclsNil: Dcls ::= 
+{}
+
+
+
+
+nt Dcl;
+
+attr scope occurs on Dcl;
 
 ---------------------------
 
