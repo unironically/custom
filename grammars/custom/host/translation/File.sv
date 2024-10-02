@@ -2,8 +2,10 @@ grammar custom:host:translation;
 
 imports custom:host:abstractsyntax;
 
+inherited attribute grammarName::String;
+
 attribute
-  filesToWrite
+  filesToWrite, grammarName
 occurs on File;
 
 aspect production file
@@ -14,12 +16,12 @@ top::File ::= ds::TopDecls
       (
         \nt::String ->
 
-          -- occurs
-          let synsOccurTrans::[(String, String)] =
-            filter((\p::(String, String) -> p.1 == nt), ds.synsOccurTransPairs)
+          -- syn occurs
+          let occurTrans::[(String, String)] =
+            filter((\p::(String, String) -> p.1 == nt), ds.occurTransPairs)
           in
-          let occursTrans::[String] = 
-            map((\p::(String, String) -> p.2), synsOccurTrans)
+          let allOccursTrans::[String] = 
+            map((\p::(String, String) -> p.2), occurTrans)
           in
 
           -- prods
@@ -30,8 +32,9 @@ top::File ::= ds::TopDecls
             map((\p::(String, String) -> p.2), prodsForNt)
           in
             stitchFile(
+              top.grammarName,
               nt, 
-              occursTrans, 
+              allOccursTrans,
               prodsTrans
             )
           end end end end
@@ -49,11 +52,12 @@ top::File ::= ds::TopDecls
 
 function stitchFile
 (String, String) ::= 
+  grammarName::String
   nt::String
   synsOccurTrans::[String]
   prodDeclsTrans::[String]
 {
-  local header::String =
+  local header::String = "package " ++ grammarName ++ ";\n" ++
     "abstract class " ++ nt ++ "<T extends hasChild_" ++ nt ++ "<T>> " ++
       "extends TreeNode<T>";
   

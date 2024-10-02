@@ -3,10 +3,12 @@ grammar custom:host:abstractsyntax;
 inherited attribute occursEnvInh::[(String, String)];
 monoid attribute occursEnvSyn::[(String, String)] with [], ++;
 
-nonterminal TopDecl with 
-  location, tyEnvSyn, tyEnvInh, occursEnvInh, occursEnvSyn;
+inherited attribute attrTyEnvInh::[(String, Type)];
 
-propagate occursEnvSyn on TopDecl excluding occursDecl;
+nonterminal TopDecl with 
+  location, tyEnvSyn, tyEnvInh, occursEnvInh, occursEnvSyn, attrTyEnvInh;
+
+propagate occursEnvSyn, attrTyEnvInh on TopDecl excluding occursDecl;
 
 abstract production nonterminalDecl
 top::TopDecl ::= id::String
@@ -29,17 +31,22 @@ top::TopDecl ::= attrId::String nontId::String
 
 abstract production productionDecl
 top::TopDecl ::= id::String nont::String ps::Children eq::Equations
-{ top.tyEnvSyn = []; } -- todo?
+{ 
+  top.tyEnvSyn = [];
+  eq.tyEnvInh = eq.tyEnvSyn ++ ps.childNamesTypes ++ top.tyEnvInh;
+}
 
 abstract production functionDecl
 top::TopDecl ::= id::String ty::Type cs::Children e::Expr
-{ top.tyEnvSyn = []; } -- todo?
+{ 
+  top.tyEnvSyn = []; -- todo?
+} 
 
 
 nonterminal TopDecls with 
-  location, tyEnvSyn, tyEnvInh, occursEnvInh, occursEnvSyn;
+  location, tyEnvSyn, tyEnvInh, occursEnvInh, occursEnvSyn, attrTyEnvInh;
 
-propagate occursEnvInh, occursEnvSyn on TopDecls;
+propagate occursEnvInh, occursEnvSyn, attrTyEnvInh on TopDecls;
 
 abstract production topDeclsCons
 top::TopDecls ::= d::TopDecl ds::TopDecls
@@ -57,21 +64,24 @@ top::TopDecls ::=
 
 
 
-nonterminal Children with location;
+nonterminal Children with location, childNamesTypes;
+synthesized attribute childNamesTypes::[(String, Type)];
 
 abstract production childrenCons
 top::Children ::= c::Child cs::Children
-{}
+{ top.childNamesTypes = c.childNamesTypes ++ cs.childNamesTypes; }
 
 abstract production childrenNil
 top::Children ::= 
-{}
+{ top.childNamesTypes = []; }
 
-nonterminal Child with location;
+
+nonterminal Child with location, childNamesTypes;
 
 abstract production child
 top::Child ::= id::String ty::Type
-{}
+{ top.childNamesTypes = [(id, ty)]; }
+
 
 
 nonterminal AttrType with location, isSyn;

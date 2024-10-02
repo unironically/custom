@@ -7,10 +7,11 @@ nt Main;
 prod main: Main ::= ds:Dcls
 {
   local s:Scope = mkScope();
-  s.vars = ds.vars;
-  s.mods = ds.mods;
-  s.imps = ds.imps;
+  s.var = ds.vars;
+  s.mod = ds.mods;
+  s.imp = ds.imps;
   s.lex  = [];
+
   ds.scope = s;
 }
 
@@ -31,7 +32,11 @@ prod dclsCons: Dcls ::= d:Dcl ds:Dcls
   this.imps = d.imps ++ ds.imps;
 }
 
-prod dclsNil: Dcls ::= {}
+prod dclsNil: Dcls ::= {
+  this.vars = [];
+  this.mods = [];
+  this.imps = [];
+}
 
 
 nt Dcl;
@@ -131,6 +136,47 @@ prod expInt: Exp ::= i:Integer
 {
   this.type = typeInt();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nt Scope;
+attr var occurs on Scope;
+attr mod occurs on Scope;
+attr imp occurs on Scope;
+attr lex occurs on Scope;
+
+nt Ref;
+attr res occurs on Ref;
+attr lex occurs on Ref;
+attr str occurs on Ref;
+
+inh attr var:[Scope];
+inh attr mod:[Scope];
+inh attr imp:[Scope];
+inh attr lex:[Scope];
+
+syn attr str:String;
+syn attr res:[Scope];
+syn attr vars:[Scope];
+syn attr mods:[Scope];
+syn attr imps:[Scope];
+syn attr lexs:[Scope];
+
+
+{-
 
 ---------------------------
 
@@ -280,3 +326,5 @@ nt Type;
 prod typeInt: Type ::= {}
 prod typeBool: Type ::= {}
 prod typeErr: Type ::= {}
+
+-}

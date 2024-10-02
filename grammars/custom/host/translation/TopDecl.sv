@@ -16,12 +16,12 @@ inherited attribute synOccursInh::[(String, String)];
 
 
 attribute 
-  synsOccurTransPairs, nonterminals, prodDeclsTrans, 
+  occurTransPairs, nonterminals, prodDeclsTrans, 
   inhAttrs, synAttrs, inhAttrsInh, synAttrsInh,
   inhOccurs, synOccurs, inhOccursInh, synOccursInh
 occurs on TopDecl;
 
-propagate synsOccurTransPairs on TopDecl excluding occursDecl;
+propagate occurTransPairs on TopDecl excluding occursDecl;
 propagate nonterminals on TopDecl excluding nonterminalDecl;
 propagate prodDeclsTrans on TopDecl excluding productionDecl;
 propagate inhAttrs, synAttrs on TopDecl excluding attributeDecl;
@@ -46,7 +46,7 @@ top::TopDecl ::= attrType::AttrType id::String ty::Type
 aspect production occursDecl
 top::TopDecl ::= attrId::String nontId::String
 {
-  top.synsOccurTransPairs := [(nontId, genOccursTrans(attrId, top.tyEnvInh))];
+  top.occurTransPairs := [(nontId, genOccursTrans(attrId, top.tyEnvInh))];
   
   top.synOccurs := 
     case filter((\p::(String, Type) -> p.1 == attrId), top.synAttrsInh) of
@@ -72,13 +72,13 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
              ps.childNamesTypes ++ eqs.localsNamesTypes)
     in
     let allChildren::[String] =
-      map ((\p::(String, Type) ->
+      nub(map ((\p::(String, Type) ->
               case p.2 of
               | nonterminalType(s) ->
                   "haschild_" ++ s ++ "<" ++ id ++ "<T>>"
               | _ -> ""
               end), 
-           filteredNts)
+           filteredNts))
     in
       if !null(allChildren)
       then " implements " ++ implode(", ", allChildren)
@@ -138,8 +138,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
     "\n}", setChildrenAndNum.2)
     end end;
   
-  local localsStr::String = 
-    implode ("\n", eqs.localDeclsTrans);
+  local localsLst::[String] = eqs.localDeclsTrans;
   local inhsStrs::[String] =
     map (
       (
@@ -161,7 +160,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
                     \eq::(String, String, Integer, [String], String) ->
                     "// " ++ eq.2 ++ "." ++ eq.1 ++ "\n" ++
                     "if (childId == " ++ toString(eq.3) ++ ") {\n" ++
-                      implode ("\n", map(\s::String -> s ++ ";", eq.4)) ++ "return " ++ eq.5 ++ "\n" ++
+                      implode ("\n", map(\s::String -> s ++ ";", eq.4)) ++ "return " ++ eq.5 ++ ";\n" ++
                     "}"
                   ),
                   filter ( -- only eqs which are this attr
@@ -197,23 +196,115 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
       ))
     ));
 
+  local synStrs::[String] =
+    let synOccursForNont::[String] =
+      map(snd, 
+          filter ((\occ::(String, String) -> occ.1 == nont), top.synOccursInh))
+    in
+    let synAttrs::[(String, Type)] =
+      filterMap (
+        (
+          \attrName::String ->
+            case filter((\attr::(String, Type) -> attr.1 == attrName), 
+                        top.synAttrsInh) 
+            of
+            | h::_ -> just(h)
+            | [] -> nothing()
+            end
+        ),
+        synOccursForNont
+      )
+    in
+      map (
+        (      -- attr,   attr ty
+          \attr::(String, Type) ->
+                    -- attr,   pre exp,  exp 
+            let eqs::[(String, [String], String)] =
+              filter((\eq::(String, [String], String) -> eq.1 == attr.1), 
+                     eqs.synEquations)
+            in
+              case eqs of
+              | (attrId, preExp, exp)::_ ->
+                  "public " ++ attr.2.translationStr ++ " " ++ 
+                    attrId ++ "() {\n" ++
+                  "if (this." ++ attrId ++ "_computed) " ++ 
+                    "return this." ++ attrId ++ ";" ++
+                  implode("\n", map((\s::String -> s++";"), preExp)) ++ "\n" ++
+                  "this." ++ attrId ++ " = " ++ exp ++ ";\n" ++
+                  "this." ++ attrId ++ "_computed = true;\n" ++
+                  "return this." ++ attrId ++ ";\n" ++
+                  "}"
+              | [] -> "ERROR (productionDecl.synStrs)"
+              end
+            end
+        ),
+        synAttrs
+      )
+    end end;
+
+  local myInhStrs::[String] =
+    let inhOccursForNont::[String] =
+      map(snd, 
+          filter ((\occ::(String, String) -> occ.1 == nont), top.inhOccursInh))
+    in
+    let inhAttrs::[(String, Type)] =
+      filterMap (
+        (
+          \attrName::String ->
+            case filter((\attr::(String, Type) -> attr.1 == attrName), 
+                        top.inhAttrsInh) 
+            of
+            | h::_ -> just(h)
+            | [] -> nothing()
+            end
+        ),
+        inhOccursForNont
+      )
+    in
+      map (
+        (      -- attr,   attr ty
+          \attr::(String, Type) ->
+            "public " ++ attr.2.translationStr ++ " " ++ attr.1 ++ "() {\n"++
+              "if (this." ++ attr.1 ++ "_computed) " ++ 
+                "return this." ++ attr.1 ++ ";\n" ++
+              "this." ++ attr.1 ++ " = this.parent." ++ 
+                attr.1 ++ "(this.childId);\n" ++
+              "this." ++ attr.1 ++ "_computed = true;\n" ++
+              "return this." ++ attr.1 ++ ";\n" ++
+            "}"
+        ),
+        inhAttrs
+      )
+    end end;
+  
   top.prodDeclsTrans := [(nont,
     "class " ++ id ++ "<T extends hasChild_" ++ nont ++ "<T>> " ++ 
-    "extends " ++ nont ++ "<T>" ++ implementsStr ++ " {\n" ++ 
-      
-      "/* CHILD FIELDS */\n" ++
-      implode("\n", childrenFieldsStr) ++ "\n" ++
+    "extends " ++ nont ++ "<T>" ++ implementsStr ++ " {\n\n" ++ 
+  
+      (if !null(childrenFieldsStr)
+        then "/* CHILD FIELDS */\n" ++ implode("\n", childrenFieldsStr) ++ "\n"
+        else "") ++
       
       "/* CONSTRUCTOR */\n" ++
       constructorStrNumChildren.1 ++ "\n" ++
       
-      "/* LOCALS */\n" ++
-      localsStr ++ "\n" ++
+      (if !null(localsLst)
+        then "/* LOCALS */\n" ++ implode("\n", localsLst) ++ "\n"
+        else "") ++
+  
+      (if !null(inhsStrs)
+        then "/* SETTING CHILD INHS */\n" ++ implode("\n", inhsStrs) ++ "\n"
+        else "") ++
 
-      "/* SETTING CHILD INHS */\n" ++
-      implode("\n", inhsStrs) ++ "\n" ++
+      (if !null(myInhStrs)
+        then "/* GETTING OWN INHS */\n" ++ implode("\n", myInhStrs) ++ "\n"
+        else "") ++
 
-    "}"
+      (if !null(synStrs)
+        then "/* SYNTHESIZED ATTRS */\n" ++ implode("\n", synStrs) ++ "\n"
+        else "") ++
+      
+    "\n}"
   )];
 
   eqs.childNumberInh = constructorStrNumChildren.2;
@@ -248,13 +339,13 @@ top::TopDecl ::= id::String ty::Type cs::Children e::Expr
 
 
 attribute 
-  nonterminals, synsOccurTransPairs, prodDeclsTrans,
+  nonterminals, occurTransPairs, prodDeclsTrans,
   inhAttrs, synAttrs, inhAttrsInh, synAttrsInh,
   inhOccurs, synOccurs, inhOccursInh, synOccursInh
 occurs on TopDecls;
 
 propagate 
-  nonterminals, synsOccurTransPairs, prodDeclsTrans, 
+  nonterminals, occurTransPairs, prodDeclsTrans, 
   inhAttrs, synAttrs, inhAttrsInh, synAttrsInh,
   inhOccurs, synOccurs, inhOccursInh, synOccursInh
 on TopDecls;
@@ -268,35 +359,6 @@ aspect production topDeclsNil
 top::TopDecls ::=
 {
 }
-
-
-
-
-
-attribute
-  childNamesTypes 
-occurs on Children;
-
-synthesized attribute childNamesTypes::[(String, Type)];
-
-aspect production childrenCons
-top::Children ::= c::Child cs::Children
-{ top.childNamesTypes = c.childNamesTypes ++ cs.childNamesTypes; }
-
-aspect production childrenNil
-top::Children ::= 
-{ top.childNamesTypes = []; }
-
-attribute
-  childNamesTypes
-occurs on Child;
-
-aspect production child
-top::Child ::= id::String ty::Type
-{ top.childNamesTypes = [(id, ty)]; }
-
-
-
 
 --------------------------------------------------------------------------------
 

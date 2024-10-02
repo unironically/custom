@@ -22,16 +22,15 @@ attr vars occurs on Dcls;
 
 prod dclsCons: Dcls ::= d:Dcl ds:Dcls
 {
-  local s:Scope = mkScope();
-  local s2:Scope = mkScope();
-  local i:Integer = 1;
-
   d.scope = this.scope;
   ds.scope = this.scope;
+  this.vars = [];
 }
 
 prod dclsNil: Dcls ::= 
-{}
+{
+  this.vars = [];
+}
 
 
 

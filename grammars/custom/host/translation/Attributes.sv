@@ -3,7 +3,7 @@ grammar custom:host:translation;
 synthesized attribute filesToWrite::[(String, String)];
 
 monoid attribute nonterminals::[String] with [], ++;
-monoid attribute synsOccurTransPairs::[(String, String)] with [], ++;
+monoid attribute occurTransPairs::[(String, String)] with [], ++;
 monoid attribute prodDeclsTrans::[(String, String)] with [], ++;
 
 synthesized attribute translationStr::String;

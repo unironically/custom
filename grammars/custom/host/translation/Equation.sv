@@ -8,19 +8,22 @@ inherited attribute childrenNums::[(String, Type, Integer)];
 
 monoid attribute ntChildrenSyn::[(String, Type)] with [], ++;
 
-monoid attribute childInhEquations::[(String, String, Integer, [String], String)] 
+monoid attribute childInhEquations::[(String, String, Integer, [String], String)]
+  with [], ++;
+monoid attribute synEquations::[(String, [String], String)]
   with [], ++;
 
 attribute 
   localsNamesTypes, localDeclsTrans, childNumberInh, childNumberSyn,
-  prodNameTrans, childrenNums, childInhEquations, ntChildrenSyn
+  prodNameTrans, childrenNums, childInhEquations, ntChildrenSyn,
+  synEquations
 occurs on Equation;
 
 propagate localsNamesTypes, localDeclsTrans, prodNameTrans, childrenNums,
           ntChildrenSyn
   on Equation excluding localDeclEquation;
 
-propagate childInhEquations on Equation excluding assignEquation;
+propagate childInhEquations, synEquations on Equation excluding assignEquation;
 
 aspect production localDeclEquation
 top::Equation ::= id::String ty::Type e::Expr
@@ -58,16 +61,25 @@ top::Equation ::= lhs::LHS e::Expr
           [(attrStr, childRefStr, childNum, e.preExprTranslation, e.translationStr)]
         end
     end;
+
+  top.synEquations :=
+    case lhs of
+    | refLHS(_) -> []
+    | fieldAccessLHS(ref, _) when ref != "this" -> []
+    | fieldAccessLHS(_, attr) -> 
+        [(attr, e.preExprTranslation, e.translationStr)]
+    end;
 }
 
 
 attribute
   localsNamesTypes, localDeclsTrans, childNumberInh, childNumberSyn,
-  prodNameTrans, childrenNums, childInhEquations, ntChildrenSyn
+  prodNameTrans, childrenNums, childInhEquations, ntChildrenSyn,
+  synEquations
 occurs on Equations;
 
 propagate localsNamesTypes, localDeclsTrans, prodNameTrans, childrenNums,
-          childInhEquations, ntChildrenSyn
+          childInhEquations, ntChildrenSyn, synEquations
   on Equations;
 
 aspect production equationsCons
@@ -137,7 +149,7 @@ String ::= id::String ty::Type
     "public " ++ tyTransStr ++ " " ++ id ++ "() {",
       "if (this." ++ id ++ "_computed) return this." ++ id ++ ";"]
       ++ e.preExprTranslation ++ 
-      ["this." ++ id ++ " = " ++ e.translationStr] ++
+      ["this." ++ id ++ " = " ++ e.translationStr ++ ";"] ++
       setParentTranslation ++ [
       "this." ++ id ++ "_computed = true;",
       "return this." ++ id ++ ";",

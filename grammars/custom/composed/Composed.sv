@@ -27,6 +27,8 @@ IO<Integer> ::= largs::[String]
         let result :: ParseResult<File_c> = 
           custom:composed:parse(file, filePath);
         let ast :: File = result.parseTree.ast;
+        let astDec::Decorated File with {grammarName} = 
+          decorate ast with {grammarName = fileName;};
 
         --let fileNameExt::String = last(explode("/", filePath));
         --let fileNameExplode::[String] = explode(".", fileNameExt);
@@ -41,7 +43,10 @@ IO<Integer> ::= largs::[String]
               --mkdir("out");
               --system("echo '" ++ viz ++ "' | dot -Tsvg > out/" ++ 
               --      fileName ++ ".svg");
-              ret::Integer <- writeFiles(ast.filesToWrite);
+              mkdir("generated");
+              mkdir("generated/" ++ fileName);
+              ret::Integer <- writeFiles(astDec.filesToWrite, 
+                                         "generated/" ++ fileName);
               return ret;
             } 
             --else do {
@@ -77,12 +82,12 @@ fun strErrs String ::= errs::[ErrMessage] file::String =
   );
 
 
-fun writeFiles IO<Integer> ::= filesToWrite::[(String, String)] =
+fun writeFiles IO<Integer> ::= filesToWrite::[(String, String)] dir::String =
   case filesToWrite of
   | [] -> do { return 0; }
   | (fName, fContent)::t -> 
       do {
-        writeFile(fName, fContent);
-        writeFiles(t);
+        writeFile(dir ++ "/" ++ fName, fContent);
+        writeFiles(t, dir);
       }
   end;
