@@ -1,8 +1,9 @@
 inh attr scope:Scope; 
 syn attr type:Type;
-
+syn attr binds:[(Ref, [Scope])];
 
 nt Main;
+attr binds occurs on Main;
 
 prod main: Main ::= ds:Dcls
 {
@@ -13,6 +14,8 @@ prod main: Main ::= ds:Dcls
   s.lex  = [];
 
   ds.scope = s;
+
+  this.binds = ds.binds;
 }
 
 
@@ -22,20 +25,31 @@ attr scope occurs on Dcls;
 attr vars occurs on Dcls;
 attr mods occurs on Dcls;
 attr imps occurs on Dcls;
+attr binds occurs on Dcls;
 
 prod dclsCons: Dcls ::= d:Dcl ds:Dcls
 {
+  local s:Scope = mkScope();
+  s.var = [];
+  s.mod = [];
+  s.imp = d.imps;
+  s.lex  = [this.scope];
+
   d.scope = this.scope;
-  ds.scope = this.scope;
+  ds.scope = s;
   this.vars = d.vars ++ ds.vars;
   this.mods = d.mods ++ ds.mods;
-  this.imps = d.imps ++ ds.imps;
+  this.imps = [];
+
+  this.binds = d.binds ++ ds.binds;
 }
 
 prod dclsNil: Dcls ::= {
   this.vars = [];
   this.mods = [];
   this.imps = [];
+
+  this.binds = [];
 }
 
 
@@ -44,29 +58,34 @@ attr scope occurs on Dcl;
 attr vars occurs on Dcl;
 attr mods occurs on Dcl;
 attr imps occurs on Dcl;
+attr binds occurs on Dcl;
 
 prod dclMod: Dcl ::= id:String ds:Dcls
 {
   local s:Scope = mkMod(id);
-  s.lex  = [this.scope]; 
-  s.imps = ds.imps;
-  s.vars = ds.vars;  
-  s.mods = ds.mods;
+  s.lex  = [this.scope];
+  s.imp = ds.imps;
+  s.var = ds.vars;  
+  s.mod = ds.mods;
   
   ds.scope = s;
 
   this.vars = [];
   this.mods = [s];
   this.imps = [];
+
+  this.binds = ds.binds;
 }
 
-prod dclDcl: Dcl ::= b:Bind
+prod dclBind: Dcl ::= b:Bind
 {
   b.scope = this.scope;
 
   this.vars = b.vars;
   this.mods = [];
   this.imps = [];
+
+  this.binds = b.binds;
 }
 
 prod dclImp: Dcl ::= r:ModRef
@@ -76,6 +95,8 @@ prod dclImp: Dcl ::= r:ModRef
   this.vars = [];
   this.mods = [];
   this.imps = r.imps;
+
+  this.binds = r.binds;
 }
 
 
@@ -83,43 +104,58 @@ nt Bind;
 attr scope occurs on Bind;
 attr vars occurs on Bind;
 attr type occurs on Bind;
+attr binds occurs on Bind;
 
 prod bnd: Bind ::= id:String t:Type e:Exp
 {  
   local d:Scope = mkVar(id, t);
+  d.lex  = [];
+  d.imp = [];
+  d.var = [];  
+  d.mod = [];
+
   this.type = e.type;
   this.vars = [d];
   e.scope = this.scope;
+
+  this.binds = e.binds;
 }
 
 
 nt ModRef;
 attr scope occurs on ModRef;
 attr imps occurs on ModRef;
+attr binds occurs on ModRef;
 
 prod mref: ModRef ::= id:String
 { 
   local r:Ref = mkModRef(id);
   r.lex = [this.scope];
+
   this.imps = r.res;
+  this.binds = [(r, r.res)];
 }
 
 
 nt VarRef;
 attr scope occurs on VarRef;
 attr res occurs on VarRef;
+attr binds occurs on VarRef;
 
 prod vref: VarRef ::= id:String
 { 
   local r:Ref = mkVarRef(id);
   r.lex = [this.scope];
+
   this.res = r.res;
+  this.binds = [(r, r.res)];
 }
 
 
 nt Exp;
 attr scope occurs on Exp;
 attr type occurs on Exp;
+attr binds occurs on Exp;
 
 prod expRef: Exp ::= r:VarRef
 { 
@@ -128,13 +164,17 @@ prod expRef: Exp ::= r:VarRef
   this.type = 
     if length(r.res) > 0
     then head(r.res).datum.type
-    else typeErr()
+    else errType()
     end;
+  
+  this.binds = r.binds;
 }
 
 prod expInt: Exp ::= i:Integer
 {
-  this.type = typeInt();
+  this.type = intType();
+
+  this.binds = [];
 }
 
 
@@ -174,6 +214,35 @@ syn attr vars:[Scope];
 syn attr mods:[Scope];
 syn attr imps:[Scope];
 syn attr lexs:[Scope];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {-

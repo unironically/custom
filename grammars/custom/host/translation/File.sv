@@ -57,7 +57,10 @@ function stitchFile
   synsOccurTrans::[String]
   prodDeclsTrans::[String]
 {
-  local header::String = "package " ++ grammarName ++ ";\n" ++
+  local header::String = 
+    "package " ++ grammarName ++ ";\n" ++
+    "import lm.*;\n" ++
+    "import java.util.*;\n" ++
     "abstract class " ++ nt ++ "<T extends hasChild_" ++ nt ++ "<T>> " ++
       "extends TreeNode<T>";
   

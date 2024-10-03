@@ -6,7 +6,7 @@ synthesized attribute childNumberSyn::Integer;
 
 inherited attribute childrenNums::[(String, Type, Integer)];
 
-monoid attribute ntChildrenSyn::[(String, Type)] with [], ++;
+monoid attribute ntChildrenSyn::[(String, Type, Boolean)] with [], ++;
 
 monoid attribute childInhEquations::[(String, String, Integer, [String], String)]
   with [], ++;
@@ -28,14 +28,14 @@ propagate childInhEquations, synEquations on Equation excluding assignEquation;
 aspect production localDeclEquation
 top::Equation ::= id::String ty::Type e::Expr
 {
-  top.localsNamesTypes := [(id, ty)];
+  top.localsNamesTypes := [(id, ty, true)];
   top.localDeclsTrans := [
     genLocalDecl(id, ty, e, top.prodNameTrans, top.childNumberInh)
   ];
 
   top.childNumberSyn = top.childNumberInh + 1;
 
-  top.ntChildrenSyn := [(id, ty)];
+  top.ntChildrenSyn := [(id, ty, false)];
 }
 
 aspect production assignEquation

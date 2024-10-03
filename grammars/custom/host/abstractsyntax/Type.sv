@@ -1,19 +1,19 @@
 grammar custom:host:abstractsyntax;
 
 
-type TyEnv = [(String, Type)];
+type TyEnv = [(String, Type, Boolean)];
 
 inherited attribute tyEnvInh::TyEnv;
 synthesized attribute tyEnvSyn::TyEnv;
 
 function lookupTyEnv
-Maybe<Type> ::= s::String tyEnv::TyEnv
+Maybe<(Type, Boolean)> ::= s::String tyEnv::TyEnv
 {
-  local filtered::[(String, Type)] = 
-    filter((\p::(String, Type) -> p.1 == s), tyEnv);
+  local filtered::[(String, Type, Boolean)] = 
+    filter((\p::(String, Type, Boolean) -> p.1 == s), tyEnv);
   return 
     if !null(filtered)
-    then just(head(filtered).2)
+    then just((head(filtered).2, head(filtered).3))
     else nothing();
 }
 
@@ -33,6 +33,10 @@ top::Type ::=
 
 abstract production listType
 top::Type ::= content::Type
+{}
+
+abstract production pairType
+top::Type ::= t1::Type t2::Type
 {}
 
 abstract production nonterminalType

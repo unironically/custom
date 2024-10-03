@@ -9,7 +9,7 @@ propagate attrTyEnvInh on Equation;
 abstract production localDeclEquation
 top::Equation ::= id::String ty::Type e::Expr
 {
-  top.tyEnvSyn = [(id, ty)];
+  top.tyEnvSyn = [(id, ty, true)];
   e.tyEnvInh = top.tyEnvInh;
 }
 

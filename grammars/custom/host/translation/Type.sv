@@ -36,6 +36,14 @@ top::Type ::= content::Type
   top.defaultTranslation = "null";
 }
 
+aspect production pairType
+top::Type ::= t1::Type t2::Type
+{
+  top.translationStr = 
+    "Pair<" ++ t1.translationStr ++ ", " ++ t2.translationStr ++ ">";
+  top.defaultTranslation = "null";
+}
+
 aspect production nonterminalType
 top::Type ::= id::String
 {

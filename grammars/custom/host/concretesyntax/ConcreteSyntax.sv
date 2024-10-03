@@ -194,6 +194,10 @@ concrete production ref_c
 top::FactorExpr_c ::= r::Ref_c
 { top.ast = refExpr(r.ast, location=top.location); }
 
+concrete production pair_c
+top::FactorExpr_c ::= '(' e1::Expr_c ',' e2::Expr_c ')'
+{ top.ast = pairExpr(e1.ast, e2.ast, location=top.location);  }
+
 concrete production prodArgs_c
 top::FactorExpr_c ::= id::Id_t '(' es::Exprs_c ')'
 { top.ast = callExpr(id.lexeme, es.ast, location=top.location); }
@@ -263,6 +267,10 @@ top::Type_c ::= 'String'
 concrete production listType_c
 top::Type_c ::= '[' ty::Type_c ']'
 { top.ast = listType(ty.ast, location=top.location); }
+
+concrete production pairType_c
+top::Type_c ::= '(' ty1::Type_c ',' ty2::Type_c ')'
+{ top.ast = pairType(ty1.ast, ty2.ast, location=top.location);}
 
 concrete production nonterminalType_c
 top::Type_c ::= id::Id_t

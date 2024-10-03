@@ -66,6 +66,17 @@ top::Expr ::= r::Ref
   r.tyEnvInh = top.tyEnvInh;
 }
 
+abstract production pairExpr
+top::Expr ::= e1::Expr e2::Expr
+{
+  top.ty = case e1.ty, e2.ty of
+           | just(t1), just(t2) -> just(pairType(t1, t2, location=top.location))
+           | _, _ -> nothing()
+           end;
+  e1.tyEnvInh = top.tyEnvInh;
+  e2.tyEnvInh = top.tyEnvInh;
+}
+
 abstract production ifExpr
 top::Expr ::= c::Expr e1::Expr e2::Expr
 {
@@ -133,11 +144,11 @@ propagate attrTyEnvInh on Ref;
 abstract production fieldAccessRef
 top::Ref ::= e::Expr id::String
 {
-  top.ty = 
+  top.ty =
     case e.ty of
     | just(nonterminalType(s)) -> 
         case lookupTyEnv(id, top.attrTyEnvInh) of
-        | just(t) -> just(t)
+        | just((t, b)) -> just(t)
         | _ -> nothing()
         end
     | _ -> nothing()
@@ -149,5 +160,8 @@ top::Ref ::= e::Expr id::String
 abstract production nameRef
 top::Ref ::= id::String
 {
-  top.ty = lookupTyEnv(id, top.tyEnvInh);
+  top.ty = case lookupTyEnv(id, top.tyEnvInh) of
+           | just((t, b)) -> just(t)
+           | _ -> nothing()
+           end;
 }

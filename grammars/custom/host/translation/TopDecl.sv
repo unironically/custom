@@ -66,16 +66,16 @@ aspect production productionDecl
 top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
 {
   local implementsStr::String = 
-    let filteredNts::[(String, Type)] = 
-      filter((\p::(String, Type) -> 
+    let filteredNts::[(String, Type, Boolean)] = 
+      filter((\p::(String, Type, Boolean) -> 
                 case p.2 of | nonterminalType(s) -> true | _ -> false end), 
              ps.childNamesTypes ++ eqs.localsNamesTypes)
     in
     let allChildren::[String] =
-      nub(map ((\p::(String, Type) ->
+      nub(map ((\p::(String, Type, Boolean) ->
               case p.2 of
               | nonterminalType(s) ->
-                  "haschild_" ++ s ++ "<" ++ id ++ "<T>>"
+                  "hasChild_" ++ s ++ "<" ++ id ++ "<T>>"
               | _ -> ""
               end), 
            filteredNts))
@@ -87,7 +87,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
 
   local childrenFieldsStr::[String] = 
     map(
-      (\p::(String, Type) ->
+      (\p::(String, Type, Boolean) ->
         case p.2 of
         | nonterminalType(s) ->
             "private " ++ s ++ "<" ++ id ++ "<T>> " ++ p.1 ++ ";"
@@ -102,7 +102,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
     let childArgs::String = 
       implode (", ", map (
         (
-          \p::(String, Type) ->
+          \p::(String, Type, Boolean) ->
             case p.2 of
             | nonterminalType(s) ->
                 s ++ "<" ++ id ++ "<T>> " ++ p.1
@@ -114,7 +114,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
     in
     let setChildrenAndNum::([String], Integer) =
       foldl (
-          (\acc::([String], Integer) p::(String, Type) ->
+          (\acc::([String], Integer) p::(String, Type, Boolean) ->
              case p.2 of
              | nonterminalType(s) ->
                  (acc.1 ++ [("this." ++ p.1 ++
@@ -130,7 +130,8 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
     ("public " ++ id ++ "(" ++ childArgs ++ ") {\n" ++
       implode(
         "\n",
-        map((\p::(String, Type) -> "this." ++ p.1 ++ " = " ++ p.1 ++ ";"), 
+        map((\p::(String, Type, Boolean) -> 
+              "this." ++ p.1 ++ " = " ++ p.1 ++ ";"), 
             ps.childNamesTypes) ++
         setChildrenAndNum.1
       ) ++
@@ -160,7 +161,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
                     \eq::(String, String, Integer, [String], String) ->
                     "// " ++ eq.2 ++ "." ++ eq.1 ++ "\n" ++
                     "if (childId == " ++ toString(eq.3) ++ ") {\n" ++
-                      implode ("\n", map(\s::String -> s ++ ";", eq.4)) ++ "return " ++ eq.5 ++ ";\n" ++
+                      implode ("\n", map(\s::String -> s ++ ";", eq.4)) ++ "\nreturn " ++ eq.5 ++ ";\n" ++
                     "}"
                   ),
                   filter ( -- only eqs which are this attr
@@ -312,7 +313,7 @@ top::TopDecl ::= id::String nont::String ps::Children eqs::Equations
 
   local childrenNumsLocal::[(String, Type, Integer)] = 
     foldl(
-      \acc::[(String, Type, Integer)] p::(String, Type)  ->
+      \acc::[(String, Type, Integer)] p::(String, Type, Boolean)  ->
         case p.2 of
         | nonterminalType(s) ->
             if null(acc)
@@ -365,13 +366,13 @@ top::TopDecls ::=
 function genOccursTrans
 String ::= attrId::String tyenv::TyEnv
 {
-  local ty::Maybe<Type> = lookupTyEnv(attrId, tyenv);
+  local ty::Maybe<(Type, Boolean)> = lookupTyEnv(attrId, tyenv);
 
   local tyStr::String = 
     case ty of
-    | just(nonterminalType(s)) ->
-        s ++ "<? extends haschild_" ++ s ++ "<?>>"
-    | just(t) ->
+    | just((nonterminalType(s), b)) ->
+        s ++ "<? extends hasChild_" ++ s ++ "<?>>"
+    | just((t, b)) ->
         t.translationStr
     | nothing() ->
         "ERROR (TopDecl.genOccursTrans)"

@@ -12,5 +12,5 @@ synthesized attribute translationLst::[String];
 inherited attribute parentProdName::String;
 inherited attribute childOrLocalNodeType::Boolean;
 
-monoid attribute localsNamesTypes::[(String, Type)] with [], ++;
+monoid attribute localsNamesTypes::[(String, Type, Boolean)] with [], ++;
 monoid attribute localDeclsTrans::[String] with [], ++;

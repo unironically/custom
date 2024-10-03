@@ -21,7 +21,7 @@ top::Expr ::= e1::Expr e2::Expr
     end;
 
   top.preExprTranslation = e1.preExprTranslation ++ e2.preExprTranslation ++ [
-    "ArrayList<" ++ listTyStr ++ "> " ++ combListName ++
+    listTyStr ++ combListName ++
       " = new ArrayList<>()",
     combListName ++ ".addAll(" ++ e1.translationStr ++ ")",
     combListName ++ ".addAll(" ++ e2.translationStr ++ ")"
@@ -53,7 +53,11 @@ aspect production callExpr
 top::Expr ::= id::String args::Exprs
 {
   top.translationStr = 
-    "new " ++ id ++ "(" ++ implode(", ", args.translationLst) ++ ")";
+    if id == "length"
+    then head(args.translationLst) ++ ".size()" -- placeholder
+    else if id == "head"
+    then head(args.translationLst) ++ ".get(0)" -- placeholder
+    else "new " ++ id ++ "<>(" ++ implode(", ", args.translationLst) ++ ")";
   top.preExprTranslation = args.preExprTranslation;
 }
 
@@ -66,7 +70,7 @@ top::Expr ::= elements::Exprs
   local listTyStr::String = 
     case elements.ty of
     | just(t) -> t.translationStr
-    | nothing() -> "ERROR(Expr.appendListsExpr)"
+    | nothing() -> "ERROR(Expr.listExpr)"
     end;
 
   top.translationStr = 
@@ -92,6 +96,14 @@ top::Expr ::= r::Ref
 {
   top.translationStr = r.translationStr;
   top.preExprTranslation = r.preExprTranslation;
+}
+
+aspect production pairExpr
+top::Expr ::= e1::Expr e2::Expr
+{
+  top.translationStr = 
+    "new Pair<>(" ++ e1.translationStr ++ ", " ++ e2.translationStr ++ ")";
+  top.preExprTranslation = e1.preExprTranslation ++ e2.preExprTranslation;
 }
 
 aspect production ifExpr
@@ -148,6 +160,11 @@ top::Ref ::= e::Expr id::String
 aspect production nameRef
 top::Ref ::= id::String
 {
-  top.translationStr = id;
+  top.translationStr = 
+    case lookupTyEnv(id, top.tyEnvInh) of
+    | just((t, b)) -> if !b then id else id ++ "()"
+    | _ -> "ERROR (Ref.nameRef)"
+    end;
+
   top.preExprTranslation = [];
 }
