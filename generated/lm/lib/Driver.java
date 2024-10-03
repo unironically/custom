@@ -6,8 +6,13 @@ import java.util.ArrayList;
 public class Driver implements hasChild_Main<Driver> {
 
   public static void main(String[] args) {
+
     Main<Driver> m = program3();
     printBinds(m.binds());
+
+    //List<String> myLst = new listCons<>("s" , new listNil<>());
+    //System.out.println(List.head(myLst));
+  
   }
 
   public static void printBinds(ArrayList<Pair<Ref<? extends hasChild_Ref<?>>, ArrayList<Scope<? extends hasChild_Scope<?>>>>> bnds) {
@@ -62,33 +67,28 @@ public class Driver implements hasChild_Main<Driver> {
      */
 
     Exp<bnd<dclBind<dclsCons<main<Driver>>>>> e1 = 
-      new expInt<bnd<dclBind<dclsCons<main<Driver>>>>>(1);
-
+      new expInt<>(1);
     Bind<dclBind<dclsCons<main<Driver>>>> b1 = 
-      new bnd<dclBind<dclsCons<main<Driver>>>>("a", new intType(), e1);
-
+      new bnd<>("a", new intType<>(), e1);
     Dcl<dclsCons<main<Driver>>> d1 = 
-      new dclBind<dclsCons<main<Driver>>>(b1); 
+      new dclBind<>(b1); 
 
     VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<main<Driver>>>>>>> r = 
-      new vref<expRef<bnd<dclBind<dclsCons<dclsCons<main<Driver>>>>>>>("a");
-
+      new vref<>("a");
     Exp<bnd<dclBind<dclsCons<dclsCons<main<Driver>>>>>> e2 = 
-      new expRef<bnd<dclBind<dclsCons<dclsCons<main<Driver>>>>>>(r);
-
+      new expRef<>(r);
     Bind<dclBind<dclsCons<dclsCons<main<Driver>>>>> b2 = 
-      new bnd<dclBind<dclsCons<dclsCons<main<Driver>>>>>("b", new intType(), e2);
-
+      new bnd<>("b", new intType<>(), e2);
     Dcl<dclsCons<dclsCons<main<Driver>>>> d2 = 
-      new dclBind<dclsCons<dclsCons<main<Driver>>>>(b2);
-
+      new dclBind<>(b2);
     Dcls<dclsCons<main<Driver>>> ds2 = 
-      new dclsCons<dclsCons<main<Driver>>>
-         (d2, new dclsNil<dclsCons<dclsCons<main<Driver>>>>());
+      new dclsCons<> (d2, new dclsNil<>());
 
-    Dcls<main<Driver>> ds1 = new dclsCons<main<Driver>>(d1, ds2);
-      
-    Main<Driver> m = new main(ds1);
+    Dcls<main<Driver>> ds1 = 
+      new dclsCons<>(d1, ds2);
+  
+    Main<Driver> m = 
+      new main<>(ds1);
 
     return m;
 
@@ -128,7 +128,7 @@ public class Driver implements hasChild_Main<Driver> {
     Exp<bnd<dclBind<dclsCons<main<Driver>>>>> e1 = 
       new expInt<>(1);
     Bind<dclBind<dclsCons<main<Driver>>>> b1 = 
-      new bnd<>("a", new intType(), e1);
+      new bnd<>("a", new intType<>(), e1);
     Dcl<dclsCons<main<Driver>>> d1 = 
       new dclBind<>(b1);
 
@@ -138,22 +138,23 @@ public class Driver implements hasChild_Main<Driver> {
     Exp<bnd<dclBind<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>>> e3 = 
       new expRef<>(r);
     Bind<dclBind<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>> b3 = 
-      new bnd<>("c", new intType(), e3);
+      new bnd<>("c", new intType<>(), e3);
     Dcl<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>> d3 = 
       new dclBind<>(b3);
     Dcls<dclMod<dclsCons<dclsCons<main<Driver>>>>> ds3 = 
       new dclsCons<>
-         (d3, new dclsNil<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>());
+         (d3, new dclsNil<>());
     Dcl<dclsCons<dclsCons<main<Driver>>>> d2 = 
       new dclMod<>("A", ds3);
 
 
     Dcls<dclsCons<main<Driver>>> ds2 = 
-      new dclsCons<>
-         (d2, new dclsNil<dclsCons<dclsCons<main<Driver>>>>());
-    Dcls<main<Driver>> ds1 = new dclsCons<>(d1, ds2);
+      new dclsCons<>(d2, new dclsNil<>());
+    Dcls<main<Driver>> ds1 = 
+      new dclsCons<>(d1, ds2);
       
-    Main<Driver> m = new main(ds1);
+    Main<Driver> m = 
+      new main<>(ds1);
 
     return m;
 
@@ -199,38 +200,45 @@ public class Driver implements hasChild_Main<Driver> {
 
     */
 
-    VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>>>>> r2 = new vref<>("a");
+    VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>>>>> r2 = 
+      new vref<>("a");
     Exp<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>>>> e2 =
       new expRef<>(r2);
     Bind<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>>> b2 =
-      new bnd<>("c", new intType(), e2);
-
+      new bnd<>("c", new intType<>(), e2);
     Dcl<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>> d5 =
       new dclBind<>(b2);
-    Dcls<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>> ds5 = new dclsCons<>(d5, new dclsNil<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>>());
+    Dcls<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>> ds5 = 
+      new dclsCons<>(d5, new dclsNil<>());
 
 
     ModRef<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>>> mr = 
       new mref<>("A");
-    Dcl<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>> d4 = new dclImp<>(mr);
-
-    Dcls<dclMod<dclsCons<dclsCons<main<Driver>>>>> ds4 = new dclsCons<>(d4, ds5);
-    Dcl<dclsCons<dclsCons<main<Driver>>>> d3 = new dclMod<>("B", ds4);
-
+    Dcl<dclsCons<dclMod<dclsCons<dclsCons<main<Driver>>>>>> d4 = 
+      new dclImp<>(mr);
+    Dcls<dclMod<dclsCons<dclsCons<main<Driver>>>>> ds4 = 
+      new dclsCons<>(d4, ds5);
+    Dcl<dclsCons<dclsCons<main<Driver>>>> d3 = 
+      new dclMod<>("B", ds4);
     Dcls<dclsCons<main<Driver>>> ds2 = 
-      new dclsCons<>(d3, new dclsNil<dclsCons<dclsCons<main<Driver>>>>());
+      new dclsCons<>(d3, new dclsNil<>());
 
-    Exp<bnd<dclBind<dclsCons<dclMod<dclsCons<main<Driver>>>>>>> e1 = new expInt<>(1);
+    Exp<bnd<dclBind<dclsCons<dclMod<dclsCons<main<Driver>>>>>>> e1 = 
+      new expInt<>(1);
     Bind<dclBind<dclsCons<dclMod<dclsCons<main<Driver>>>>>> b1 = 
-      new bnd<>("a", new intType(), e1);
-    Dcl<dclsCons<dclMod<dclsCons<main<Driver>>>>> d2 = new dclBind<>(b1);
+      new bnd<>("a", new intType<>(), e1);
+    Dcl<dclsCons<dclMod<dclsCons<main<Driver>>>>> d2 = 
+      new dclBind<>(b1);
     Dcls<dclMod<dclsCons<main<Driver>>>> ds3 = 
-      new dclsCons<>(d2, new dclsNil<dclsCons<dclMod<dclsCons<main<Driver>>>>>());
-    Dcl<dclsCons<main<Driver>>> d1 = new dclMod<>("A", ds3);
+      new dclsCons<>(d2, new dclsNil<>());
+    Dcl<dclsCons<main<Driver>>> d1 = 
+      new dclMod<>("A", ds3);
 
-    Dcls<main<Driver>> ds1 = new dclsCons<>(d1, ds2);
+    Dcls<main<Driver>> ds1 = 
+      new dclsCons<>(d1, ds2);
 
-    Main<Driver> m = new main(ds1);
+    Main<Driver> m = 
+      new main<>(ds1);
 
     return m;
 

@@ -149,9 +149,9 @@ class mkMod<T extends hasChild_Scope<T>> extends Scope<T> {
 class mkVar<T extends hasChild_Scope<T>> extends Scope<T> {
 
   private String s;
-  private Type t;
+  private Type<? extends hasChild_Type<?>> t;
 
-  public mkVar(String s, Type t) {
+  public mkVar(String s, Type<? extends hasChild_Type<?>> t) {
     this.s = s;
     this.t = t;
     if (scopeTrace)
@@ -209,10 +209,10 @@ abstract class Datum extends TreeNode<Scope> {
     return null;
   }
 
-  protected Type type = null;
+  protected Type<? extends hasChild_Type<?>> type = null;
   protected Boolean type_computed = false;
 
-  public Type type() {
+  public Type<? extends hasChild_Type<?>> type() {
     return null;
   }
 
@@ -228,9 +228,9 @@ abstract class Datum extends TreeNode<Scope> {
 class datumVar extends Datum {
 
   private String id;
-  private Type t;
+  private Type<? extends hasChild_Type<?>> t;
 
-  public datumVar(String id, Type t) {
+  public datumVar(String id, Type<? extends hasChild_Type<?>> t) {
     this.id = id;
     this.t = t;
   }
@@ -245,7 +245,7 @@ class datumVar extends Datum {
     return this.id_value;
   }
 
-  public Type type() {
+  public Type<? extends hasChild_Type<?>> type() {
     if (this.type_computed)
       return this.type;
     this.type = this.t;
@@ -281,10 +281,10 @@ class datumMod extends Datum {
     return this.id_value;
   }
 
-  public Type type() {
+  public Type<? extends hasChild_Type<?>> type() {
     if (this.type_computed)
       return this.type;
-    this.type = new errType();
+    this.type = new errType<>();
     this.type_computed = true;
     return this.type;
   }
@@ -314,10 +314,10 @@ class datumNone extends Datum {
     return this.id_value;
   }
 
-  public Type type() {
+  public Type<? extends hasChild_Type<?>> type() {
     if (this.type_computed)
       return this.type;
-    this.type = new errType();
+    this.type = new errType<>();
     this.type_computed = true;
     return this.type;
   }
