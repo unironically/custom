@@ -4,6 +4,7 @@ grammar custom:composed;
 exports custom:host:concretesyntax;
 exports custom:host:abstractsyntax;
 exports custom:host:translation;
+exports custom:host:typing;
 
 -- extensions
 --exports custom:attributewith:concretesyntax;

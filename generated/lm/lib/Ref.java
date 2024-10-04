@@ -83,6 +83,8 @@ class mkVarRef<T extends hasChild_Ref<T>> extends Ref<T> {
       return this.res;
     }
     this.res = this.dfa().decls(this, this.lex().get(0));
+    if (this.scopeTrace) 
+      System.out.println("----- resolution of " + this.s + " done -----");
     this.res_computed = true;
     return this.res;
   }
@@ -164,6 +166,8 @@ class mkModRef<T extends hasChild_Ref<T>> extends Ref<T> {
       return this.res;
     }
     this.res = this.dfa().decls(this, this.lex().get(0));
+    if (this.scopeTrace) 
+      System.out.println("----- resolution of " + this.s + " done -----");
     this.res_computed = true;
     return this.res;
   }

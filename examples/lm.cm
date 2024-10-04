@@ -29,17 +29,13 @@ attr binds occurs on Dcls;
 
 prod dclsCons: Dcls ::= d:Dcl ds:Dcls
 {
-  local s:Scope = mkScope();
-  s.var = [];
-  s.mod = [];
-  s.imp = d.imps;
-  s.lex  = [this.scope];
+
 
   d.scope = this.scope;
-  ds.scope = s;
+  ds.scope = this.scope;
   this.vars = d.vars ++ ds.vars;
   this.mods = d.mods ++ ds.mods;
-  this.imps = [];
+  this.imps = d.imps ++ ds.imps;
 
   this.binds = d.binds ++ ds.binds;
 }
@@ -190,7 +186,10 @@ prod expInt: Exp ::= i:Integer
 
 
 
-
+{- 
+ - just here to type checking works out.
+ - scope graphs library java code is pre-written and copied in.
+-}
 
 nt Scope;
 attr var occurs on Scope;

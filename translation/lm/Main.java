@@ -13,6 +13,7 @@ abstract class Main extends TreeNode<Driver> {
   protected ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds = null;
   protected Boolean binds_computed = false;
+  protected Boolean binds_visited = false;
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds() { return null; }
 
@@ -27,6 +28,7 @@ class main extends Main
   
   protected Scope<main> s = null;
   protected Boolean s_computed = false;
+  protected Boolean s_visited = false;
 
   public main(Dcls<main> ds) {
     this.ds = ds;
@@ -36,14 +38,26 @@ class main extends Main
   }
 
   public Scope<main> s() {
-    if (s_computed) {
-      return this.s;
-    } else {
+    if (s_computed) return this.s;
+    Boolean interrupted_circle = false;
+    if (!this.s_visited) {
+      this.s_visited = true;
+      if (TreeNode.IN_CIRCLE){
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        TreeNode.IN_CIRCLE = false;
+        interrupted_circle = true;
+      }
       this.s = new mkScope<main>();
       this.s.setParent(this, 1);
       this.s_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.s_visited = false;
       return this.s;
     }
+    throw new RuntimeException("Circular definition of Main.s");
   }
 
   /* INHERITED ATTRIBUTES */
@@ -95,9 +109,24 @@ class main extends Main
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
   binds() {
     if(this.binds_computed) return this.binds;
-    this.binds = this.ds.binds();
-    this.binds_computed = true;
-    return this.binds;
+    Boolean interrupted_circle = false;
+    if (!this.binds_visited) {
+      this.binds_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.binds = new ArrayList<>();
+      this.binds.addAll(this.ds.binds());
+      this.binds_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.binds_visited = false;
+      return this.binds;
+    }
+    throw new RuntimeException("Circular definition of main.binds");
   }
 
 }
