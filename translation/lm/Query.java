@@ -22,45 +22,105 @@ implements haschild_DFAState<varDFA<T>> {
   // local stateLex:DFAState = dfaState()
   private DFAState<varDFA<T>> stateLex = null;
   private Boolean stateLex_computed = false;
+  private Boolean stateLex_visited = false;
   public DFAState<varDFA<T>> stateLex() {
     if (this.stateLex_computed) return this.stateLex;
-    this.stateLex = new dfaState<varDFA<T>>();
-    this.stateLex.setParent(this, 0);
-    this.stateLex_computed = true;
-    return this.stateLex;
+    Boolean interrupted_circle = false;
+    if (!this.stateLex_visited){
+      this.stateLex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateLex = new dfaState<varDFA<T>>();
+      this.stateLex.setParent(this, 0);
+      this.stateLex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateLex_visited = false;
+      return this.stateLex;
+    }
+    throw new RuntimeException("Circular definition of varDFA.stateLex");
   }
 
   // local stateImp:DFAState = dfaState()
   private DFAState<varDFA<T>> stateImp = null;
   private Boolean stateImp_computed = false;
+  private Boolean stateImp_visited = false;
   public DFAState<varDFA<T>> stateImp() {
     if (this.stateImp_computed) return this.stateImp;
-    this.stateImp = new dfaState<varDFA<T>>();
-    this.stateImp.setParent(this, 1);
-    this.stateImp_computed = true;
-    return this.stateImp;
+    Boolean interrupted_circle = false;
+    if (!this.stateImp_visited){
+      this.stateImp_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateImp = new dfaState<varDFA<T>>();
+      this.stateImp.setParent(this, 1);
+      this.stateImp_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateImp_visited = false;
+      return this.stateImp;
+    }
+    throw new RuntimeException("Circular definition of varDFA.stateImp");
   }
 
   // local stateFinal:DFAState = dfaStateFinal()
   private DFAState<varDFA<T>> stateFinal = null;
   private Boolean stateFinal_computed = false;
+  private Boolean stateFinal_visited = false;
   public DFAState<varDFA<T>> stateFinal() {
     if (this.stateFinal_computed) return this.stateFinal;
-    this.stateFinal = new dfaStateFinal<varDFA<T>>();
-    this.stateFinal.setParent(this, 2);
-    this.stateFinal_computed = true;
-    return this.stateFinal;
+    Boolean interrupted_circle = false;
+    if (!this.stateFinal_visited){
+      this.stateFinal_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateFinal = new dfaStateFinal<varDFA<T>>();
+      this.stateFinal.setParent(this, 2);
+      this.stateFinal_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateFinal_visited = false;
+      return this.stateFinal;
+    }
+    throw new RuntimeException("Circular definition of varDFA.stateFinal");
   }
 
   // local stateSink:DFAState = dfaStateSink()
   private DFAState<varDFA<T>> stateSink = null;
   private Boolean stateSink_computed = false;
+  private Boolean stateSink_visited = false;
   public DFAState<varDFA<T>> stateSink() {
     if (this.stateSink_computed) return this.stateSink;
-    this.stateSink = new dfaStateSink<varDFA<T>>();
-    this.stateSink.setParent(this, 3);
-    this.stateSink_computed = true;
-    return this.stateSink;
+    Boolean interrupted_circle = false;
+    if (!this.stateSink_visited){
+      this.stateSink_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateSink = new dfaStateSink<varDFA<T>>();
+      this.stateSink.setParent(this, 3);
+      this.stateSink_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateSink_visited = false;
+      return this.stateSink;
+    }
+    throw new RuntimeException("Circular definition of varDFA.stateSink");
   }
 
   /* INHERITED ATTRIBUTES PUSHED DOWN */
@@ -152,7 +212,7 @@ implements haschild_DFAState<varDFA<T>> {
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
-  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s){ 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s){
     return this.stateLex().decls(r, s);
   }
 
@@ -173,45 +233,105 @@ implements haschild_DFAState<modDFA<T>> {
   // local stateLex:DFAState = dfaState()
   private DFAState<modDFA<T>> stateLex = null;
   private Boolean stateLex_computed = false;
+  private Boolean stateLex_visited = false;
   public DFAState<modDFA<T>> stateLex() {
     if (this.stateLex_computed) return this.stateLex;
-    this.stateLex = new dfaState<modDFA<T>>();
-    this.stateLex.setParent(this, 0);
-    this.stateLex_computed = true;
-    return this.stateLex;
+    Boolean interrupted_circle = false;
+    if (!this.stateLex_visited){
+      this.stateLex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateLex = new dfaState<modDFA<T>>();
+      this.stateLex.setParent(this, 0);
+      this.stateLex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateLex_visited = false;
+      return this.stateLex;
+    }
+    throw new RuntimeException("Circular definition of modDFA.stateLex");
   }
 
   // local stateImp:DFAState = dfaState()
   private DFAState<modDFA<T>> stateImp = null;
   private Boolean stateImp_computed = false;
+  private Boolean stateImp_visited = false;
   public DFAState<modDFA<T>> stateImp() {
     if (this.stateImp_computed) return this.stateImp;
-    this.stateImp = new dfaState<modDFA<T>>();
-    this.stateImp.setParent(this, 1);
-    this.stateImp_computed = true;
-    return this.stateImp;
+    Boolean interrupted_circle = false;
+    if (!this.stateImp_visited){
+      this.stateImp_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateImp = new dfaState<modDFA<T>>();
+      this.stateImp.setParent(this, 1);
+      this.stateImp_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateImp_visited = false;
+      return this.stateImp;
+    }
+    throw new RuntimeException("Circular definition of modDFA.stateImp");
   }
 
   // local stateFinal:DFAState = dfaStateFinal()
   private DFAState<modDFA<T>> stateFinal = null;
   private Boolean stateFinal_computed = false;
+  private Boolean stateFinal_visited = false;
   public DFAState<modDFA<T>> stateFinal() {
     if (this.stateFinal_computed) return this.stateFinal;
-    this.stateFinal = new dfaStateFinal<modDFA<T>>();
-    this.stateFinal.setParent(this, 2);
-    this.stateFinal_computed = true;
-    return this.stateFinal;
+    Boolean interrupted_circle = false;
+    if (!this.stateFinal_visited){
+      this.stateFinal_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateFinal = new dfaStateFinal<modDFA<T>>();
+      this.stateFinal.setParent(this, 2);
+      this.stateFinal_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateFinal_visited = false;
+      return this.stateFinal;
+    }
+    throw new RuntimeException("Circular definition of modDFA.stateFinal");
   }
 
   // local stateSink:DFAState = dfaStateSink()
   private DFAState<modDFA<T>> stateSink = null;
   private Boolean stateSink_computed = false;
+  private Boolean stateSink_visited = false;
   public DFAState<modDFA<T>> stateSink() {
     if (this.stateSink_computed) return this.stateSink;
-    this.stateSink = new dfaStateSink<modDFA<T>>();
-    this.stateSink.setParent(this, 3);
-    this.stateSink_computed = true;
-    return this.stateSink;
+    Boolean interrupted_circle = false;
+    if (!this.stateSink_visited){
+      this.stateSink_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.stateSink = new dfaStateSink<modDFA<T>>();
+      this.stateSink.setParent(this, 3);
+      this.stateSink_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.stateSink_visited = false;
+      return this.stateSink;
+    }
+    throw new RuntimeException("Circular definition of modDFA.stateSink");
   }
 
   /* INHERITED ATTRIBUTES PUSHED DOWN */
@@ -317,15 +437,19 @@ extends TreeNode<T> {
 
   protected DFAState<T> lexT = null;
   protected Boolean lexT_computed = false;
+  protected Boolean lexT_visited = false;
 
   protected DFAState<T> varT = null;
   protected Boolean varT_computed = false;
+  protected Boolean varT_visited = false;
 
   protected DFAState<T> modT = null;
   protected Boolean modT_computed = false;
+  protected Boolean modT_visited = false;
 
   protected DFAState<T> impT = null;
   protected Boolean impT_computed = false;
+  protected Boolean impT_visited = false;
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
     decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { return null; }
@@ -344,30 +468,86 @@ extends DFAState<T> {
 
   public DFAState<T> lexT() {
     if (this.lexT_computed) return this.lexT;
-    this.lexT = this.parent.lexT(this.childId);
-    this.lexT_computed = true;
-    return this.lexT;
+    Boolean interrupted_circle = false;
+    if (!this.lexT_visited) {
+      this.lexT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lexT = this.parent.lexT(this.childId);
+      this.lexT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lexT_visited = false;
+      return this.lexT;
+    }
+    throw new RuntimeException("Circular definition of dfaState.lexT");
   }
 
   public DFAState<T> varT() {
     if (this.varT_computed) return this.varT;
-    this.varT = this.parent.varT(this.childId);
-    this.varT_computed = true;
-    return this.varT;
+    Boolean interrupted_circle = false;
+    if (!this.varT_visited) {
+      this.varT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.varT = this.parent.varT(this.childId);
+      this.varT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.varT_visited = false;
+      return this.varT;
+    }
+    throw new RuntimeException("Circular definition of dfaState.varT");
   }
 
   public DFAState<T> modT() {
     if (this.modT_computed) return this.modT;
-    this.modT = this.parent.modT(this.childId);
-    this.modT_computed = true;
-    return this.modT;
+    Boolean interrupted_circle = false;
+    if (!this.modT_visited) {
+      this.modT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.modT = this.parent.modT(this.childId);
+      this.modT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.modT_visited = false;
+      return this.modT;
+    }
+    throw new RuntimeException("Circular definition of dfaState.modT");
   }
 
   public DFAState<T> impT() {
     if (this.impT_computed) return this.impT;
-    this.impT = this.parent.impT(this.childId);
-    this.impT_computed = true;
-    return this.impT;
+    Boolean interrupted_circle = false;
+    if (!this.impT_visited) {
+      this.impT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.impT = this.parent.impT(this.childId);
+      this.impT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.impT_visited = false;
+      return this.impT;
+    }
+    throw new RuntimeException("Circular definition of dfaState.impT");
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -433,30 +613,86 @@ extends DFAState<T> {
 
   public DFAState<T> lexT() {
     if (this.lexT_computed) return this.lexT;
-    this.lexT = this.parent.lexT(this.childId);
-    this.lexT_computed = true;
-    return this.lexT;
+    Boolean interrupted_circle = false;
+    if (!this.lexT_visited) {
+      this.lexT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lexT = this.parent.lexT(this.childId);
+      this.lexT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lexT_visited = false;
+      return this.lexT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateFinal.lexT");
   }
 
   public DFAState<T> varT() {
     if (this.varT_computed) return this.varT;
-    this.varT = this.parent.varT(this.childId);
-    this.varT_computed = true;
-    return this.varT;
+    Boolean interrupted_circle = false;
+    if (!this.varT_visited) {
+      this.varT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.varT = this.parent.varT(this.childId);
+      this.varT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.varT_visited = false;
+      return this.varT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateFinal.varT");
   }
 
   public DFAState<T> modT() {
     if (this.modT_computed) return this.modT;
-    this.modT = this.parent.modT(this.childId);
-    this.modT_computed = true;
-    return this.modT;
+    Boolean interrupted_circle = false;
+    if (!this.modT_visited) {
+      this.modT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.modT = this.parent.modT(this.childId);
+      this.modT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.modT_visited = false;
+      return this.modT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateFinal.modT");
   }
 
   public DFAState<T> impT() {
-    if (this.impT_computed) return this.varT;
-    this.varT = this.parent.varT(this.childId);
-    this.impT_computed = true;
-    return this.varT;
+    if (this.impT_computed) return this.impT;
+    Boolean interrupted_circle = false;
+    if (!this.impT_visited) {
+      this.impT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.impT = this.parent.impT(this.childId);
+      this.impT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.impT_visited = false;
+      return this.impT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateFinal.impT");
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -498,30 +734,86 @@ extends DFAState<T> {
 
   public DFAState<T> lexT() {
     if (this.lexT_computed) return this.lexT;
-    this.lexT = this.parent.lexT(this.childId);
-    this.lexT_computed = true;
-    return this.lexT;
+    Boolean interrupted_circle = false;
+    if (!this.lexT_visited) {
+      this.lexT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lexT = this.parent.lexT(this.childId);
+      this.lexT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lexT_visited = false;
+      return this.lexT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateSink.lexT");
   }
 
   public DFAState<T> varT() {
     if (this.varT_computed) return this.varT;
-    this.varT = this.parent.varT(this.childId);
-    this.varT_computed = true;
-    return this.varT;
+    Boolean interrupted_circle = false;
+    if (!this.varT_visited) {
+      this.varT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.varT = this.parent.varT(this.childId);
+      this.varT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.varT_visited = false;
+      return this.varT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateSink.varT");
   }
 
   public DFAState<T> modT() {
     if (this.modT_computed) return this.modT;
-    this.modT = this.parent.modT(this.childId);
-    this.modT_computed = true;
-    return this.modT;
+    Boolean interrupted_circle = false;
+    if (!this.modT_visited) {
+      this.modT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.modT = this.parent.modT(this.childId);
+      this.modT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.modT_visited = false;
+      return this.modT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateSink.modT");
   }
 
   public DFAState<T> impT() {
-    if (this.impT_computed) return this.varT;
-    this.varT = this.parent.varT(this.childId);
-    this.impT_computed = true;
-    return this.varT;
+    if (this.impT_computed) return this.impT;
+    Boolean interrupted_circle = false;
+    if (!this.impT_visited) {
+      this.impT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.impT = this.parent.impT(this.childId);
+      this.impT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.impT_visited = false;
+      return this.impT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateSink.impT");
   }
 
   /* SYNTHESIZED ATTRIBUTES */

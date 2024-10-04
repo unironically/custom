@@ -7,22 +7,27 @@ abstract class Scope<T extends haschild_Scope<T>>
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> var = null;
   protected Boolean var_computed = false;
+  protected Boolean var_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> var() { return null; }
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> mod = null;
   protected Boolean mod_computed = false;
+  protected Boolean mod_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() { return null; }
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> imp = null;
   protected Boolean imp_computed = false;
+  protected Boolean imp_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() { return null; }
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> lex = null;
   protected Boolean lex_computed = false;
+  protected Boolean lex_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() { return null; }
 
   protected Datum datum = null;
   protected Boolean datum_computed = false;
+  protected Boolean datum_visited = false;
   public Datum datum() { return null; }
 
   protected String pp = "";
@@ -41,27 +46,109 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
 
   public Datum datum() {
     if (this.datum_computed) return this.datum;
-    this.datum = new datumNone();
-    this.datum_computed = true;
-    return this.datum;
+    Boolean interrupted_circle = false;
+    if (!this.datum_visited) {
+      this.datum_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.datum = new datumNone();
+      this.datum_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.datum_visited = false;
+      return this.datum;
+    }
+    throw new RuntimeException("Circular definition of scope.datum");
   }
 
   /* GETTING OWN INHERITED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> var() {
-    return this.parent.var(this.childId);
+    if (this.var_computed) return this.var;
+    Boolean interrupted_circle = false;
+    if (!this.var_visited) {
+      this.var_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.var = this.parent.var(this.childId);
+      this.var_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.var_visited = false;
+      return this.var;
+    }
+    throw new RuntimeException("Circular definition of mkScope.var");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() {
-    return this.parent.mod(this.childId);
+    if (this.mod_computed) return this.mod;
+    Boolean interrupted_circle = false;
+    if (!this.mod_visited) {
+      this.mod_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.mod = this.parent.mod(this.childId);
+      this.mod_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.mod_visited = false;
+      return this.mod;
+    }
+    throw new RuntimeException("Circular definition of mkScope.mod");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() {
-    return this.parent.imp(this.childId);
+    if (this.imp_computed) return this.imp;
+    Boolean interrupted_circle = false;
+    if (!this.imp_visited) {
+      this.imp_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.imp = this.parent.imp(this.childId);
+      this.imp_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.imp_visited = false;
+      return this.imp;
+    }
+    throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
-    return this.parent.lex(this.childId);
+    if (this.lex_computed) return this.lex;
+    Boolean interrupted_circle = false;
+    if (!this.lex_visited) {
+      this.lex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lex = this.parent.lex(this.childId);
+      this.lex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lex_visited = false;
+      return this.lex;
+    }
+    throw new RuntimeException("Circular definition of mkScope.lex");
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -88,27 +175,109 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
 
   public Datum datum() {
     if (this.datum_computed) return this.datum;
-    this.datum = new datumMod(this.s);
-    this.datum_computed = true;
-    return this.datum;
+    Boolean interrupted_circle = false;
+    if (!this.datum_visited) {
+      this.datum_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.datum = new datumMod(this.s);
+      this.datum_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.datum_visited = false;
+      return this.datum;
+    }
+    throw new RuntimeException("Circular definition of scope.datum");
   }
 
   /* GETTING OWN INHERITED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> var() {
-    return this.parent.var(this.childId);
+    if (this.var_computed) return this.var;
+    Boolean interrupted_circle = false;
+    if (!this.var_visited) {
+      this.var_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.var = this.parent.var(this.childId);
+      this.var_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.var_visited = false;
+      return this.var;
+    }
+    throw new RuntimeException("Circular definition of mkScope.var");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() {
-    return this.parent.mod(this.childId);
+    if (this.mod_computed) return this.mod;
+    Boolean interrupted_circle = false;
+    if (!this.mod_visited) {
+      this.mod_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.mod = this.parent.mod(this.childId);
+      this.mod_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.mod_visited = false;
+      return this.mod;
+    }
+    throw new RuntimeException("Circular definition of mkScope.mod");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() {
-    return this.parent.imp(this.childId);
+    if (this.imp_computed) return this.imp;
+    Boolean interrupted_circle = false;
+    if (!this.imp_visited) {
+      this.imp_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.imp = this.parent.imp(this.childId);
+      this.imp_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.imp_visited = false;
+      return this.imp;
+    }
+    throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
-    return this.parent.lex(this.childId);
+    if (this.lex_computed) return this.lex;
+    Boolean interrupted_circle = false;
+    if (!this.lex_visited) {
+      this.lex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lex = this.parent.lex(this.childId);
+      this.lex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lex_visited = false;
+      return this.lex;
+    }
+    throw new RuntimeException("Circular definition of mkScope.lex");
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -137,27 +306,109 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
 
   public Datum datum() {
     if (this.datum_computed) return this.datum;
-    this.datum = new datumVar(this.s, this.t);
-    this.datum_computed = true;
-    return this.datum;
+    Boolean interrupted_circle = false;
+    if (!this.datum_visited) {
+      this.datum_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.datum = new datumVar(this.s, this.t);
+      this.datum_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.datum_visited = false;
+      return this.datum;
+    }
+    throw new RuntimeException("Circular definition of scope.datum");
   }
 
   /* GETTING OWN INHERITED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> var() {
-    return this.parent.var(this.childId);
+    if (this.var_computed) return this.var;
+    Boolean interrupted_circle = false;
+    if (!this.var_visited) {
+      this.var_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.var = this.parent.var(this.childId);
+      this.var_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.var_visited = false;
+      return this.var;
+    }
+    throw new RuntimeException("Circular definition of mkScope.var");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() {
-    return this.parent.mod(this.childId);
+    if (this.mod_computed) return this.mod;
+    Boolean interrupted_circle = false;
+    if (!this.mod_visited) {
+      this.mod_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.mod = this.parent.mod(this.childId);
+      this.mod_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.mod_visited = false;
+      return this.mod;
+    }
+    throw new RuntimeException("Circular definition of mkScope.mod");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() {
-    return this.parent.imp(this.childId);
+    if (this.imp_computed) return this.imp;
+    Boolean interrupted_circle = false;
+    if (!this.imp_visited) {
+      this.imp_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.imp = this.parent.imp(this.childId);
+      this.imp_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.imp_visited = false;
+      return this.imp;
+    }
+    throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
-    return this.parent.lex(this.childId);
+    if (this.lex_computed) return this.lex;
+    Boolean interrupted_circle = false;
+    if (!this.lex_visited) {
+      this.lex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lex = this.parent.lex(this.childId);
+      this.lex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lex_visited = false;
+      return this.lex;
+    }
+    throw new RuntimeException("Circular definition of mkScope.lex");
   }
 
   /* SYNTHESIZED ATTRIBUTES */

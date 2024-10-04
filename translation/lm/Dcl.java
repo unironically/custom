@@ -8,17 +8,21 @@ abstract class Dcl<T extends haschild_Dcl<T>> extends TreeNode<T> {
 
   protected Scope scope            = null;
   protected Boolean scope_computed = false;
+  protected Boolean scope_visited = false;
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> vars  = null;
   protected Boolean vars_computed  = false;
+  protected Boolean vars_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> vars() { return null; }
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> mods  = null;
   protected Boolean mods_computed  = false;
+  protected Boolean mods_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> mods() { return new ArrayList<Scope<? extends haschild_Scope<?>>>(); }
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> imps  = null;
   protected Boolean imps_computed  = false;
+  protected Boolean imps_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> imps() { return new ArrayList<Scope<? extends haschild_Scope<?>>>(); }
 
   protected String pp = "";
@@ -28,6 +32,7 @@ abstract class Dcl<T extends haschild_Dcl<T>> extends TreeNode<T> {
   protected ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds = null;
   protected Boolean binds_computed = false;
+  protected Boolean binds_visited = false;
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds() { return null; }
  
@@ -46,6 +51,7 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
 
   protected Scope<dclMod<T>> s = null;
   protected Boolean s_computed = false;
+  protected Boolean s_visited = false;
 
   public dclMod(String id, Dcls<dclMod<T>> ds) {
     this.id = id;
@@ -58,13 +64,25 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
 
   // local s:Scope = mkMod(id)
   public Scope<dclMod<T>> s() {
-    if (this.s_computed) {
+    if (this.s_computed) return this.s;
+    boolean interrupted_circle = false;
+    if (!this.s_visited) {
+      this.s_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.s = new mkMod<dclMod<T>>(this.id);
+      this.s.setParent(this, 1);
+      this.s_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.s_visited = false;
       return this.s;
     }
-    this.s = new mkMod<dclMod<T>>(this.id);
-    this.s.setParent(this, 1);
-    this.s_computed = true;
-    return this.s;
+    throw new RuntimeException("Circular definition of dclMod.s");
   }
 
   /* INHERITED ATTRIBUTES */
@@ -113,32 +131,69 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
 
   // this.vars = []
   public ArrayList<Scope<? extends haschild_Scope<?>>> vars() {
-    if (this.vars_computed) {
+    if (this.vars_computed) return this.vars;
+    boolean interrupted_circle = false;
+    if (!this.vars_visited) {
+      this.vars_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.vars = new ArrayList<>();
+      this.vars_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.vars_visited = false;
       return this.vars;
     }
-    this.vars = new ArrayList<Scope<? extends haschild_Scope<?>>>();
-    this.vars_computed = true;
-    return this.vars;
+    throw new RuntimeException("Circular definition of dclsCons.vars");
   }
 
   // this.mods = [s]
   public ArrayList<Scope<? extends haschild_Scope<?>>> mods() {
-    if (this.mods_computed) {
+    if (this.mods_computed) return this.mods;
+    boolean interrupted_circle = false;
+    if (!this.mods_visited) {
+      this.mods_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.mods = new ArrayList<>();
+      this.mods.add(this.s());
+      this.mods_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.mods_visited = false;
       return this.mods;
     }
-    this.mods = new ArrayList<Scope<? extends haschild_Scope<?>>>(List.of( this.s() ));
-    this.mods_computed = true;
-    return this.mods;
+    throw new RuntimeException("Circular definition of dclsCons.mods");
   }
 
   // this.imps = []
   public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
-    if (this.imps_computed) {
+    if (this.imps_computed) return this.imps;
+    boolean interrupted_circle = false;
+    if (!this.imps_visited) {
+      this.imps_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.imps = new ArrayList<>();
+      this.imps_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.imps_visited = false;
       return this.imps;
     }
-    this.imps = new ArrayList<Scope<? extends haschild_Scope<?>>>();
-    this.imps_computed = true;
-    return this.imps;
+    throw new RuntimeException("Circular definition of dclsCons.imps");
   }
 
   public String pp() {
@@ -151,9 +206,24 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
   binds() {
     if(this.binds_computed) return this.binds;
-    this.binds = this.ds.binds();
-    this.binds_computed = true;
-    return this.binds;
+    Boolean interrupted_circle = false;
+    if (!this.binds_visited) {
+      this.binds_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.binds = new ArrayList<>();
+      this.binds.addAll(this.ds.binds());
+      this.binds_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.binds_visited = false;
+      return this.binds;
+    }
+    throw new RuntimeException("Circular definition of dclsCons.binds");
   }
 
 }
@@ -187,32 +257,69 @@ implements haschild_ModRef<dclImp<T>> {
 
   // this.vars = []
   public ArrayList<Scope<? extends haschild_Scope<?>>> vars() {
-    if (this.vars_computed) {
+    if (this.vars_computed) return this.vars;
+    boolean interrupted_circle = false;
+    if (!this.vars_visited) {
+      this.vars_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.vars = new ArrayList<>();
+      this.vars_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.vars_visited = false;
       return this.vars;
     }
-    this.vars = new ArrayList<Scope<? extends haschild_Scope<?>>>();
-    this.vars_computed = true;
-    return this.vars;
+    throw new RuntimeException("Circular definition of dclsCons.vars");
   }
 
   // this.mods = []
   public ArrayList<Scope<? extends haschild_Scope<?>>> mods() {
-    if (this.mods_computed) {
+    if (this.mods_computed) return this.mods;
+    boolean interrupted_circle = false;
+    if (!this.mods_visited) {
+      this.mods_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.mods = new ArrayList<>();
+      this.mods_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.mods_visited = false;
       return this.mods;
     }
-    this.mods = new ArrayList<Scope<? extends haschild_Scope<?>>>();
-    this.mods_computed = true;
-    return this.mods;
+    throw new RuntimeException("Circular definition of dclsCons.mods");
   }
 
   // this.imps = r.imp
   public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
-    if (this.imps_computed) {
+    if (this.imps_computed) return this.imps;
+    boolean interrupted_circle = false;
+    if (!this.imps_visited) {
+      this.imps_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.imps = new ArrayList<>();
+      this.imps.addAll(this.r.imps());
+      this.imps_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.imps_visited = false;
       return this.imps;
     }
-    this.imps = this.r.imps();
-    this.imps_computed = true;
-    return this.imps;
+    throw new RuntimeException("Circular definition of dclsCons.imps");
   }
 
   public String pp() {
@@ -225,9 +332,24 @@ implements haschild_ModRef<dclImp<T>> {
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
   binds() {
     if(this.binds_computed) return this.binds;
-    this.binds = this.r.binds();
-    this.binds_computed = true;
-    return this.binds;
+    Boolean interrupted_circle = false;
+    if (!this.binds_visited) {
+      this.binds_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.binds = new ArrayList<>();
+      this.binds.addAll(this.r.binds());
+      this.binds_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.binds_visited = false;
+      return this.binds;
+    }
+    throw new RuntimeException("Circular definition of dclsCons.binds");
   }
 
 }
@@ -259,30 +381,67 @@ implements haschild_Bind<dclBind<T>> {
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> vars() {
-    if (this.vars_computed) {
+    if (this.vars_computed) return this.vars;
+    boolean interrupted_circle = false;
+    if (!this.vars_visited) {
+      this.vars_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.vars = new ArrayList<>();
+      this.vars.addAll(this.b.vars());
+      this.vars_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.vars_visited = false;
       return this.vars;
     }
-    this.vars = this.b.vars();
-    this.vars_computed = true;
-    return this.vars;
+    throw new RuntimeException("Circular definition of dclsCons.vars");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mods() {
-    if (this.mods_computed) {
+    if (this.mods_computed) return this.mods;
+    boolean interrupted_circle = false;
+    if (!this.mods_visited) {
+      this.mods_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.mods = new ArrayList<>();
+      this.mods_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.mods_visited = false;
       return this.mods;
     }
-    this.mods = new ArrayList<Scope<? extends haschild_Scope<?>>>();
-    this.mods_computed = true;
-    return this.mods;
+    throw new RuntimeException("Circular definition of dclsCons.mods");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
-    if (this.imps_computed) {
+    if (this.imps_computed) return this.imps;
+    boolean interrupted_circle = false;
+    if (!this.imps_visited) {
+      this.imps_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.imps = new ArrayList<>();
+      this.imps_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.imps_visited = false;
       return this.imps;
     }
-    this.imps = new ArrayList<Scope<? extends haschild_Scope<?>>>();
-    this.imps_computed = true;
-    return this.imps;
+    throw new RuntimeException("Circular definition of dclsCons.imps");
   }
 
   public String pp() {
@@ -295,9 +454,24 @@ implements haschild_Bind<dclBind<T>> {
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
   binds() {
     if(this.binds_computed) return this.binds;
-    this.binds = this.b.binds();
-    this.binds_computed = true;
-    return this.binds;
+    Boolean interrupted_circle = false;
+    if (!this.binds_visited) {
+      this.binds_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.binds = new ArrayList<>();
+      this.binds.addAll(this.b.binds());
+      this.binds_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.binds_visited = false;
+      return this.binds;
+    }
+    throw new RuntimeException("Circular definition of dclsCons.binds");
   }
 
 }

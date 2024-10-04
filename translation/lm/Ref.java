@@ -6,10 +6,12 @@ abstract class Ref<T extends haschild_Ref<T>> extends TreeNode<T> {
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> lex = null;
   protected Boolean lex_computed = false;
+  protected Boolean lex_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() { return null; }
 
   protected ArrayList<Scope<? extends haschild_Scope<?>>> res = null;
   protected Boolean res_computed = false;
+  protected Boolean res_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> res() { return null; }
 
   protected String str = null;
@@ -19,6 +21,7 @@ abstract class Ref<T extends haschild_Ref<T>> extends TreeNode<T> {
   protected ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds = null;
   protected Boolean binds_computed = false;
+  protected Boolean binds_visited = false;
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds() { return null; }  
 
@@ -41,11 +44,26 @@ class mkVarRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   private DFA<mkVarRef<T>> dfa = null;
   private Boolean dfa_computed = false;
+  private Boolean dfa_visited = false;
   protected DFA<mkVarRef<T>> dfa () {
     if (this.dfa_computed) return this.dfa;
-    this.dfa = new varDFA<mkVarRef<T>>();
-    this.dfa_computed = true;
-    return this.dfa;
+    Boolean interrupted_circle = false;
+    if (!this.dfa_visited) {
+      this.dfa_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.dfa = new varDFA<mkVarRef<T>>();
+      this.dfa_computed = true;
+      if (interrupted_circle) {
+          TreeNode.CHANGE = TreeNode.STACK.pop();
+          TreeNode.IN_CIRCLE = true;
+        }
+      this.dfa_visited = false;
+      return this.dfa;
+    }
+    throw new RuntimeException("Circular definition of mkVarRef.dfa");
   }
 
   /* INHERITED ATTRIBUTES */
@@ -54,20 +72,47 @@ class mkVarRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
     if (this.lex_computed) return this.lex;
-    this.lex = this.parent.lex(this.childId);
-    this.lex_computed = true;
-    return this.lex;
+    Boolean interrupted_circle = false;
+    if (!this.lex_visited) {
+      this.lex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lex = this.parent.lex(this.childId);
+      this.lex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lex_visited = false;
+      return this.lex;
+    }
+    throw new RuntimeException("Circular definition of mkVarRef.lex");
   }
   
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
-    if (this.res_computed) {
+    if (this.res_computed) return this.res;
+    boolean interrupted_circle = false;
+    if (!this.res_visited) {
+      this.res_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.res = new ArrayList<>();
+      this.res.addAll(this.dfa().decls(this, this.lex().get(0)));
+      this.res_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.res_visited = false;
       return this.res;
     }
-    this.res = this.dfa().decls(this, this.lex().get(0));
-    this.res_computed = true;
-    return this.res;
+    throw new RuntimeException("Circular definition of mkVarRef.res");
   }
 
   public String str() {
@@ -79,19 +124,26 @@ class mkVarRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
   binds() {
-    
     if(this.binds_computed) return this.binds;
-    
-    ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> binds =
-      new ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>>();
-
-    binds.add(new Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>
+    Boolean interrupted_circle = false;
+    if (!this.binds_visited) {
+      this.binds_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.binds = new ArrayList<>();
+      binds.add(new Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>
       (this, this.res()));
-
-    this.binds = binds;
-    this.binds_computed = true;
-    return this.binds;
-
+      this.binds_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.binds_visited = false;
+      return this.binds;
+    }
+    throw new RuntimeException("Circular definition of mkVarRef.binds");
   }
 
   public String pp() {
@@ -117,11 +169,26 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   private DFA<mkModRef<T>> dfa = null;
   private Boolean dfa_computed = false;
+  private Boolean dfa_visited = false;
   protected DFA<mkModRef<T>> dfa () {
     if (this.dfa_computed) return this.dfa;
-    this.dfa = new modDFA<mkModRef<T>>();
-    this.dfa_computed = true;
-    return this.dfa;
+    Boolean interrupted_circle = false;
+    if (!this.dfa_visited) {
+      this.dfa_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.dfa = new modDFA<mkModRef<T>>();
+      this.dfa_computed = true;
+      if (interrupted_circle) {
+          TreeNode.CHANGE = TreeNode.STACK.pop();
+          TreeNode.IN_CIRCLE = true;
+        }
+      this.dfa_visited = false;
+      return this.dfa;
+    }
+    throw new RuntimeException("Circular definition of mkModRef.dfa");
   }
 
   /* INHERITED ATTRIBUTES */
@@ -130,21 +197,47 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
     if (this.lex_computed) return this.lex;
-    this.lex = this.parent.lex(this.childId);
-    this.lex_computed = true;
-    return this.lex;
+    Boolean interrupted_circle = false;
+    if (!this.lex_visited) {
+      this.lex_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lex = this.parent.lex(this.childId);
+      this.lex_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lex_visited = false;
+      return this.lex;
+    }
+    throw new RuntimeException("Circular definition of mkModRef.lex");
   }
   
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
-    
-    if (this.res_computed) {
+    if (this.res_computed) return this.res;
+    boolean interrupted_circle = false;
+    if (!this.res_visited) {
+      this.res_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.res = new ArrayList<>();
+      this.res.addAll(this.dfa().decls(this, this.lex().get(0)));
+      this.res_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.res_visited = false;
       return this.res;
     }
-    this.res = this.dfa().decls(this, this.lex().get(0));
-    this.res_computed = true;
-    return this.res;
+    throw new RuntimeException("Circular definition of mkModRef.res");
   }
 
   public String str() {
@@ -156,20 +249,25 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
 
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
   binds() {
-
     if(this.binds_computed) return this.binds;
-    
-    ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> binds =
-      new ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>>();
-
-    binds.add(new Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>
-      (this, this.res()));
-
-    this.binds = binds;
-    this.binds_computed = true;
-
-    return this.binds;
-
+    Boolean interrupted_circle = false;
+    if (!this.binds_visited) {
+      this.binds_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.binds = new ArrayList<>();
+      this.binds.add(new Pair<> (this, this.res()));
+      this.binds_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.binds_visited = false;
+      return this.binds;
+    }
+    throw new RuntimeException("Circular definition of dclsCons.binds");
   }
 
   public String pp() {
