@@ -92,9 +92,17 @@ implements haschild_Scope<bnd<T>>, haschild_Exp<bnd<T>> {
   }
 
   // d.lex = []
-  public ArrayList<Scope<? extends haschild_Scope<?>>> lex(int childId) {
+  /*public ArrayList<Scope<? extends haschild_Scope<?>>> lex(int childId) {
     if (childId == 1) {
       return new ArrayList<Scope<? extends haschild_Scope<?>>>();
+    }
+    return new ArrayList<Scope<? extends haschild_Scope<?>>>();
+  }*/
+
+  // d.lex = top.scope;
+  public ArrayList<Scope<? extends haschild_Scope<?>>> lex(int childId) {
+    if (childId == 1) {
+      return new ArrayList<Scope<? extends haschild_Scope<?>>>(List.of( this.parent.scope(this.childId) ));
     }
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   }

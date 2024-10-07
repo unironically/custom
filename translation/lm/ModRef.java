@@ -143,33 +143,51 @@ implements haschild_Ref<mref<T>> {
     throw new RuntimeException("Circular definition of dclsCons.binds");
   }
 
+  // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
-    if (impTentative_computed) return impTentative;
+    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
+    if (impTentative_computed) {
+      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
+      return impTentative;
+    }
+    if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
     if (!IN_CIRCLE) {
+      if (scopeTrace) System.out.println("(initial circular demand)");
       IN_CIRCLE = true;
       impTentative_visited = true;
       do {
+        if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
         CHANGE = false;
+        TreeNode.tabIncrease();
         ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
           this.r().res();
+        TreeNode.tabDecrease();
         if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
         impTentative = new_impTentative_value;
       } while (CHANGE);
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
+      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
       return impTentative;
     }
     else if (!impTentative_visited) {
+      if (scopeTrace) System.out.println("(intermediate circular demand)");
       impTentative_visited = true;
+      TreeNode.tabIncrease();
       ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
           this.r().res();
+      TreeNode.tabDecrease();
       if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
       impTentative = new_impTentative_value;
       impTentative_visited = false;
+      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
       return impTentative;
     }
-    else return impTentative;
+    else {
+      if (scopeTrace) System.out.println("(already visited)");
+      return impTentative;
+    }
   }
 
 }

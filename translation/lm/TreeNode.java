@@ -9,14 +9,14 @@ abstract class TreeNode<T> {
   public static Stack<Boolean> STACK = new Stack<>();
 
   protected Boolean trace = false;
-  protected Boolean scopeTrace = false;
+  protected Boolean scopeTrace = true;
   
   public static Integer tabWidth = 0;
   public static void tabIncrease() { tabWidth++; }
   public static void tabDecrease() { tabWidth--; }
   public static String tab() {
     String tabbed = "";
-    for (int i = 0; i < tabWidth; i++) tabbed += "\t";
+    for (int i = 0; i < tabWidth; i++) tabbed += "    ";
     return tabbed;
   }
 

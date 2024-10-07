@@ -1,0 +1,1607 @@
+Constructed ref mkModRef("A")_1554874502
+mkModRef("A")_1554874502.res demanded
+mkModRef("A")_1554874502.res not yet computed (initial circular demand)
+mkModRef("A")_1554874502.res new iteration
+    mkModRef("A")_1554874502.lex demanded
+    mkModRef("A")_1554874502.lex not yet computed
+        Constructed scope mkMod("C")_1421795058
+    mkModRef("A")_1554874502.lex done computing
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.var
+        mkMod("C")_1421795058.var demanded
+        mkMod("C")_1421795058.var not yet computed
+            Constructed scope mkVar("y")_1706377736
+        mkMod("C")_1421795058.var done computing
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.var, 1 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_834600351
+        Final state: mkModRef("A")_1554874502, found a bad match: mkVar("y")_1706377736
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.mod
+        mkMod("C")_1421795058.mod demanded
+        mkMod("C")_1421795058.mod not yet computed
+        mkMod("C")_1421795058.mod done computing
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.mod, 0 edges found
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.impTentative
+        mkMod("C")_1421795058.impTentative demanded
+        mkMod("C")_1421795058.impTentative not yet computed (intermediate circular demand)
+            dclImp(mref("A")).impTentative demanded
+            dclImp(mref("A")).impTentative not yet computed (intermediate circular demand)
+                mref("A").impTentative demanded
+                mref("A").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("A")_1554874502.res demanded
+                    mkModRef("A")_1554874502.res not yet computed (already visited)
+                mref("A").impTentative done computing, but not set
+            dclImp(mref("A")).impTentative done computing, but not set
+            dclImp(mref("B")).impTentative demanded
+            dclImp(mref("B")).impTentative not yet computed (intermediate circular demand)
+                mref("B").impTentative demanded
+                mref("B").impTentative not yet computed (intermediate circular demand)
+                    Constructed ref mkModRef("B")_990368553
+                    mkModRef("B")_990368553.res demanded
+                    mkModRef("B")_990368553.res not yet computed (intermediate circular demand)
+                        mkModRef("B")_990368553.lex demanded
+                        mkModRef("B")_990368553.lex not yet computed
+                        mkModRef("B")_990368553.lex done computing
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.var
+                            mkMod("C")_1421795058.var demanded
+                            mkMod("C")_1421795058.var already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.var, 1 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_1078694789
+                            Final state: mkModRef("B")_990368553, found a bad match: mkVar("y")_1706377736
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.mod
+                            mkMod("C")_1421795058.mod demanded
+                            mkMod("C")_1421795058.mod already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.mod, 0 edges found
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.impTentative
+                            mkMod("C")_1421795058.impTentative demanded
+                            mkMod("C")_1421795058.impTentative not yet computed (already visited)
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.impTentative, 0 edges found
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.lex
+                            mkMod("C")_1421795058.lex demanded
+                            mkMod("C")_1421795058.lex not yet computed
+                                Constructed scope mkScope_1747585824
+                            mkMod("C")_1421795058.lex done computing
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.lex, 1 edges found
+                        mkMod("C")_1421795058.lex demanded
+                        mkMod("C")_1421795058.lex already computed
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_1096979270
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.var
+                                mkScope_1747585824.var demanded
+                                mkScope_1747585824.var not yet computed
+                                mkScope_1747585824.var done computing
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.var, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.mod
+                                mkScope_1747585824.mod demanded
+                                mkScope_1747585824.mod not yet computed
+                                    Constructed scope mkMod("A")_1023892928
+                                    Constructed scope mkMod("B")_558638686
+                                mkScope_1747585824.mod done computing
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.mod, 3 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_1023892928
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_558638686
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("C")_1421795058
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.impTentative
+                                mkScope_1747585824.impTentative demanded
+                                mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+                                mkScope_1747585824.impTentative done computing, but not set
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.impTentative, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.lex
+                                mkScope_1747585824.lex demanded
+                                mkScope_1747585824.lex not yet computed
+                                mkScope_1747585824.lex done computing
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.lex, 0 edges found
+                            mkScope_1747585824.lex demanded
+                            mkScope_1747585824.lex already computed
+                    mkModRef("B")_990368553.res done computing, but not set
+                mref("B").impTentative done computing, but not set
+            dclImp(mref("B")).impTentative done computing, but not set
+            dclBind(bnd("y", expRef(vref("x")))).impTentative demanded
+            dclBind(bnd("y", expRef(vref("x")))).impTentative not yet computed (intermediate circular demand)
+            dclBind(bnd("y", expRef(vref("x")))).impTentative done computing, but not set
+        mkMod("C")_1421795058.impTentative done computing, but not set
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.impTentative, 1 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.var
+            mkMod("B")_558638686.var demanded
+            mkMod("B")_558638686.var not yet computed
+                Constructed scope mkVar("x")_2074407503
+            mkMod("B")_558638686.var done computing
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_2074407503
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.mod
+            mkMod("B")_558638686.mod demanded
+            mkMod("B")_558638686.mod not yet computed
+                Constructed scope mkMod("A")_999966131
+            mkMod("B")_558638686.mod done computing
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_999966131
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.impTentative
+            mkMod("B")_558638686.impTentative demanded
+            mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative demanded
+                dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+            mkMod("B")_558638686.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.lex
+            mkMod("B")_558638686.lex demanded
+            mkMod("B")_558638686.lex not yet computed
+            mkMod("B")_558638686.lex done computing
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.lex, 1 edges found
+        mkMod("B")_558638686.lex demanded
+        mkMod("B")_558638686.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.lex
+        mkMod("C")_1421795058.lex demanded
+        mkMod("C")_1421795058.lex already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.lex, 1 edges found
+    mkMod("C")_1421795058.lex demanded
+    mkMod("C")_1421795058.lex already computed
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_149928006
+        dfaStateMod_149928006 about to demand mkScope_1747585824.var
+            mkScope_1747585824.var demanded
+            mkScope_1747585824.var already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.var, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.mod
+            mkScope_1747585824.mod demanded
+            mkScope_1747585824.mod already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.mod, 3 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_1023892928
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_558638686
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("C")_1421795058
+        dfaStateMod_149928006 about to demand mkScope_1747585824.impTentative
+            mkScope_1747585824.impTentative demanded
+            mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+            mkScope_1747585824.impTentative done computing, but not set
+        dfaStateMod_149928006 done demanding mkScope_1747585824.impTentative, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.lex
+            mkScope_1747585824.lex demanded
+            mkScope_1747585824.lex already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.lex, 0 edges found
+        mkScope_1747585824.lex demanded
+        mkScope_1747585824.lex already computed
+mkModRef("A")_1554874502.res new iteration
+    mkModRef("A")_1554874502.lex demanded
+    mkModRef("A")_1554874502.lex already computed
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.var
+        mkMod("C")_1421795058.var demanded
+        mkMod("C")_1421795058.var already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.var, 1 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_834600351
+        Final state: mkModRef("A")_1554874502, found a bad match: mkVar("y")_1706377736
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.mod
+        mkMod("C")_1421795058.mod demanded
+        mkMod("C")_1421795058.mod already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.mod, 0 edges found
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.impTentative
+        mkMod("C")_1421795058.impTentative demanded
+        mkMod("C")_1421795058.impTentative not yet computed (intermediate circular demand)
+            dclImp(mref("A")).impTentative demanded
+            dclImp(mref("A")).impTentative not yet computed (intermediate circular demand)
+                mref("A").impTentative demanded
+                mref("A").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("A")_1554874502.res demanded
+                    mkModRef("A")_1554874502.res not yet computed (already visited)
+                mref("A").impTentative done computing, but not set
+            dclImp(mref("A")).impTentative done computing, but not set
+            dclImp(mref("B")).impTentative demanded
+            dclImp(mref("B")).impTentative not yet computed (intermediate circular demand)
+                mref("B").impTentative demanded
+                mref("B").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("B")_990368553.res demanded
+                    mkModRef("B")_990368553.res not yet computed (intermediate circular demand)
+                        mkModRef("B")_990368553.lex demanded
+                        mkModRef("B")_990368553.lex already computed
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.var
+                            mkMod("C")_1421795058.var demanded
+                            mkMod("C")_1421795058.var already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.var, 1 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_1078694789
+                            Final state: mkModRef("B")_990368553, found a bad match: mkVar("y")_1706377736
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.mod
+                            mkMod("C")_1421795058.mod demanded
+                            mkMod("C")_1421795058.mod already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.mod, 0 edges found
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.impTentative
+                            mkMod("C")_1421795058.impTentative demanded
+                            mkMod("C")_1421795058.impTentative not yet computed (already visited)
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.impTentative, 1 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.var
+                                mkMod("B")_558638686.var demanded
+                                mkMod("B")_558638686.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_2074407503
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.mod
+                                mkMod("B")_558638686.mod demanded
+                                mkMod("B")_558638686.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.mod, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_999966131
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.impTentative
+                                mkMod("B")_558638686.impTentative demanded
+                                mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(3))).impTentative demanded
+                                    dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+                                mkMod("B")_558638686.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.lex
+                                mkMod("B")_558638686.lex demanded
+                                mkMod("B")_558638686.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.lex, 1 edges found
+                            mkMod("B")_558638686.lex demanded
+                            mkMod("B")_558638686.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.lex
+                            mkMod("C")_1421795058.lex demanded
+                            mkMod("C")_1421795058.lex already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.lex, 1 edges found
+                        mkMod("C")_1421795058.lex demanded
+                        mkMod("C")_1421795058.lex already computed
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_1096979270
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.var
+                                mkScope_1747585824.var demanded
+                                mkScope_1747585824.var already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.var, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.mod
+                                mkScope_1747585824.mod demanded
+                                mkScope_1747585824.mod already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.mod, 3 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_1023892928
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_558638686
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("C")_1421795058
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.impTentative
+                                mkScope_1747585824.impTentative demanded
+                                mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+                                mkScope_1747585824.impTentative done computing, but not set
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.impTentative, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.lex
+                                mkScope_1747585824.lex demanded
+                                mkScope_1747585824.lex already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.lex, 0 edges found
+                            mkScope_1747585824.lex demanded
+                            mkScope_1747585824.lex already computed
+                    mkModRef("B")_990368553.res done computing, but not set
+                mref("B").impTentative done computing, but not set
+            dclImp(mref("B")).impTentative done computing, but not set
+            dclBind(bnd("y", expRef(vref("x")))).impTentative demanded
+            dclBind(bnd("y", expRef(vref("x")))).impTentative not yet computed (intermediate circular demand)
+            dclBind(bnd("y", expRef(vref("x")))).impTentative done computing, but not set
+        mkMod("C")_1421795058.impTentative done computing, but not set
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.impTentative, 3 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.var
+            mkMod("A")_999966131.var demanded
+            mkMod("A")_999966131.var not yet computed
+                Constructed scope mkVar("x")_1452126962
+            mkMod("A")_999966131.var done computing
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_1452126962
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.mod
+            mkMod("A")_999966131.mod demanded
+            mkMod("A")_999966131.mod not yet computed
+            mkMod("A")_999966131.mod done computing
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.mod, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.impTentative
+            mkMod("A")_999966131.impTentative demanded
+            mkMod("A")_999966131.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative demanded
+                dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+            mkMod("A")_999966131.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.lex
+            mkMod("A")_999966131.lex demanded
+            mkMod("A")_999966131.lex not yet computed
+            mkMod("A")_999966131.lex done computing
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.lex, 1 edges found
+        mkMod("A")_999966131.lex demanded
+        mkMod("A")_999966131.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.var
+            mkMod("A")_1023892928.var demanded
+            mkMod("A")_1023892928.var not yet computed
+                Constructed scope mkVar("x")_931919113
+            mkMod("A")_1023892928.var done computing
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_931919113
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.mod
+            mkMod("A")_1023892928.mod demanded
+            mkMod("A")_1023892928.mod not yet computed
+                Constructed scope mkMod("B")_1607521710
+            mkMod("A")_1023892928.mod done computing
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_1607521710
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.impTentative
+            mkMod("A")_1023892928.impTentative demanded
+            mkMod("A")_1023892928.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative demanded
+                dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+            mkMod("A")_1023892928.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.lex
+            mkMod("A")_1023892928.lex demanded
+            mkMod("A")_1023892928.lex not yet computed
+            mkMod("A")_1023892928.lex done computing
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.lex, 1 edges found
+        mkMod("A")_1023892928.lex demanded
+        mkMod("A")_1023892928.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.var
+            mkMod("B")_558638686.var demanded
+            mkMod("B")_558638686.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_2074407503
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.mod
+            mkMod("B")_558638686.mod demanded
+            mkMod("B")_558638686.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_999966131
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.impTentative
+            mkMod("B")_558638686.impTentative demanded
+            mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative demanded
+                dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+            mkMod("B")_558638686.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.lex
+            mkMod("B")_558638686.lex demanded
+            mkMod("B")_558638686.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.lex, 1 edges found
+        mkMod("B")_558638686.lex demanded
+        mkMod("B")_558638686.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.lex
+        mkMod("C")_1421795058.lex demanded
+        mkMod("C")_1421795058.lex already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.lex, 1 edges found
+    mkMod("C")_1421795058.lex demanded
+    mkMod("C")_1421795058.lex already computed
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_149928006
+        dfaStateMod_149928006 about to demand mkScope_1747585824.var
+            mkScope_1747585824.var demanded
+            mkScope_1747585824.var already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.var, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.mod
+            mkScope_1747585824.mod demanded
+            mkScope_1747585824.mod already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.mod, 3 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_1023892928
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_558638686
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("C")_1421795058
+        dfaStateMod_149928006 about to demand mkScope_1747585824.impTentative
+            mkScope_1747585824.impTentative demanded
+            mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+            mkScope_1747585824.impTentative done computing, but not set
+        dfaStateMod_149928006 done demanding mkScope_1747585824.impTentative, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.lex
+            mkScope_1747585824.lex demanded
+            mkScope_1747585824.lex already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.lex, 0 edges found
+        mkScope_1747585824.lex demanded
+        mkScope_1747585824.lex already computed
+mkModRef("A")_1554874502.res new iteration
+    mkModRef("A")_1554874502.lex demanded
+    mkModRef("A")_1554874502.lex already computed
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.var
+        mkMod("C")_1421795058.var demanded
+        mkMod("C")_1421795058.var already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.var, 1 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_834600351
+        Final state: mkModRef("A")_1554874502, found a bad match: mkVar("y")_1706377736
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.mod
+        mkMod("C")_1421795058.mod demanded
+        mkMod("C")_1421795058.mod already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.mod, 0 edges found
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.impTentative
+        mkMod("C")_1421795058.impTentative demanded
+        mkMod("C")_1421795058.impTentative not yet computed (intermediate circular demand)
+            dclImp(mref("A")).impTentative demanded
+            dclImp(mref("A")).impTentative not yet computed (intermediate circular demand)
+                mref("A").impTentative demanded
+                mref("A").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("A")_1554874502.res demanded
+                    mkModRef("A")_1554874502.res not yet computed (already visited)
+                mref("A").impTentative done computing, but not set
+            dclImp(mref("A")).impTentative done computing, but not set
+            dclImp(mref("B")).impTentative demanded
+            dclImp(mref("B")).impTentative not yet computed (intermediate circular demand)
+                mref("B").impTentative demanded
+                mref("B").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("B")_990368553.res demanded
+                    mkModRef("B")_990368553.res not yet computed (intermediate circular demand)
+                        mkModRef("B")_990368553.lex demanded
+                        mkModRef("B")_990368553.lex already computed
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.var
+                            mkMod("C")_1421795058.var demanded
+                            mkMod("C")_1421795058.var already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.var, 1 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_1078694789
+                            Final state: mkModRef("B")_990368553, found a bad match: mkVar("y")_1706377736
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.mod
+                            mkMod("C")_1421795058.mod demanded
+                            mkMod("C")_1421795058.mod already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.mod, 0 edges found
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.impTentative
+                            mkMod("C")_1421795058.impTentative demanded
+                            mkMod("C")_1421795058.impTentative not yet computed (already visited)
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.impTentative, 3 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.var
+                                mkMod("A")_999966131.var demanded
+                                mkMod("A")_999966131.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_1452126962
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.mod
+                                mkMod("A")_999966131.mod demanded
+                                mkMod("A")_999966131.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.mod, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.impTentative
+                                mkMod("A")_999966131.impTentative demanded
+                                mkMod("A")_999966131.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(4))).impTentative demanded
+                                    dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+                                mkMod("A")_999966131.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.lex
+                                mkMod("A")_999966131.lex demanded
+                                mkMod("A")_999966131.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.lex, 1 edges found
+                            mkMod("A")_999966131.lex demanded
+                            mkMod("A")_999966131.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.var
+                                mkMod("A")_1023892928.var demanded
+                                mkMod("A")_1023892928.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_931919113
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.mod
+                                mkMod("A")_1023892928.mod demanded
+                                mkMod("A")_1023892928.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.mod, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_1607521710
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.impTentative
+                                mkMod("A")_1023892928.impTentative demanded
+                                mkMod("A")_1023892928.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(1))).impTentative demanded
+                                    dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+                                mkMod("A")_1023892928.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.lex
+                                mkMod("A")_1023892928.lex demanded
+                                mkMod("A")_1023892928.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.lex, 1 edges found
+                            mkMod("A")_1023892928.lex demanded
+                            mkMod("A")_1023892928.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.var
+                                mkMod("B")_558638686.var demanded
+                                mkMod("B")_558638686.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_2074407503
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.mod
+                                mkMod("B")_558638686.mod demanded
+                                mkMod("B")_558638686.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.mod, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_999966131
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.impTentative
+                                mkMod("B")_558638686.impTentative demanded
+                                mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(3))).impTentative demanded
+                                    dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+                                mkMod("B")_558638686.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.lex
+                                mkMod("B")_558638686.lex demanded
+                                mkMod("B")_558638686.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.lex, 1 edges found
+                            mkMod("B")_558638686.lex demanded
+                            mkMod("B")_558638686.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.lex
+                            mkMod("C")_1421795058.lex demanded
+                            mkMod("C")_1421795058.lex already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.lex, 1 edges found
+                        mkMod("C")_1421795058.lex demanded
+                        mkMod("C")_1421795058.lex already computed
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_1096979270
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.var
+                                mkScope_1747585824.var demanded
+                                mkScope_1747585824.var already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.var, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.mod
+                                mkScope_1747585824.mod demanded
+                                mkScope_1747585824.mod already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.mod, 3 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_1023892928
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_558638686
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("C")_1421795058
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.impTentative
+                                mkScope_1747585824.impTentative demanded
+                                mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+                                mkScope_1747585824.impTentative done computing, but not set
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.impTentative, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.lex
+                                mkScope_1747585824.lex demanded
+                                mkScope_1747585824.lex already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.lex, 0 edges found
+                            mkScope_1747585824.lex demanded
+                            mkScope_1747585824.lex already computed
+                    mkModRef("B")_990368553.res done computing, but not set
+                mref("B").impTentative done computing, but not set
+            dclImp(mref("B")).impTentative done computing, but not set
+            dclBind(bnd("y", expRef(vref("x")))).impTentative demanded
+            dclBind(bnd("y", expRef(vref("x")))).impTentative not yet computed (intermediate circular demand)
+            dclBind(bnd("y", expRef(vref("x")))).impTentative done computing, but not set
+        mkMod("C")_1421795058.impTentative done computing, but not set
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.impTentative, 4 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.var
+            mkMod("A")_999966131.var demanded
+            mkMod("A")_999966131.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_1452126962
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.mod
+            mkMod("A")_999966131.mod demanded
+            mkMod("A")_999966131.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.mod, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.impTentative
+            mkMod("A")_999966131.impTentative demanded
+            mkMod("A")_999966131.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative demanded
+                dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+            mkMod("A")_999966131.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.lex
+            mkMod("A")_999966131.lex demanded
+            mkMod("A")_999966131.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.lex, 1 edges found
+        mkMod("A")_999966131.lex demanded
+        mkMod("A")_999966131.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.var
+            mkMod("A")_1023892928.var demanded
+            mkMod("A")_1023892928.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_931919113
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.mod
+            mkMod("A")_1023892928.mod demanded
+            mkMod("A")_1023892928.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_1607521710
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.impTentative
+            mkMod("A")_1023892928.impTentative demanded
+            mkMod("A")_1023892928.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative demanded
+                dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+            mkMod("A")_1023892928.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.lex
+            mkMod("A")_1023892928.lex demanded
+            mkMod("A")_1023892928.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.lex, 1 edges found
+        mkMod("A")_1023892928.lex demanded
+        mkMod("A")_1023892928.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_1607521710, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.var
+            mkMod("B")_1607521710.var demanded
+            mkMod("B")_1607521710.var not yet computed
+                Constructed scope mkVar("x")_764977973
+            mkMod("B")_1607521710.var done computing
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("B")_1607521710 to mkVar("x")_764977973, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_764977973
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.mod
+            mkMod("B")_1607521710.mod demanded
+            mkMod("B")_1607521710.mod not yet computed
+            mkMod("B")_1607521710.mod done computing
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.mod, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.impTentative
+            mkMod("B")_1607521710.impTentative demanded
+            mkMod("B")_1607521710.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(2))).impTentative demanded
+                dclBind(bnd("x", expInt(2))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(2))).impTentative done computing, but not set
+            mkMod("B")_1607521710.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.lex
+            mkMod("B")_1607521710.lex demanded
+            mkMod("B")_1607521710.lex not yet computed
+            mkMod("B")_1607521710.lex done computing
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.lex, 1 edges found
+        mkMod("B")_1607521710.lex demanded
+        mkMod("B")_1607521710.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("B")_1607521710 to mkMod("A")_1023892928, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.var
+            mkMod("B")_558638686.var demanded
+            mkMod("B")_558638686.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_2074407503
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.mod
+            mkMod("B")_558638686.mod demanded
+            mkMod("B")_558638686.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_999966131
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.impTentative
+            mkMod("B")_558638686.impTentative demanded
+            mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative demanded
+                dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+            mkMod("B")_558638686.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.lex
+            mkMod("B")_558638686.lex demanded
+            mkMod("B")_558638686.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.lex, 1 edges found
+        mkMod("B")_558638686.lex demanded
+        mkMod("B")_558638686.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.lex
+        mkMod("C")_1421795058.lex demanded
+        mkMod("C")_1421795058.lex already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.lex, 1 edges found
+    mkMod("C")_1421795058.lex demanded
+    mkMod("C")_1421795058.lex already computed
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_149928006
+        dfaStateMod_149928006 about to demand mkScope_1747585824.var
+            mkScope_1747585824.var demanded
+            mkScope_1747585824.var already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.var, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.mod
+            mkScope_1747585824.mod demanded
+            mkScope_1747585824.mod already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.mod, 3 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_1023892928
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_558638686
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("C")_1421795058
+        dfaStateMod_149928006 about to demand mkScope_1747585824.impTentative
+            mkScope_1747585824.impTentative demanded
+            mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+            mkScope_1747585824.impTentative done computing, but not set
+        dfaStateMod_149928006 done demanding mkScope_1747585824.impTentative, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.lex
+            mkScope_1747585824.lex demanded
+            mkScope_1747585824.lex already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.lex, 0 edges found
+        mkScope_1747585824.lex demanded
+        mkScope_1747585824.lex already computed
+mkModRef("A")_1554874502.res new iteration
+    mkModRef("A")_1554874502.lex demanded
+    mkModRef("A")_1554874502.lex already computed
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.var
+        mkMod("C")_1421795058.var demanded
+        mkMod("C")_1421795058.var already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.var, 1 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_834600351
+        Final state: mkModRef("A")_1554874502, found a bad match: mkVar("y")_1706377736
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.mod
+        mkMod("C")_1421795058.mod demanded
+        mkMod("C")_1421795058.mod already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.mod, 0 edges found
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.impTentative
+        mkMod("C")_1421795058.impTentative demanded
+        mkMod("C")_1421795058.impTentative not yet computed (intermediate circular demand)
+            dclImp(mref("A")).impTentative demanded
+            dclImp(mref("A")).impTentative not yet computed (intermediate circular demand)
+                mref("A").impTentative demanded
+                mref("A").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("A")_1554874502.res demanded
+                    mkModRef("A")_1554874502.res not yet computed (already visited)
+                mref("A").impTentative done computing, but not set
+            dclImp(mref("A")).impTentative done computing, but not set
+            dclImp(mref("B")).impTentative demanded
+            dclImp(mref("B")).impTentative not yet computed (intermediate circular demand)
+                mref("B").impTentative demanded
+                mref("B").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("B")_990368553.res demanded
+                    mkModRef("B")_990368553.res not yet computed (intermediate circular demand)
+                        mkModRef("B")_990368553.lex demanded
+                        mkModRef("B")_990368553.lex already computed
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.var
+                            mkMod("C")_1421795058.var demanded
+                            mkMod("C")_1421795058.var already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.var, 1 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_1078694789
+                            Final state: mkModRef("B")_990368553, found a bad match: mkVar("y")_1706377736
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.mod
+                            mkMod("C")_1421795058.mod demanded
+                            mkMod("C")_1421795058.mod already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.mod, 0 edges found
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.impTentative
+                            mkMod("C")_1421795058.impTentative demanded
+                            mkMod("C")_1421795058.impTentative not yet computed (already visited)
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.impTentative, 4 edges found
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.var
+                                mkMod("A")_999966131.var demanded
+                                mkMod("A")_999966131.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_1452126962
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.mod
+                                mkMod("A")_999966131.mod demanded
+                                mkMod("A")_999966131.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.mod, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.impTentative
+                                mkMod("A")_999966131.impTentative demanded
+                                mkMod("A")_999966131.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(4))).impTentative demanded
+                                    dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+                                mkMod("A")_999966131.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("A")_999966131.lex
+                                mkMod("A")_999966131.lex demanded
+                                mkMod("A")_999966131.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_999966131.lex, 1 edges found
+                            mkMod("A")_999966131.lex demanded
+                            mkMod("A")_999966131.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.var
+                                mkMod("A")_1023892928.var demanded
+                                mkMod("A")_1023892928.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_931919113
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.mod
+                                mkMod("A")_1023892928.mod demanded
+                                mkMod("A")_1023892928.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.mod, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_1607521710
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.impTentative
+                                mkMod("A")_1023892928.impTentative demanded
+                                mkMod("A")_1023892928.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(1))).impTentative demanded
+                                    dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+                                mkMod("A")_1023892928.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("A")_1023892928.lex
+                                mkMod("A")_1023892928.lex demanded
+                                mkMod("A")_1023892928.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("A")_1023892928.lex, 1 edges found
+                            mkMod("A")_1023892928.lex demanded
+                            mkMod("A")_1023892928.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_1607521710, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("B")_1607521710.var
+                                mkMod("B")_1607521710.var demanded
+                                mkMod("B")_1607521710.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_1607521710.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("B")_1607521710 to mkVar("x")_764977973, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_764977973
+                            dfaStateMod_81628611 about to demand mkMod("B")_1607521710.mod
+                                mkMod("B")_1607521710.mod demanded
+                                mkMod("B")_1607521710.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_1607521710.mod, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("B")_1607521710.impTentative
+                                mkMod("B")_1607521710.impTentative demanded
+                                mkMod("B")_1607521710.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(2))).impTentative demanded
+                                    dclBind(bnd("x", expInt(2))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(2))).impTentative done computing, but not set
+                                mkMod("B")_1607521710.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("B")_1607521710.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("B")_1607521710.lex
+                                mkMod("B")_1607521710.lex demanded
+                                mkMod("B")_1607521710.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_1607521710.lex, 1 edges found
+                            mkMod("B")_1607521710.lex demanded
+                            mkMod("B")_1607521710.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("B")_1607521710 to mkMod("A")_1023892928, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_81628611
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.var
+                                mkMod("B")_558638686.var demanded
+                                mkMod("B")_558638686.var already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.var, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_2074407503
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.mod
+                                mkMod("B")_558638686.mod demanded
+                                mkMod("B")_558638686.mod already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.mod, 1 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_999966131
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.impTentative
+                                mkMod("B")_558638686.impTentative demanded
+                                mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(3))).impTentative demanded
+                                    dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                                    dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+                                mkMod("B")_558638686.impTentative done computing, but not set
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+                            dfaStateMod_81628611 about to demand mkMod("B")_558638686.lex
+                                mkMod("B")_558638686.lex demanded
+                                mkMod("B")_558638686.lex already computed
+                            dfaStateMod_81628611 done demanding mkMod("B")_558638686.lex, 1 edges found
+                            mkMod("B")_558638686.lex demanded
+                            mkMod("B")_558638686.lex already computed
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+                                Sink state, no matches
+                        dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.lex
+                            mkMod("C")_1421795058.lex demanded
+                            mkMod("C")_1421795058.lex already computed
+                        dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.lex, 1 edges found
+                        mkMod("C")_1421795058.lex demanded
+                        mkMod("C")_1421795058.lex already computed
+                        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_1096979270
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.var
+                                mkScope_1747585824.var demanded
+                                mkScope_1747585824.var already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.var, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.mod
+                                mkScope_1747585824.mod demanded
+                                mkScope_1747585824.mod already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.mod, 3 edges found
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_1023892928
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_558638686
+                            In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_1078694789
+                                Final state: mkModRef("B")_990368553, found a bad match: mkMod("C")_1421795058
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.impTentative
+                                mkScope_1747585824.impTentative demanded
+                                mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+                                mkScope_1747585824.impTentative done computing, but not set
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.impTentative, 0 edges found
+                            dfaStateMod_1096979270 about to demand mkScope_1747585824.lex
+                                mkScope_1747585824.lex demanded
+                                mkScope_1747585824.lex already computed
+                            dfaStateMod_1096979270 done demanding mkScope_1747585824.lex, 0 edges found
+                            mkScope_1747585824.lex demanded
+                            mkScope_1747585824.lex already computed
+                    mkModRef("B")_990368553.res done computing, but not set
+                mref("B").impTentative done computing, but not set
+            dclImp(mref("B")).impTentative done computing, but not set
+            dclBind(bnd("y", expRef(vref("x")))).impTentative demanded
+            dclBind(bnd("y", expRef(vref("x")))).impTentative not yet computed (intermediate circular demand)
+            dclBind(bnd("y", expRef(vref("x")))).impTentative done computing, but not set
+        mkMod("C")_1421795058.impTentative done computing, but not set
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.impTentative, 4 edges found
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.var
+            mkMod("A")_999966131.var demanded
+            mkMod("A")_999966131.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_1452126962
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.mod
+            mkMod("A")_999966131.mod demanded
+            mkMod("A")_999966131.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.mod, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.impTentative
+            mkMod("A")_999966131.impTentative demanded
+            mkMod("A")_999966131.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative demanded
+                dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+            mkMod("A")_999966131.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_999966131.lex
+            mkMod("A")_999966131.lex demanded
+            mkMod("A")_999966131.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_999966131.lex, 1 edges found
+        mkMod("A")_999966131.lex demanded
+        mkMod("A")_999966131.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.var
+            mkMod("A")_1023892928.var demanded
+            mkMod("A")_1023892928.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_931919113
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.mod
+            mkMod("A")_1023892928.mod demanded
+            mkMod("A")_1023892928.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_1607521710
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.impTentative
+            mkMod("A")_1023892928.impTentative demanded
+            mkMod("A")_1023892928.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative demanded
+                dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+            mkMod("A")_1023892928.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("A")_1023892928.lex
+            mkMod("A")_1023892928.lex demanded
+            mkMod("A")_1023892928.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("A")_1023892928.lex, 1 edges found
+        mkMod("A")_1023892928.lex demanded
+        mkMod("A")_1023892928.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_1607521710, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.var
+            mkMod("B")_1607521710.var demanded
+            mkMod("B")_1607521710.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("B")_1607521710 to mkVar("x")_764977973, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_764977973
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.mod
+            mkMod("B")_1607521710.mod demanded
+            mkMod("B")_1607521710.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.mod, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.impTentative
+            mkMod("B")_1607521710.impTentative demanded
+            mkMod("B")_1607521710.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(2))).impTentative demanded
+                dclBind(bnd("x", expInt(2))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(2))).impTentative done computing, but not set
+            mkMod("B")_1607521710.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_1607521710.lex
+            mkMod("B")_1607521710.lex demanded
+            mkMod("B")_1607521710.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_1607521710.lex, 1 edges found
+        mkMod("B")_1607521710.lex demanded
+        mkMod("B")_1607521710.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("B")_1607521710 to mkMod("A")_1023892928, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_2093631819
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.var
+            mkMod("B")_558638686.var demanded
+            mkMod("B")_558638686.var already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.var, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkVar("x")_2074407503
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.mod
+            mkMod("B")_558638686.mod demanded
+            mkMod("B")_558638686.mod already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.mod, 1 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_999966131
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.impTentative
+            mkMod("B")_558638686.impTentative demanded
+            mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative demanded
+                dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+            mkMod("B")_558638686.impTentative done computing, but not set
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+        dfaStateMod_2093631819 about to demand mkMod("B")_558638686.lex
+            mkMod("B")_558638686.lex demanded
+            mkMod("B")_558638686.lex already computed
+        dfaStateMod_2093631819 done demanding mkMod("B")_558638686.lex, 1 edges found
+        mkMod("B")_558638686.lex demanded
+        mkMod("B")_558638686.lex already computed
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_2093631819, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1480010240
+            Sink state, no matches
+    dfaStateMod_149928006 about to demand mkMod("C")_1421795058.lex
+        mkMod("C")_1421795058.lex demanded
+        mkMod("C")_1421795058.lex already computed
+    dfaStateMod_149928006 done demanding mkMod("C")_1421795058.lex, 1 edges found
+    mkMod("C")_1421795058.lex demanded
+    mkMod("C")_1421795058.lex already computed
+    In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_149928006
+        dfaStateMod_149928006 about to demand mkScope_1747585824.var
+            mkScope_1747585824.var demanded
+            mkScope_1747585824.var already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.var, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.mod
+            mkScope_1747585824.mod demanded
+            mkScope_1747585824.mod already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.mod, 3 edges found
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a good match: mkMod("A")_1023892928
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("B")_558638686
+        In resolving mkModRef("A")_1554874502 in state dfaStateMod_149928006, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_834600351
+            Final state: mkModRef("A")_1554874502, found a bad match: mkMod("C")_1421795058
+        dfaStateMod_149928006 about to demand mkScope_1747585824.impTentative
+            mkScope_1747585824.impTentative demanded
+            mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+            mkScope_1747585824.impTentative done computing, but not set
+        dfaStateMod_149928006 done demanding mkScope_1747585824.impTentative, 0 edges found
+        dfaStateMod_149928006 about to demand mkScope_1747585824.lex
+            mkScope_1747585824.lex demanded
+            mkScope_1747585824.lex already computed
+        dfaStateMod_149928006 done demanding mkScope_1747585824.lex, 0 edges found
+        mkScope_1747585824.lex demanded
+        mkScope_1747585824.lex already computed
+mkModRef("A")_1554874502.res done computing
+mkModRef("B")_990368553.res demanded
+mkModRef("B")_990368553.res not yet computed (initial circular demand)
+mkModRef("B")_990368553.res new iteration
+    mkModRef("B")_990368553.lex demanded
+    mkModRef("B")_990368553.lex already computed
+    dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.var
+        mkMod("C")_1421795058.var demanded
+        mkMod("C")_1421795058.var already computed
+    dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.var, 1 edges found
+    In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_1078694789
+        Final state: mkModRef("B")_990368553, found a bad match: mkVar("y")_1706377736
+    dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.mod
+        mkMod("C")_1421795058.mod demanded
+        mkMod("C")_1421795058.mod already computed
+    dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.mod, 0 edges found
+    dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.impTentative
+        mkMod("C")_1421795058.impTentative demanded
+        mkMod("C")_1421795058.impTentative not yet computed (intermediate circular demand)
+            dclImp(mref("A")).impTentative demanded
+            dclImp(mref("A")).impTentative not yet computed (intermediate circular demand)
+                mref("A").impTentative demanded
+                mref("A").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("A")_1554874502.res demanded
+                    mkModRef("A")_1554874502.res already computed
+                mref("A").impTentative done computing, but not set
+            dclImp(mref("A")).impTentative done computing, but not set
+            dclImp(mref("B")).impTentative demanded
+            dclImp(mref("B")).impTentative not yet computed (intermediate circular demand)
+                mref("B").impTentative demanded
+                mref("B").impTentative not yet computed (intermediate circular demand)
+                    mkModRef("B")_990368553.res demanded
+                    mkModRef("B")_990368553.res not yet computed (already visited)
+                mref("B").impTentative done computing, but not set
+            dclImp(mref("B")).impTentative done computing, but not set
+            dclBind(bnd("y", expRef(vref("x")))).impTentative demanded
+            dclBind(bnd("y", expRef(vref("x")))).impTentative not yet computed (intermediate circular demand)
+            dclBind(bnd("y", expRef(vref("x")))).impTentative done computing, but not set
+        mkMod("C")_1421795058.impTentative done computing, but not set
+    dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.impTentative, 4 edges found
+    In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaStateMod_81628611
+        dfaStateMod_81628611 about to demand mkMod("A")_999966131.var
+            mkMod("A")_999966131.var demanded
+            mkMod("A")_999966131.var already computed
+        dfaStateMod_81628611 done demanding mkMod("A")_999966131.var, 1 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_1452126962
+        dfaStateMod_81628611 about to demand mkMod("A")_999966131.mod
+            mkMod("A")_999966131.mod demanded
+            mkMod("A")_999966131.mod already computed
+        dfaStateMod_81628611 done demanding mkMod("A")_999966131.mod, 0 edges found
+        dfaStateMod_81628611 about to demand mkMod("A")_999966131.impTentative
+            mkMod("A")_999966131.impTentative demanded
+            mkMod("A")_999966131.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative demanded
+                dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+            mkMod("A")_999966131.impTentative done computing, but not set
+        dfaStateMod_81628611 done demanding mkMod("A")_999966131.impTentative, 0 edges found
+        dfaStateMod_81628611 about to demand mkMod("A")_999966131.lex
+            mkMod("A")_999966131.lex demanded
+            mkMod("A")_999966131.lex already computed
+        dfaStateMod_81628611 done demanding mkMod("A")_999966131.lex, 1 edges found
+        mkMod("A")_999966131.lex demanded
+        mkMod("A")_999966131.lex already computed
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1828972342
+            Sink state, no matches
+    In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaStateMod_81628611
+        dfaStateMod_81628611 about to demand mkMod("A")_1023892928.var
+            mkMod("A")_1023892928.var demanded
+            mkMod("A")_1023892928.var already computed
+        dfaStateMod_81628611 done demanding mkMod("A")_1023892928.var, 1 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_931919113
+        dfaStateMod_81628611 about to demand mkMod("A")_1023892928.mod
+            mkMod("A")_1023892928.mod demanded
+            mkMod("A")_1023892928.mod already computed
+        dfaStateMod_81628611 done demanding mkMod("A")_1023892928.mod, 1 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_1607521710
+        dfaStateMod_81628611 about to demand mkMod("A")_1023892928.impTentative
+            mkMod("A")_1023892928.impTentative demanded
+            mkMod("A")_1023892928.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative demanded
+                dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+            mkMod("A")_1023892928.impTentative done computing, but not set
+        dfaStateMod_81628611 done demanding mkMod("A")_1023892928.impTentative, 0 edges found
+        dfaStateMod_81628611 about to demand mkMod("A")_1023892928.lex
+            mkMod("A")_1023892928.lex demanded
+            mkMod("A")_1023892928.lex already computed
+        dfaStateMod_81628611 done demanding mkMod("A")_1023892928.lex, 1 edges found
+        mkMod("A")_1023892928.lex demanded
+        mkMod("A")_1023892928.lex already computed
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+            Sink state, no matches
+    In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_1607521710, and traversing DFA to state dfaStateMod_81628611
+        dfaStateMod_81628611 about to demand mkMod("B")_1607521710.var
+            mkMod("B")_1607521710.var demanded
+            mkMod("B")_1607521710.var already computed
+        dfaStateMod_81628611 done demanding mkMod("B")_1607521710.var, 1 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("B")_1607521710 to mkVar("x")_764977973, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_764977973
+        dfaStateMod_81628611 about to demand mkMod("B")_1607521710.mod
+            mkMod("B")_1607521710.mod demanded
+            mkMod("B")_1607521710.mod already computed
+        dfaStateMod_81628611 done demanding mkMod("B")_1607521710.mod, 0 edges found
+        dfaStateMod_81628611 about to demand mkMod("B")_1607521710.impTentative
+            mkMod("B")_1607521710.impTentative demanded
+            mkMod("B")_1607521710.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(2))).impTentative demanded
+                dclBind(bnd("x", expInt(2))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(2))).impTentative done computing, but not set
+            mkMod("B")_1607521710.impTentative done computing, but not set
+        dfaStateMod_81628611 done demanding mkMod("B")_1607521710.impTentative, 0 edges found
+        dfaStateMod_81628611 about to demand mkMod("B")_1607521710.lex
+            mkMod("B")_1607521710.lex demanded
+            mkMod("B")_1607521710.lex already computed
+        dfaStateMod_81628611 done demanding mkMod("B")_1607521710.lex, 1 edges found
+        mkMod("B")_1607521710.lex demanded
+        mkMod("B")_1607521710.lex already computed
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("B")_1607521710 to mkMod("A")_1023892928, and traversing DFA to state dfaStateSink_1828972342
+            Sink state, no matches
+    In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a IMPTENTATIVE edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaStateMod_81628611
+        dfaStateMod_81628611 about to demand mkMod("B")_558638686.var
+            mkMod("B")_558638686.var demanded
+            mkMod("B")_558638686.var already computed
+        dfaStateMod_81628611 done demanding mkMod("B")_558638686.var, 1 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkVar("x")_2074407503
+        dfaStateMod_81628611 about to demand mkMod("B")_558638686.mod
+            mkMod("B")_558638686.mod demanded
+            mkMod("B")_558638686.mod already computed
+        dfaStateMod_81628611 done demanding mkMod("B")_558638686.mod, 1 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_999966131
+        dfaStateMod_81628611 about to demand mkMod("B")_558638686.impTentative
+            mkMod("B")_558638686.impTentative demanded
+            mkMod("B")_558638686.impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative demanded
+                dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+            mkMod("B")_558638686.impTentative done computing, but not set
+        dfaStateMod_81628611 done demanding mkMod("B")_558638686.impTentative, 0 edges found
+        dfaStateMod_81628611 about to demand mkMod("B")_558638686.lex
+            mkMod("B")_558638686.lex demanded
+            mkMod("B")_558638686.lex already computed
+        dfaStateMod_81628611 done demanding mkMod("B")_558638686.lex, 1 edges found
+        mkMod("B")_558638686.lex demanded
+        mkMod("B")_558638686.lex already computed
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_81628611, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1828972342
+            Sink state, no matches
+    dfaStateMod_1096979270 about to demand mkMod("C")_1421795058.lex
+        mkMod("C")_1421795058.lex demanded
+        mkMod("C")_1421795058.lex already computed
+    dfaStateMod_1096979270 done demanding mkMod("C")_1421795058.lex, 1 edges found
+    mkMod("C")_1421795058.lex demanded
+    mkMod("C")_1421795058.lex already computed
+    In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaStateMod_1096979270
+        dfaStateMod_1096979270 about to demand mkScope_1747585824.var
+            mkScope_1747585824.var demanded
+            mkScope_1747585824.var already computed
+        dfaStateMod_1096979270 done demanding mkScope_1747585824.var, 0 edges found
+        dfaStateMod_1096979270 about to demand mkScope_1747585824.mod
+            mkScope_1747585824.mod demanded
+            mkScope_1747585824.mod already computed
+        dfaStateMod_1096979270 done demanding mkScope_1747585824.mod, 3 edges found
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkMod("A")_1023892928
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a good match: mkMod("B")_558638686
+        In resolving mkModRef("B")_990368553 in state dfaStateMod_1096979270, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateFinal_1078694789
+            Final state: mkModRef("B")_990368553, found a bad match: mkMod("C")_1421795058
+        dfaStateMod_1096979270 about to demand mkScope_1747585824.impTentative
+            mkScope_1747585824.impTentative demanded
+            mkScope_1747585824.impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+            mkScope_1747585824.impTentative done computing, but not set
+        dfaStateMod_1096979270 done demanding mkScope_1747585824.impTentative, 0 edges found
+        dfaStateMod_1096979270 about to demand mkScope_1747585824.lex
+            mkScope_1747585824.lex demanded
+            mkScope_1747585824.lex already computed
+        dfaStateMod_1096979270 done demanding mkScope_1747585824.lex, 0 edges found
+        mkScope_1747585824.lex demanded
+        mkScope_1747585824.lex already computed
+mkModRef("B")_990368553.res done computing
+- Created ref mkVarRef("x")_2129789493
+mkVarRef("x")_2129789493.res demanded
+mkVarRef("x")_2129789493.res not yet computed
+    mkVarRef("x")_2129789493.lex demanded
+    mkVarRef("x")_2129789493.lex not yet computed
+    mkVarRef("x")_2129789493.lex done computing
+    dfaState_363771819 about to demand mkMod("C")_1421795058.var
+        mkMod("C")_1421795058.var demanded
+        mkMod("C")_1421795058.var already computed
+    dfaState_363771819 done demanding mkMod("C")_1421795058.var, 1 edges found
+    In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a VAR edge from mkMod("C")_1421795058 to mkVar("y")_1706377736, and traversing DFA to state dfaStateFinal_2065951873
+        Final state: mkVarRef("x")_2129789493, found a bad match: mkVar("y")_1706377736
+    dfaState_363771819 about to demand mkMod("C")_1421795058.mod
+        mkMod("C")_1421795058.mod demanded
+        mkMod("C")_1421795058.mod already computed
+    dfaState_363771819 done demanding mkMod("C")_1421795058.mod, 0 edges found
+    dfaState_363771819 about to demand mkMod("C")_1421795058.imp
+        mkMod("C")_1421795058.imp demanded
+        mkMod("C")_1421795058.imp not yet computed
+            mkMod("C")_1421795058.impTentative demanded
+            mkMod("C")_1421795058.impTentative not yet computed (initial circular demand)
+            mkMod("C")_1421795058.impTentative new iteration
+                dclImp(mref("A")).impTentative demanded
+                dclImp(mref("A")).impTentative not yet computed (intermediate circular demand)
+                    mref("A").impTentative demanded
+                    mref("A").impTentative not yet computed (intermediate circular demand)
+                        mkModRef("A")_1554874502.res demanded
+                        mkModRef("A")_1554874502.res already computed
+                    mref("A").impTentative done computing, but not set
+                dclImp(mref("A")).impTentative done computing, but not set
+                dclImp(mref("B")).impTentative demanded
+                dclImp(mref("B")).impTentative not yet computed (intermediate circular demand)
+                    mref("B").impTentative demanded
+                    mref("B").impTentative not yet computed (intermediate circular demand)
+                        mkModRef("B")_990368553.res demanded
+                        mkModRef("B")_990368553.res already computed
+                    mref("B").impTentative done computing, but not set
+                dclImp(mref("B")).impTentative done computing, but not set
+                dclBind(bnd("y", expRef(vref("x")))).impTentative demanded
+                dclBind(bnd("y", expRef(vref("x")))).impTentative not yet computed (intermediate circular demand)
+                dclBind(bnd("y", expRef(vref("x")))).impTentative done computing, but not set
+            mkMod("C")_1421795058.impTentative done computing
+        mkMod("C")_1421795058.imp done computing
+    dfaState_363771819 done demanding mkMod("C")_1421795058.imp, 4 edges found
+    In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a IMP edge from mkMod("C")_1421795058 to mkMod("A")_999966131, and traversing DFA to state dfaState_1791741888
+        dfaState_1791741888 about to demand mkMod("A")_999966131.var
+            mkMod("A")_999966131.var demanded
+            mkMod("A")_999966131.var already computed
+        dfaState_1791741888 done demanding mkMod("A")_999966131.var, 1 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a VAR edge from mkMod("A")_999966131 to mkVar("x")_1452126962, and traversing DFA to state dfaStateFinal_2065951873
+            Final state: mkVarRef("x")_2129789493, found a good match: mkVar("x")_1452126962
+        dfaState_1791741888 about to demand mkMod("A")_999966131.mod
+            mkMod("A")_999966131.mod demanded
+            mkMod("A")_999966131.mod already computed
+        dfaState_1791741888 done demanding mkMod("A")_999966131.mod, 0 edges found
+        dfaState_1791741888 about to demand mkMod("A")_999966131.imp
+            mkMod("A")_999966131.imp demanded
+            mkMod("A")_999966131.imp not yet computed
+                mkMod("A")_999966131.impTentative demanded
+                mkMod("A")_999966131.impTentative not yet computed (initial circular demand)
+                mkMod("A")_999966131.impTentative new iteration
+                    dclBind(bnd("x", expInt(4))).impTentative demanded
+                    dclBind(bnd("x", expInt(4))).impTentative not yet computed (intermediate circular demand)
+                    dclBind(bnd("x", expInt(4))).impTentative done computing, but not set
+                mkMod("A")_999966131.impTentative done computing
+            mkMod("A")_999966131.imp done computing
+        dfaState_1791741888 done demanding mkMod("A")_999966131.imp, 0 edges found
+        dfaState_1791741888 about to demand mkMod("A")_999966131.lex
+            mkMod("A")_999966131.lex demanded
+            mkMod("A")_999966131.lex already computed
+        dfaState_1791741888 done demanding mkMod("A")_999966131.lex, 1 edges found
+        mkMod("A")_999966131.lex demanded
+        mkMod("A")_999966131.lex already computed
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a LEX edge from mkMod("A")_999966131 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+    In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a IMP edge from mkMod("C")_1421795058 to mkMod("A")_1023892928, and traversing DFA to state dfaState_1791741888
+        dfaState_1791741888 about to demand mkMod("A")_1023892928.var
+            mkMod("A")_1023892928.var demanded
+            mkMod("A")_1023892928.var already computed
+        dfaState_1791741888 done demanding mkMod("A")_1023892928.var, 1 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a VAR edge from mkMod("A")_1023892928 to mkVar("x")_931919113, and traversing DFA to state dfaStateFinal_2065951873
+            Final state: mkVarRef("x")_2129789493, found a good match: mkVar("x")_931919113
+        dfaState_1791741888 about to demand mkMod("A")_1023892928.mod
+            mkMod("A")_1023892928.mod demanded
+            mkMod("A")_1023892928.mod already computed
+        dfaState_1791741888 done demanding mkMod("A")_1023892928.mod, 1 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a MOD edge from mkMod("A")_1023892928 to mkMod("B")_1607521710, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+        dfaState_1791741888 about to demand mkMod("A")_1023892928.imp
+            mkMod("A")_1023892928.imp demanded
+            mkMod("A")_1023892928.imp not yet computed
+                mkMod("A")_1023892928.impTentative demanded
+                mkMod("A")_1023892928.impTentative not yet computed (initial circular demand)
+                mkMod("A")_1023892928.impTentative new iteration
+                    dclBind(bnd("x", expInt(1))).impTentative demanded
+                    dclBind(bnd("x", expInt(1))).impTentative not yet computed (intermediate circular demand)
+                    dclBind(bnd("x", expInt(1))).impTentative done computing, but not set
+                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative demanded
+                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                    declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())).impTentative done computing, but not set
+                mkMod("A")_1023892928.impTentative done computing
+            mkMod("A")_1023892928.imp done computing
+        dfaState_1791741888 done demanding mkMod("A")_1023892928.imp, 0 edges found
+        dfaState_1791741888 about to demand mkMod("A")_1023892928.lex
+            mkMod("A")_1023892928.lex demanded
+            mkMod("A")_1023892928.lex already computed
+        dfaState_1791741888 done demanding mkMod("A")_1023892928.lex, 1 edges found
+        mkMod("A")_1023892928.lex demanded
+        mkMod("A")_1023892928.lex already computed
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a LEX edge from mkMod("A")_1023892928 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+    In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a IMP edge from mkMod("C")_1421795058 to mkMod("B")_1607521710, and traversing DFA to state dfaState_1791741888
+        dfaState_1791741888 about to demand mkMod("B")_1607521710.var
+            mkMod("B")_1607521710.var demanded
+            mkMod("B")_1607521710.var already computed
+        dfaState_1791741888 done demanding mkMod("B")_1607521710.var, 1 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a VAR edge from mkMod("B")_1607521710 to mkVar("x")_764977973, and traversing DFA to state dfaStateFinal_2065951873
+            Final state: mkVarRef("x")_2129789493, found a good match: mkVar("x")_764977973
+        dfaState_1791741888 about to demand mkMod("B")_1607521710.mod
+            mkMod("B")_1607521710.mod demanded
+            mkMod("B")_1607521710.mod already computed
+        dfaState_1791741888 done demanding mkMod("B")_1607521710.mod, 0 edges found
+        dfaState_1791741888 about to demand mkMod("B")_1607521710.imp
+            mkMod("B")_1607521710.imp demanded
+            mkMod("B")_1607521710.imp not yet computed
+                mkMod("B")_1607521710.impTentative demanded
+                mkMod("B")_1607521710.impTentative not yet computed (initial circular demand)
+                mkMod("B")_1607521710.impTentative new iteration
+                    dclBind(bnd("x", expInt(2))).impTentative demanded
+                    dclBind(bnd("x", expInt(2))).impTentative not yet computed (intermediate circular demand)
+                    dclBind(bnd("x", expInt(2))).impTentative done computing, but not set
+                mkMod("B")_1607521710.impTentative done computing
+            mkMod("B")_1607521710.imp done computing
+        dfaState_1791741888 done demanding mkMod("B")_1607521710.imp, 0 edges found
+        dfaState_1791741888 about to demand mkMod("B")_1607521710.lex
+            mkMod("B")_1607521710.lex demanded
+            mkMod("B")_1607521710.lex already computed
+        dfaState_1791741888 done demanding mkMod("B")_1607521710.lex, 1 edges found
+        mkMod("B")_1607521710.lex demanded
+        mkMod("B")_1607521710.lex already computed
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a LEX edge from mkMod("B")_1607521710 to mkMod("A")_1023892928, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+    In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a IMP edge from mkMod("C")_1421795058 to mkMod("B")_558638686, and traversing DFA to state dfaState_1791741888
+        dfaState_1791741888 about to demand mkMod("B")_558638686.var
+            mkMod("B")_558638686.var demanded
+            mkMod("B")_558638686.var already computed
+        dfaState_1791741888 done demanding mkMod("B")_558638686.var, 1 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a VAR edge from mkMod("B")_558638686 to mkVar("x")_2074407503, and traversing DFA to state dfaStateFinal_2065951873
+            Final state: mkVarRef("x")_2129789493, found a good match: mkVar("x")_2074407503
+        dfaState_1791741888 about to demand mkMod("B")_558638686.mod
+            mkMod("B")_558638686.mod demanded
+            mkMod("B")_558638686.mod already computed
+        dfaState_1791741888 done demanding mkMod("B")_558638686.mod, 1 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a MOD edge from mkMod("B")_558638686 to mkMod("A")_999966131, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+        dfaState_1791741888 about to demand mkMod("B")_558638686.imp
+            mkMod("B")_558638686.imp demanded
+            mkMod("B")_558638686.imp not yet computed
+                mkMod("B")_558638686.impTentative demanded
+                mkMod("B")_558638686.impTentative not yet computed (initial circular demand)
+                mkMod("B")_558638686.impTentative new iteration
+                    dclBind(bnd("x", expInt(3))).impTentative demanded
+                    dclBind(bnd("x", expInt(3))).impTentative not yet computed (intermediate circular demand)
+                    dclBind(bnd("x", expInt(3))).impTentative done computing, but not set
+                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative demanded
+                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative not yet computed (intermediate circular demand)
+                    declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())).impTentative done computing, but not set
+                mkMod("B")_558638686.impTentative done computing
+            mkMod("B")_558638686.imp done computing
+        dfaState_1791741888 done demanding mkMod("B")_558638686.imp, 0 edges found
+        dfaState_1791741888 about to demand mkMod("B")_558638686.lex
+            mkMod("B")_558638686.lex demanded
+            mkMod("B")_558638686.lex already computed
+        dfaState_1791741888 done demanding mkMod("B")_558638686.lex, 1 edges found
+        mkMod("B")_558638686.lex demanded
+        mkMod("B")_558638686.lex already computed
+        In resolving mkVarRef("x")_2129789493 in state dfaState_1791741888, traversing a LEX edge from mkMod("B")_558638686 to mkScope_1747585824, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+    dfaState_363771819 about to demand mkMod("C")_1421795058.lex
+        mkMod("C")_1421795058.lex demanded
+        mkMod("C")_1421795058.lex already computed
+    dfaState_363771819 done demanding mkMod("C")_1421795058.lex, 1 edges found
+    mkMod("C")_1421795058.lex demanded
+    mkMod("C")_1421795058.lex already computed
+    In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a LEX edge from mkMod("C")_1421795058 to mkScope_1747585824, and traversing DFA to state dfaState_363771819
+        dfaState_363771819 about to demand mkScope_1747585824.var
+            mkScope_1747585824.var demanded
+            mkScope_1747585824.var already computed
+        dfaState_363771819 done demanding mkScope_1747585824.var, 0 edges found
+        dfaState_363771819 about to demand mkScope_1747585824.mod
+            mkScope_1747585824.mod demanded
+            mkScope_1747585824.mod already computed
+        dfaState_363771819 done demanding mkScope_1747585824.mod, 3 edges found
+        In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a MOD edge from mkScope_1747585824 to mkMod("A")_1023892928, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+        In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a MOD edge from mkScope_1747585824 to mkMod("B")_558638686, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+        In resolving mkVarRef("x")_2129789493 in state dfaState_363771819, traversing a MOD edge from mkScope_1747585824 to mkMod("C")_1421795058, and traversing DFA to state dfaStateSink_1595428806
+            Sink state, no matches
+        dfaState_363771819 about to demand mkScope_1747585824.imp
+            mkScope_1747585824.imp demanded
+            mkScope_1747585824.imp not yet computed
+                mkScope_1747585824.impTentative demanded
+                mkScope_1747585824.impTentative not yet computed (initial circular demand)
+                mkScope_1747585824.impTentative new iteration
+                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative demanded
+                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                    declMod(A, dclsCons(dclBind(bnd("x", expInt(1))), dclsCons(declMod(B, dclsCons(dclBind(bnd("x", expInt(2))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative demanded
+                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative not yet computed (intermediate circular demand)
+                    declMod(B, dclsCons(dclBind(bnd("x", expInt(3))), dclsCons(declMod(A, dclsCons(dclBind(bnd("x", expInt(4))), dclsNil())), dclsNil()))).impTentative done computing, but not set
+                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative demanded
+                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative not yet computed (intermediate circular demand)
+                    declMod(C, dclsCons(dclImp(mref("A")), dclsCons(dclImp(mref("B")), dclsCons(dclBind(bnd("y", expRef(vref("x")))), dclsNil())))).impTentative done computing, but not set
+                mkScope_1747585824.impTentative done computing
+            mkScope_1747585824.imp done computing
+        dfaState_363771819 done demanding mkScope_1747585824.imp, 0 edges found
+        dfaState_363771819 about to demand mkScope_1747585824.lex
+            mkScope_1747585824.lex demanded
+            mkScope_1747585824.lex already computed
+        dfaState_363771819 done demanding mkScope_1747585824.lex, 0 edges found
+        mkScope_1747585824.lex demanded
+        mkScope_1747585824.lex already computed
+mkVarRef("x")_2129789493.res done computing
+- Resolutions:
+	- mkModRef("A")_1554874502 |-> mkMod("A")_999966131, mkMod("A")_1023892928, 
+	- mkModRef("B")_990368553 |-> mkMod("B")_1607521710, mkMod("B")_558638686, 
+	- mkVarRef("x")_2129789493 |-> mkVar("x")_1452126962, mkVar("x")_931919113, mkVar("x")_764977973, mkVar("x")_2074407503, 
