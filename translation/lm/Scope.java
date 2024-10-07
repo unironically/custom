@@ -25,6 +25,13 @@ abstract class Scope<T extends haschild_Scope<T>>
   protected Boolean lex_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() { return null; }
 
+  // impTentative, circular attribute
+  protected ArrayList<Scope<? extends haschild_Scope<?>>> impTentative = new ArrayList<>();
+  protected Boolean impTentative_computed = false;
+  protected Boolean impTentative_visited = false;
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative()
+    { return new ArrayList<>(); }
+
   protected Datum datum = null;
   protected Boolean datum_computed = false;
   protected Boolean datum_visited = false;
@@ -128,6 +135,37 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
       return this.imp;
     }
     throw new RuntimeException("Circular definition of mkScope.imp");
+  }
+
+  // circular attribute impTentative
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (impTentative_computed) return impTentative;
+    if (!IN_CIRCLE) {
+      System.out.println("Init call of " + this.pp() + ".impTentative");
+      IN_CIRCLE = true;
+      impTentative_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.parent.impTentative(this.childId);
+        if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+        impTentative = new_impTentative_value;
+      } while (CHANGE);
+      impTentative_visited = false;
+      impTentative_computed = true;
+      IN_CIRCLE = false;
+      return impTentative;
+    }
+    else if (!impTentative_visited) {
+      impTentative_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.parent.impTentative(this.childId);
+      if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+      impTentative = new_impTentative_value;
+      impTentative_visited = false;
+      return impTentative;
+    }
+    else return impTentative;
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
@@ -259,6 +297,37 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
     throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
+  // circular attribute impTentative
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (impTentative_computed) return impTentative;
+    if (!IN_CIRCLE) {
+      System.out.println("Init call of " + this.pp() + ".impTentative");
+      IN_CIRCLE = true;
+      impTentative_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.parent.impTentative(this.childId);
+        if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+        impTentative = new_impTentative_value;
+      } while (CHANGE);
+      impTentative_visited = false;
+      impTentative_computed = true;
+      IN_CIRCLE = false;
+      return impTentative;
+    }
+    else if (!impTentative_visited) {
+      impTentative_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.parent.impTentative(this.childId);
+      if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+      impTentative = new_impTentative_value;
+      impTentative_visited = false;
+      return impTentative;
+    }
+    else return impTentative;
+  }
+
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
     if (this.lex_computed) return this.lex;
     Boolean interrupted_circle = false;
@@ -388,6 +457,37 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
       return this.imp;
     }
     throw new RuntimeException("Circular definition of mkScope.imp");
+  }
+
+  // circular attribute impTentative
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (impTentative_computed) return impTentative;
+    if (!IN_CIRCLE) {
+      System.out.println("Init call of " + this.pp() + ".impTentative");
+      IN_CIRCLE = true;
+      impTentative_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.parent.impTentative(this.childId);
+        if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+        impTentative = new_impTentative_value;
+      } while (CHANGE);
+      impTentative_visited = false;
+      impTentative_computed = true;
+      IN_CIRCLE = false;
+      return impTentative;
+    }
+    else if (!impTentative_visited) {
+      impTentative_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.parent.impTentative(this.childId);
+      if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+      impTentative = new_impTentative_value;
+      impTentative_visited = false;
+      return impTentative;
+    }
+    else return impTentative;
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {

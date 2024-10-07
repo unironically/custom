@@ -90,9 +90,18 @@ class main extends Main
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   }
 
-  public ArrayList<Scope<? extends haschild_Scope<?>>> imp(int child) {
-    if (child == 1) {
-      return this.ds.imps();
+  // s.imp = s.impTentative
+  public ArrayList<Scope<? extends haschild_Scope<?>>> imp(int childId) {
+    if (childId == 1) {
+      return this.s.impTentative();
+    }
+    return new ArrayList<Scope<? extends haschild_Scope<?>>>();
+  }
+
+  // s.impTentative = ds.impTentative
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative(int childId) {
+    if (childId == 1) {
+      return this.ds.impTentative();
     }
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   }

@@ -9,10 +9,10 @@ abstract class Ref<T extends haschild_Ref<T>> extends TreeNode<T> {
   protected Boolean lex_visited = false;
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() { return null; }
 
-  protected ArrayList<Scope<? extends haschild_Scope<?>>> res = null;
+  protected ArrayList<Scope<? extends haschild_Scope<?>>> res = new ArrayList<>();
   protected Boolean res_computed = false;
   protected Boolean res_visited = false;
-  public ArrayList<Scope<? extends haschild_Scope<?>>> res() { return null; }
+  public ArrayList<Scope<? extends haschild_Scope<?>>> res() { return new ArrayList<>(); }
 
   protected String str = null;
   protected Boolean str_computed = false;
@@ -218,7 +218,7 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
   
   /* SYNTHESIZED ATTRIBUTES */
 
-  public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
+  /*public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
     if (this.res_computed) return this.res;
     boolean interrupted_circle = false;
     if (!this.res_visited) {
@@ -238,6 +238,37 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
       return this.res;
     }
     throw new RuntimeException("Circular definition of mkModRef.res");
+  }*/
+
+  public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
+    if (res_computed) return res;
+    if (!IN_CIRCLE) {
+      IN_CIRCLE = true;
+      res_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_res_value = 
+          new ArrayList<>();
+        new_res_value.addAll(this.dfa().decls(this, this.lex().get(0)));
+        if (!new_res_value.equals(res)) CHANGE = true;
+        res = new_res_value;
+      } while (CHANGE);
+      res_visited = false;
+      res_computed = true;
+      IN_CIRCLE = false;
+      return res;
+    }
+    else if (!res_visited) {
+      res_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_res_value = 
+          new ArrayList<>();
+      new_res_value.addAll(this.dfa().decls(this, this.lex().get(0)));
+      if (!new_res_value.equals(res)) CHANGE = true;
+      res = new_res_value;
+      res_visited = false;
+      return res;
+    }
+    else return res;
   }
 
   public String str() {

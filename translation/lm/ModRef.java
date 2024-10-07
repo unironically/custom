@@ -26,6 +26,13 @@ abstract class ModRef<T extends haschild_ModRef<T>> extends TreeNode<T> {
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds() { return null; }
 
+  // impTentative, circular attribute
+  protected ArrayList<Scope<? extends haschild_Scope<?>>> impTentative = null;
+  protected Boolean impTentative_computed = false;
+  protected Boolean impTentative_visited = false;
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative()
+    { return null; }
+
 }
 
 class mref<T extends haschild_ModRef<T>> extends ModRef<T>
@@ -84,7 +91,7 @@ implements haschild_Ref<mref<T>> {
   /* SYNTHESIZED ATTRIBUTES */
 
   // this.imps = r.res
-  public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
+  /*public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
     if (this.imps_computed) return this.imps;
     boolean interrupted_circle = false;
     if (!this.imps_visited) {
@@ -104,7 +111,7 @@ implements haschild_Ref<mref<T>> {
       return this.imps;
     }
     throw new RuntimeException("Circular definition of dclsCons.imps");
-  }
+  }*/
 
   public String pp() {
     if (this.pp_computed) return this.pp;
@@ -134,6 +141,35 @@ implements haschild_Ref<mref<T>> {
       return this.binds;
     }
     throw new RuntimeException("Circular definition of dclsCons.binds");
+  }
+
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (impTentative_computed) return impTentative;
+    if (!IN_CIRCLE) {
+      IN_CIRCLE = true;
+      impTentative_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.r().res();
+        if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+        impTentative = new_impTentative_value;
+      } while (CHANGE);
+      impTentative_visited = false;
+      impTentative_computed = true;
+      IN_CIRCLE = false;
+      return impTentative;
+    }
+    else if (!impTentative_visited) {
+      impTentative_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          this.r().res();
+      if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+      impTentative = new_impTentative_value;
+      impTentative_visited = false;
+      return impTentative;
+    }
+    else return impTentative;
   }
 
 }

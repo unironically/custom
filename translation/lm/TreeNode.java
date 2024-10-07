@@ -10,6 +10,15 @@ abstract class TreeNode<T> {
 
   protected Boolean trace = false;
   protected Boolean scopeTrace = false;
+  
+  public static Integer tabWidth = 0;
+  public static void tabIncrease() { tabWidth++; }
+  public static void tabDecrease() { tabWidth--; }
+  public static String tab() {
+    String tabbed = "";
+    for (int i = 0; i < tabWidth; i++) tabbed += "\t";
+    return tabbed;
+  }
 
   protected int childId;
 

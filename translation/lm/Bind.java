@@ -123,6 +123,15 @@ implements haschild_Scope<bnd<T>>, haschild_Exp<bnd<T>> {
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   }
 
+  // d.impTentative = []
+  public ArrayList<Scope<? extends haschild_Scope<?>>> 
+  impTentative(int childId) {
+    if (childId == 1) {
+      return new ArrayList<Scope<? extends haschild_Scope<?>>>();
+    }
+    return new ArrayList<Scope<? extends haschild_Scope<?>>>();
+  }
+
   /* SYNTHESIZED ATTRIBUTES */
 
   // this.type = e.type

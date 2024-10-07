@@ -35,6 +35,13 @@ abstract class Dcls<T extends haschild_Dcls<T>> extends TreeNode<T>  {
   public ArrayList<Pair<Ref, ArrayList<Scope<? extends haschild_Scope<?>>>>> 
     binds() { return null; }
 
+  // impTentative, circular attribute
+  protected ArrayList<Scope<? extends haschild_Scope<?>>> impTentative = null;
+  protected Boolean impTentative_computed = false;
+  protected Boolean impTentative_visited = false;
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative()
+    { return null; }
+
 }
 
 class dclsCons<T extends haschild_Dcls<T>> extends Dcls<T> 
@@ -185,7 +192,7 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
     throw new RuntimeException("Circular definition of dclsCons.mods");
   }
 
-  public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
+  /*public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
     if (this.imps_computed) return this.imps;
     boolean interrupted_circle = false;
     if (!this.imps_visited) {
@@ -206,7 +213,7 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
       return this.imps;
     }
     throw new RuntimeException("Circular definition of dclsCons.imps");
-  }
+  }*/
 
   public String pp() {
     if (this.pp_computed) return this.pp;
@@ -237,6 +244,39 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
       return this.binds;
     }
     throw new RuntimeException("Circular definition of dclsCons.binds");
+  }
+
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (impTentative_computed) return impTentative;
+    if (!IN_CIRCLE) {
+      IN_CIRCLE = true;
+      impTentative_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          new ArrayList<>();
+        new_impTentative_value.addAll(this.d.impTentative());
+        new_impTentative_value.addAll(this.ds.impTentative());
+        if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+        impTentative = new_impTentative_value;
+      } while (CHANGE);
+      impTentative_visited = false;
+      impTentative_computed = true;
+      IN_CIRCLE = false;
+      return impTentative;
+    }
+    else if (!impTentative_visited) {
+      impTentative_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          new ArrayList<>();
+        new_impTentative_value.addAll(this.d.impTentative());
+        new_impTentative_value.addAll(this.ds.impTentative());
+      if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+      impTentative = new_impTentative_value;
+      impTentative_visited = false;
+      return impTentative;
+    }
+    else return impTentative;
   }
 
 }
@@ -297,7 +337,7 @@ class dclsNil<T extends haschild_Dcls<T>> extends Dcls<T> {
     throw new RuntimeException("Circular definition of dclsNil.mods");
   }
 
-  public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
+  /*public ArrayList<Scope<? extends haschild_Scope<?>>> imps() {
     if (this.imps_computed) return this.imps;
     boolean interrupted_circle = false;
     if (!this.imps_visited) {
@@ -316,7 +356,7 @@ class dclsNil<T extends haschild_Dcls<T>> extends Dcls<T> {
       return this.imps;
     }
     throw new RuntimeException("Circular definition of dclsNil.imps");
-  }
+  }*/
 
   public String pp() {
     if (this.pp_computed) return this.pp;
@@ -345,6 +385,35 @@ class dclsNil<T extends haschild_Dcls<T>> extends Dcls<T> {
       return this.binds;
     }
     throw new RuntimeException("Circular definition of dclsNil.binds");
+  }
+
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (impTentative_computed) return impTentative;
+    if (!IN_CIRCLE) {
+      IN_CIRCLE = true;
+      impTentative_visited = true;
+      do {
+        CHANGE = false;
+        ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          new ArrayList<>();
+        if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+        impTentative = new_impTentative_value;
+      } while (CHANGE);
+      impTentative_visited = false;
+      impTentative_computed = true;
+      IN_CIRCLE = false;
+      return impTentative;
+    }
+    else if (!impTentative_visited) {
+      impTentative_visited = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          new ArrayList<>();
+      if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
+      impTentative = new_impTentative_value;
+      impTentative_visited = false;
+      return impTentative;
+    }
+    else return impTentative;
   }
 
 }

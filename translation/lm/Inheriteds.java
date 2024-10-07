@@ -13,6 +13,7 @@ interface haschild_Scope<T extends haschild_Scope<T>> {
   public ArrayList<Scope<? extends haschild_Scope<?>>> var(int child);
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod(int child);
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp(int child);
+  public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative(int child);
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex(int child);
 }
 

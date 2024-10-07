@@ -243,7 +243,7 @@ implements haschild_DFAState<modDFA<T>> {
         TreeNode.STACK.push(TreeNode.CHANGE);
         interrupted_circle = true;
       }
-      this.stateLex = new dfaState<modDFA<T>>();
+      this.stateLex = new dfaStateMod<modDFA<T>>();
       this.stateLex.setParent(this, 0);
       this.stateLex_computed = true;
       if (interrupted_circle) {
@@ -269,7 +269,7 @@ implements haschild_DFAState<modDFA<T>> {
         TreeNode.STACK.push(TreeNode.CHANGE);
         interrupted_circle = true;
       }
-      this.stateImp = new dfaState<modDFA<T>>();
+      this.stateImp = new dfaStateMod<modDFA<T>>();
       this.stateImp.setParent(this, 1);
       this.stateImp_computed = true;
       if (interrupted_circle) {
@@ -830,5 +830,159 @@ extends DFAState<T> {
     if (scopeTrace) System.out.println("\tSink state");
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   } 
+
+}
+
+
+class dfaStateMod<T extends haschild_DFAState<T>>
+extends DFAState<T> {
+
+  public dfaStateMod() {}
+
+  /* GETTING OWN INHERITED ATTRIBUTES */
+
+  public DFAState<T> lexT() {
+    if (this.lexT_computed) return this.lexT;
+    Boolean interrupted_circle = false;
+    if (!this.lexT_visited) {
+      this.lexT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.lexT = this.parent.lexT(this.childId);
+      this.lexT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.lexT_visited = false;
+      return this.lexT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateMod.lexT");
+  }
+
+  public DFAState<T> varT() {
+    if (this.varT_computed) return this.varT;
+    Boolean interrupted_circle = false;
+    if (!this.varT_visited) {
+      this.varT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.varT = this.parent.varT(this.childId);
+      this.varT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.varT_visited = false;
+      return this.varT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateMod.varT");
+  }
+
+  public DFAState<T> modT() {
+    if (this.modT_computed) return this.modT;
+    Boolean interrupted_circle = false;
+    if (!this.modT_visited) {
+      this.modT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.modT = this.parent.modT(this.childId);
+      this.modT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.modT_visited = false;
+      return this.modT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateMod.modT");
+  }
+
+  public DFAState<T> impT() {
+    if (this.impT_computed) return this.impT;
+    Boolean interrupted_circle = false;
+    if (!this.impT_visited) {
+      this.impT_visited = true;
+      if (TreeNode.IN_CIRCLE) {
+        TreeNode.STACK.push(TreeNode.CHANGE);
+        interrupted_circle = true;
+      }
+      this.impT = this.parent.impT(this.childId);
+      this.impT_computed = true;
+      if (interrupted_circle) {
+        TreeNode.CHANGE = TreeNode.STACK.pop();
+        TreeNode.IN_CIRCLE = true;
+      }
+      this.impT_visited = false;
+      return this.impT;
+    }
+    throw new RuntimeException("Circular definition of dfaStateMod.impT");
+  }
+
+  /* SYNTHESIZED ATTRIBUTES */
+
+  public String pp() {
+    if (this.pp_computed) return this.pp;
+    this.pp = "dfaStateMod_" + Integer.toString(this.hashCode());
+    this.pp_computed = true;
+    return this.pp;
+  }
+
+  public ArrayList<Scope<? extends haschild_Scope<?>>> 
+  decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
+
+    ArrayList<Scope<? extends haschild_Scope<?>>> varRes = 
+      new ArrayList<Scope<? extends haschild_Scope<?>>>();
+    for (Scope<? extends haschild_Scope<?>> sVar: s.var()) {
+      if (scopeTrace)
+      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a VAR " + "edge from " + s.pp() + " to " + sVar.pp() + ", and traversing DFA to state " + this.varT().pp());
+      TreeNode.tabIncrease();
+      varRes.addAll(this.varT().decls(r, sVar));
+      TreeNode.tabDecrease();
+    }
+
+    ArrayList<Scope<? extends haschild_Scope<?>>> modRes = 
+      new ArrayList<Scope<? extends haschild_Scope<?>>>();
+    for (Scope<? extends haschild_Scope<?>> sMod: s.mod()) {
+      if (scopeTrace)
+      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a MOD " + "edge from " + s.pp() + " to " + sMod.pp() + ", and traversing DFA to state " + this.modT().pp());
+      TreeNode.tabIncrease();
+      modRes.addAll(this.modT().decls(r, sMod));
+      TreeNode.tabDecrease();
+    }
+
+    ArrayList<Scope<? extends haschild_Scope<?>>> impTentativeRes = 
+      new ArrayList<Scope<? extends haschild_Scope<?>>>();
+    for (Scope<? extends haschild_Scope<?>> sImp: s.impTentative()) {
+      if (scopeTrace)
+      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a IMPTENTATIVE " + "edge from " + s.pp() + " to " + sImp.pp() + ", and traversing DFA to state " + this.impT().pp());
+      TreeNode.tabIncrease();
+      impTentativeRes.addAll(this.impT().decls(r, sImp));
+      TreeNode.tabDecrease();
+    }
+
+    ArrayList<Scope<? extends haschild_Scope<?>>> lexRes = 
+      new ArrayList<Scope<? extends haschild_Scope<?>>>();
+    for (Scope<? extends haschild_Scope<?>> sLex: s.lex()) {
+      if (scopeTrace)
+      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a LEX " + "edge from " + s.pp() + " to " + sLex.pp() + ", and traversing DFA to state " + this.lexT().pp());
+      TreeNode.tabIncrease();
+      lexRes.addAll(this.lexT().decls(r, sLex));
+      TreeNode.tabDecrease();
+    }
+
+    return 
+      (!varRes.isEmpty()) ? varRes :
+      (!modRes.isEmpty()) ? modRes :
+      (!impTentativeRes.isEmpty()) ? impTentativeRes :
+      lexRes;
+  
+  }
 
 }
