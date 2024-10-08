@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Driver {
 
   public static void main(String[] args) {
-    Main m = program4();
+    Main m = modules_import_circ();
     printBinds(m.binds());
   }
 
@@ -238,6 +238,30 @@ public class Driver {
 
   public static Main program4() {
 
+    /* LM program:
+
+      module A {
+        def x:int = 1
+        module B {
+          def x:int = 2
+        }
+      }
+
+      module B {
+        def x:int = 3
+        module A {
+          def x:int = 4
+        }
+      }
+
+      module M {
+        import A
+        import B
+        def y:int = x
+      }
+
+    */
+
     Dcls<dclsCons<dclsCons<dclsCons<main>>>> ds77 = new dclsNil<dclsCons<dclsCons<dclsCons<main>>>>();
     Dcls<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<dclsCons<main>>>>>>>> ds72 = new dclsNil<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<dclsCons<main>>>>>>>>();
     VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<dclsCons<main>>>>>>>>>>> vref_76 = new vref<expRef<bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<dclsCons<main>>>>>>>>>>>("x");
@@ -291,6 +315,133 @@ public class Driver {
     return m;
 
   }
+
+  public static Main mophasco_4() {
+
+    /* LM program:
+
+      module A {
+        module B {
+          def x:int = 42
+        }
+      }
+
+      module M {
+        import B
+        import A
+        def y:int = x
+      }
+
+    */
+
+    Dcls<dclsCons<dclsCons<main>>> ds49 = new dclsNil<dclsCons<dclsCons<main>>>();
+    Dcls<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>> ds44 = new dclsNil<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>();
+    VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>>> vref_48 = new vref<expRef<bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>>>("x");
+    Exp<bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>> expRef_47 = new expRef<bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>>(vref_48);
+    Type intType_46 = new intType();
+    Bind<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>> bnd_45 = new bnd<dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>("y", intType_46, expRef_47);
+    Dcl<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>> d43 = new dclBind<dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>(bnd_45);
+    Dcls<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> ds41 = new dclsCons<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>(d43, ds44);
+    ModRef<dclImp<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>> mref_42 = new mref<dclImp<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>("A");
+    Dcl<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> d40 = new dclImp<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>(mref_42);
+    Dcls<dclsCons<dclMod<dclsCons<dclsCons<main>>>>> ds38 = new dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>(d40, ds41);
+    ModRef<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> mref_39 = new mref<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>("B");
+    Dcl<dclsCons<dclMod<dclsCons<dclsCons<main>>>>> d37 = new dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>(mref_39);
+    Dcls<dclMod<dclsCons<dclsCons<main>>>> ds36 = new dclsCons<dclMod<dclsCons<dclsCons<main>>>>(d37, ds38);
+    Dcl<dclsCons<dclsCons<main>>> d35 = new dclMod<dclsCons<dclsCons<main>>>("M", ds36);
+    Dcls<dclsCons<main>> ds50 = new dclsCons<dclsCons<main>>(d35, ds49);
+    Dcls<dclsCons<dclMod<dclsCons<main>>>> ds28 = new dclsNil<dclsCons<dclMod<dclsCons<main>>>>();
+    Dcls<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>> ds31 = new dclsNil<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>>();
+    Exp<bnd<dclBind<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>>>> expInt_34 = new expInt<bnd<dclBind<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>>>>(42);
+    Type intType_33 = new intType();
+    Bind<dclBind<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>>> bnd_32 = new bnd<dclBind<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>>>("x", intType_33, expInt_34);
+    Dcl<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>> d30 = new dclBind<dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>>(bnd_32);
+    Dcls<dclMod<dclsCons<dclMod<dclsCons<main>>>>> ds29 = new dclsCons<dclMod<dclsCons<dclMod<dclsCons<main>>>>>(d30, ds31);
+    Dcl<dclsCons<dclMod<dclsCons<main>>>> d27 = new dclMod<dclsCons<dclMod<dclsCons<main>>>>("B", ds29);
+    Dcls<dclMod<dclsCons<main>>> ds26 = new dclsCons<dclMod<dclsCons<main>>>(d27, ds28);
+    Dcl<dclsCons<main>> d25 = new dclMod<dclsCons<main>>("A", ds26);
+    Dcls<main> ds51 = new dclsCons<main>(d25, ds50);
+    Main m = new main(ds51);
+    return m;
+  }
+
+  public static Main mophasco_5() {
+
+    /* LM program:
+
+      module A {
+        module A {}
+      }
+
+      module M {
+        import A
+      }
+    
+    */
+
+    Dcls<dclsCons<dclsCons<main>>> ds20 = new dclsNil<dclsCons<dclsCons<main>>>();
+    Dcls<dclsCons<dclMod<dclsCons<dclsCons<main>>>>> ds18 = new dclsNil<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>();
+    ModRef<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> mref_19 = new mref<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>("A");
+    Dcl<dclsCons<dclMod<dclsCons<dclsCons<main>>>>> d17 = new dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>(mref_19);
+    Dcls<dclMod<dclsCons<dclsCons<main>>>> ds16 = new dclsCons<dclMod<dclsCons<dclsCons<main>>>>(d17, ds18);
+    Dcl<dclsCons<dclsCons<main>>> d15 = new dclMod<dclsCons<dclsCons<main>>>("M", ds16);
+    Dcls<dclsCons<main>> ds21 = new dclsCons<dclsCons<main>>(d15, ds20);
+    Dcls<dclsCons<dclMod<dclsCons<main>>>> ds13 = new dclsNil<dclsCons<dclMod<dclsCons<main>>>>();
+    Dcls<dclMod<dclsCons<dclMod<dclsCons<main>>>>> ds14 = new dclsNil<dclMod<dclsCons<dclMod<dclsCons<main>>>>>();
+    Dcl<dclsCons<dclMod<dclsCons<main>>>> d12 = new dclMod<dclsCons<dclMod<dclsCons<main>>>>("A", ds14);
+    Dcls<dclMod<dclsCons<main>>> ds11 = new dclsCons<dclMod<dclsCons<main>>>(d12, ds13);
+    Dcl<dclsCons<main>> d10 = new dclMod<dclsCons<main>>("A", ds11);
+    Dcls<main> ds22 = new dclsCons<main>(d10, ds21);
+    Main m = new main(ds22);
+    return m;
+  }
+
+  public static Main modules_import_circ() {
+
+    /* LM program:
+
+      module A {
+        import B
+        def a:int = b
+      }
+
+      module B {
+        import A
+        def b:int = a
+      }
+    
+    */
+
+    Dcls<dclsCons<dclsCons<main>>> ds51 = new dclsNil<dclsCons<dclsCons<main>>>();
+    Dcls<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> ds46 = new dclsNil<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>();
+    VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>> vref_50 = new vref<expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>>("a");
+    Exp<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>> expRef_49 = new expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>>(vref_50);
+    Type intType_48 = new intType();
+    Bind<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>> bnd_47 = new bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>>("b", intType_48, expRef_49);
+    Dcl<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> d45 = new dclBind<dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>(bnd_47);
+    Dcls<dclsCons<dclMod<dclsCons<dclsCons<main>>>>> ds43 = new dclsCons<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>(d45, ds46);
+    ModRef<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>> mref_44 = new mref<dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>>("A");
+    Dcl<dclsCons<dclMod<dclsCons<dclsCons<main>>>>> d42 = new dclImp<dclsCons<dclMod<dclsCons<dclsCons<main>>>>>(mref_44);
+    Dcls<dclMod<dclsCons<dclsCons<main>>>> ds41 = new dclsCons<dclMod<dclsCons<dclsCons<main>>>>(d42, ds43);
+    Dcl<dclsCons<dclsCons<main>>> d40 = new dclMod<dclsCons<dclsCons<main>>>("B", ds41);
+    Dcls<dclsCons<main>> ds52 = new dclsCons<dclsCons<main>>(d40, ds51);
+    Dcls<dclsCons<dclsCons<dclMod<dclsCons<main>>>>> ds35 = new dclsNil<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>();
+    VarRef<expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>>>> vref_39 = new vref<expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>>>>("b");
+    Exp<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>>> expRef_38 = new expRef<bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>>>(vref_39);
+    Type intType_37 = new intType();
+    Bind<dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>> bnd_36 = new bnd<dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>>("a", intType_37, expRef_38);
+    Dcl<dclsCons<dclsCons<dclMod<dclsCons<main>>>>> d34 = new dclBind<dclsCons<dclsCons<dclMod<dclsCons<main>>>>>(bnd_36);
+    Dcls<dclsCons<dclMod<dclsCons<main>>>> ds32 = new dclsCons<dclsCons<dclMod<dclsCons<main>>>>(d34, ds35);
+    ModRef<dclImp<dclsCons<dclMod<dclsCons<main>>>>> mref_33 = new mref<dclImp<dclsCons<dclMod<dclsCons<main>>>>>("B");
+    Dcl<dclsCons<dclMod<dclsCons<main>>>> d31 = new dclImp<dclsCons<dclMod<dclsCons<main>>>>(mref_33);
+    Dcls<dclMod<dclsCons<main>>> ds30 = new dclsCons<dclMod<dclsCons<main>>>(d31, ds32);
+    Dcl<dclsCons<main>> d29 = new dclMod<dclsCons<main>>("A", ds30);
+    Dcls<main> ds53 = new dclsCons<main>(d29, ds52);
+    Main m = new main(ds53);
+    return m;
+  }
+
+  
 
 }
 

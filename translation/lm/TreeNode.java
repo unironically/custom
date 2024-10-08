@@ -10,7 +10,7 @@ abstract class TreeNode<T> {
   public static Boolean READY = false;
 
   protected Boolean trace = false;
-  protected Boolean scopeTrace = true;
+  protected Boolean scopeTrace = false;
   
   public static Integer tabWidth = 0;
   public static void tabIncrease() { tabWidth++; }
