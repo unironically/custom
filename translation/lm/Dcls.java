@@ -248,6 +248,11 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
     if (impTentative_computed) return impTentative;
+    if (READY) {
+      impTentative_computed = true;
+      this.d.impTentative();
+      this.ds.impTentative();
+    }
     if (!IN_CIRCLE) {
       IN_CIRCLE = true;
       impTentative_visited = true;
@@ -263,6 +268,14 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
+
+
+      // final iter
+      READY = true;
+      this.d.impTentative();
+      this.ds.impTentative();
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {
@@ -389,6 +402,11 @@ class dclsNil<T extends haschild_Dcls<T>> extends Dcls<T> {
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
     if (impTentative_computed) return impTentative;
+    if (READY) {
+      impTentative_computed = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          new ArrayList<>();
+    }
     if (!IN_CIRCLE) {
       IN_CIRCLE = true;
       impTentative_visited = true;
@@ -402,6 +420,12 @@ class dclsNil<T extends haschild_Dcls<T>> extends Dcls<T> {
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
+
+      READY = true;
+      ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
+          new ArrayList<>();
+      READY = false;
+      
       return impTentative;
     }
     else if (!impTentative_visited) {

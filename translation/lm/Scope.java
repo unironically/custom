@@ -192,6 +192,10 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      this.parent.impTentative(this.childId);
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -216,6 +220,11 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      this.parent.impTentative(this.childId);
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {
@@ -403,6 +412,10 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      this.parent.impTentative(this.childId);
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -427,6 +440,11 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      this.parent.impTentative(this.childId);
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {
@@ -616,6 +634,10 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      this.parent.impTentative(this.childId);
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -640,6 +662,11 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      this.parent.impTentative(this.childId);
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {

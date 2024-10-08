@@ -244,6 +244,10 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
   /* SYNTHESIZED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> res() {
+    if (READY && !res_computed) {
+      res_computed = true;
+      this.dfa().decls(this, this.lex().get(0));
+    }
     if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res demanded");
     if (res_computed) {
       if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res already computed");
@@ -269,6 +273,11 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
       res_computed = true;
       IN_CIRCLE = false;
       if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res done computing");
+
+      READY = true;
+      this.dfa().decls(this, this.lex().get(0));
+      READY = false;
+
       return res;
     }
     else if (!res_visited) {

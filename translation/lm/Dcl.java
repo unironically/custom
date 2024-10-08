@@ -244,6 +244,10 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      new ArrayList<>();
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -268,6 +272,11 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      new ArrayList<>();
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {
@@ -417,6 +426,10 @@ implements haschild_ModRef<dclImp<T>> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      this.r.impTentative();
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -441,6 +454,11 @@ implements haschild_ModRef<dclImp<T>> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      this.r.impTentative();
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {
@@ -586,6 +604,10 @@ implements haschild_Bind<dclBind<T>> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      new ArrayList<>();
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -610,6 +632,11 @@ implements haschild_Bind<dclBind<T>> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      new ArrayList<>();
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {

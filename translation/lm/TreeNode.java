@@ -7,6 +7,7 @@ abstract class TreeNode<T> {
   public static Boolean IN_CIRCLE = false;
   public static Boolean CHANGE = false;
   public static Stack<Boolean> STACK = new Stack<>();
+  public static Boolean READY = false;
 
   protected Boolean trace = false;
   protected Boolean scopeTrace = true;

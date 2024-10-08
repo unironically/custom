@@ -145,6 +145,10 @@ implements haschild_Ref<mref<T>> {
 
   // circular attribute impTentative
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
+    if (READY && !impTentative_computed) {
+      impTentative_computed = true;
+      this.r().res();
+    }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
@@ -169,6 +173,11 @@ implements haschild_Ref<mref<T>> {
       impTentative_computed = true;
       IN_CIRCLE = false;
       if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+
+      READY = true;
+      this.r().res();
+      READY = false;
+
       return impTentative;
     }
     else if (!impTentative_visited) {
