@@ -247,6 +247,7 @@ implements haschild_Scope<dclMod<T>>, haschild_Dcls<dclMod<T>> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       new ArrayList<>();
+      return impTentative;
     }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
@@ -429,6 +430,7 @@ implements haschild_ModRef<dclImp<T>> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       this.r.impTentative();
+      return impTentative;
     }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {
@@ -607,6 +609,7 @@ implements haschild_Bind<dclBind<T>> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       new ArrayList<>();
+      return impTentative;
     }
     if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
     if (impTentative_computed) {

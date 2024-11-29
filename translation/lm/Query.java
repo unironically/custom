@@ -429,7 +429,6 @@ implements haschild_DFAState<modDFA<T>> {
 
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
 abstract class DFAState<T extends haschild_DFAState<T>>
@@ -565,18 +564,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> varRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
     
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".var");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".var");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> varTgts = s.var();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".var, " + Integer.toString(varTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".var, " + Integer.toString(varTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sVar: varTgts) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a VAR " + "edge from " + s.pp() + " to " + sVar.pp() + ", and traversing DFA to state " + this.varT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a VAR " + "edge from " + s.pp() + " to " + sVar.pp() + ", and traversing DFA to state " + this.varT().pp());
+      // TreeNode.tabIncrease();
       varRes.addAll(this.varT().decls(r, sVar));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     //if (!varRes.isEmpty()) return varRes;
@@ -584,18 +582,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> modRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
 
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".mod");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".mod");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> modTgts = s.mod();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".mod, " + Integer.toString(modTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".mod, " + Integer.toString(modTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sMod: modTgts) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a MOD " + "edge from " + s.pp() + " to " + sMod.pp() + ", and traversing DFA to state " + this.modT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a MOD " + "edge from " + s.pp() + " to " + sMod.pp() + ", and traversing DFA to state " + this.modT().pp());
+      // TreeNode.tabIncrease();
       modRes.addAll(this.modT().decls(r, sMod));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     //if (!modRes.isEmpty()) return modRes;
@@ -603,18 +600,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> impRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
 
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".imp");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".imp");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> impTgts = s.imp();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".imp, " + Integer.toString(impTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".imp, " + Integer.toString(impTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sImp: impTgts) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a IMP " + "edge from " + s.pp() + " to " + sImp.pp() + ", and traversing DFA to state " + this.impT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a IMP " + "edge from " + s.pp() + " to " + sImp.pp() + ", and traversing DFA to state " + this.impT().pp());
+      // TreeNode.tabIncrease();
       impRes.addAll(this.impT().decls(r, sImp));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     //if (!impRes.isEmpty()) return impRes;
@@ -622,18 +618,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> lexRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
 
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".lex");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".lex");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> lexTgts = s.lex();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".lex, " + Integer.toString(lexTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".lex, " + Integer.toString(lexTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sLex: s.lex()) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a LEX " + "edge from " + s.pp() + " to " + sLex.pp() + ", and traversing DFA to state " + this.lexT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a LEX " + "edge from " + s.pp() + " to " + sLex.pp() + ", and traversing DFA to state " + this.lexT().pp());
+      // TreeNode.tabIncrease();
       lexRes.addAll(this.lexT().decls(r, sLex));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     ArrayList<Scope<? extends haschild_Scope<?>>> allRes = 
@@ -758,11 +753,9 @@ extends DFAState<T> {
 
     if (s.datum().str().equals(r.str())) {
       res.add(s);
-      if (scopeTrace)
-        System.out.println(TreeNode.tab() + "Final state: " + r.pp() + ", found a good match: " + s.pp());
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "Final state: " + r.pp() + ", found a good match: " + s.pp());
     } else {
-      if (scopeTrace)
-        System.out.println(TreeNode.tab() + "Final state: " + r.pp() + ", found a bad match: " + s.pp());
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "Final state: " + r.pp() + ", found a bad match: " + s.pp());
     }
 
     return res;
@@ -873,7 +866,7 @@ extends DFAState<T> {
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> 
   decls(Ref<? extends haschild_Ref<?>> r, Scope<? extends haschild_Scope<?>> s) { 
-    if (scopeTrace) System.out.println(TreeNode.tab() + "Sink state, no matches");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + "Sink state, no matches");
     return new ArrayList<Scope<? extends haschild_Scope<?>>>();
   } 
 
@@ -986,18 +979,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> varRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
     
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".var");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".var");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> varTgts = s.var();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".var, " + Integer.toString(varTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".var, " + Integer.toString(varTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sVar: varTgts) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a VAR " + "edge from " + s.pp() + " to " + sVar.pp() + ", and traversing DFA to state " + this.varT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a VAR " + "edge from " + s.pp() + " to " + sVar.pp() + ", and traversing DFA to state " + this.varT().pp());
+      // TreeNode.tabIncrease();
       varRes.addAll(this.varT().decls(r, sVar));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     //if (!varRes.isEmpty()) return varRes;
@@ -1005,18 +997,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> modRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
 
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".mod");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".mod");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> modTgts = s.mod();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".mod, " + Integer.toString(modTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".mod, " + Integer.toString(modTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sMod: modTgts) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a MOD " + "edge from " + s.pp() + " to " + sMod.pp() + ", and traversing DFA to state " + this.modT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a MOD " + "edge from " + s.pp() + " to " + sMod.pp() + ", and traversing DFA to state " + this.modT().pp());
+      // TreeNode.tabIncrease();
       modRes.addAll(this.modT().decls(r, sMod));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     //if (!modRes.isEmpty()) return modRes;
@@ -1024,18 +1015,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> impTentativeRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
 
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".impTentative");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".impTentative");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> impTentativeTgts = s.impTentative();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".impTentative, " + Integer.toString(impTentativeTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".impTentative, " + Integer.toString(impTentativeTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sImp: impTentativeTgts) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a IMPTENTATIVE " + "edge from " + s.pp() + " to " + sImp.pp() + ", and traversing DFA to state " + this.impT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace) System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a IMPTENTATIVE " + "edge from " + s.pp() + " to " + sImp.pp() + ", and traversing DFA to state " + this.impT().pp());
+      // TreeNode.tabIncrease();
       impTentativeRes.addAll(this.impT().decls(r, sImp));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     //if (!impTentativeRes.isEmpty()) return impTentativeRes;
@@ -1043,18 +1033,17 @@ extends DFAState<T> {
     ArrayList<Scope<? extends haschild_Scope<?>>> lexRes = 
       new ArrayList<Scope<? extends haschild_Scope<?>>>();
 
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".lex");
-    TreeNode.tabIncrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " about to demand " + s.pp() + ".lex");
+    // TreeNode.tabIncrease();
     ArrayList<Scope<? extends haschild_Scope<?>>> lexTgts = s.lex();
-    TreeNode.tabDecrease();
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".lex, " + Integer.toString(lexTgts.size()) + " edges found");
+    // TreeNode.tabDecrease();
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + " done demanding " + s.pp() + ".lex, " + Integer.toString(lexTgts.size()) + " edges found");
 
     for (Scope<? extends haschild_Scope<?>> sLex: s.lex()) {
-      if (scopeTrace)
-      System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a LEX " + "edge from " + s.pp() + " to " + sLex.pp() + ", and traversing DFA to state " + this.lexT().pp());
-      TreeNode.tabIncrease();
+      // if (scopeTrace)System.out.println(TreeNode.tab() + "In resolving " + r.pp() + " in state " + this.pp() + ", traversing a LEX " + "edge from " + s.pp() + " to " + sLex.pp() + ", and traversing DFA to state " + this.lexT().pp());
+      // TreeNode.tabIncrease();
       lexRes.addAll(this.lexT().decls(r, sLex));
-      TreeNode.tabDecrease();
+      // TreeNode.tabDecrease();
     }
 
     ArrayList<Scope<? extends haschild_Scope<?>>> allRes = 

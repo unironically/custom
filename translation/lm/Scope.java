@@ -46,7 +46,7 @@ abstract class Scope<T extends haschild_Scope<T>>
 class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
 
   public mkScope() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + "Constructed scope " + this.pp());
+    // if (scopeTrace) System.out.println(TreeNode.tab() + "Constructed scope " + this.pp());
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -75,12 +75,12 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
   /* GETTING OWN INHERITED ATTRIBUTES */
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> var() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var demanded");
     if (this.var_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var already computed");
       return this.var;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var not yet computed");
     Boolean interrupted_circle = false;
     if (!this.var_visited) {
       this.var_visited = true;
@@ -97,19 +97,19 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.var_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var done computing");
       return this.var;
     }
     throw new RuntimeException("Circular definition of mkScope.var");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod demanded");
     if (this.mod_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod already computed");
       return this.mod;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod not yet computed");
     Boolean interrupted_circle = false;
     if (!this.mod_visited) {
       this.mod_visited = true;
@@ -126,19 +126,19 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.mod_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod done computing");
       return this.mod;
     }
     throw new RuntimeException("Circular definition of mkScope.mod");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp demanded");
     if (this.imp_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp already computed");
       return this.imp;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp not yet computed");
     Boolean interrupted_circle = false;
     if (!this.imp_visited) {
       this.imp_visited = true;
@@ -155,19 +155,19 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.imp_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp done computing");
       return this.imp;
     }
     throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex demanded");
     if (this.lex_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex already computed");
       return this.lex;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex not yet computed");
     Boolean interrupted_circle = false;
     if (!this.lex_visited) {
       this.lex_visited = true;
@@ -184,7 +184,7 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.lex_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex done computing");
       return this.lex;
     }
     throw new RuntimeException("Circular definition of mkScope.lex");
@@ -195,19 +195,20 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       this.parent.impTentative(this.childId);
-    }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
-    if (impTentative_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
       return impTentative;
     }
-    if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
+    if (impTentative_computed) {
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
+      return impTentative;
+    }
+    // if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
     if (!IN_CIRCLE) {
-      if (scopeTrace) System.out.println("(initial circular demand)");
+      // if (scopeTrace) System.out.println("(initial circular demand)");
       IN_CIRCLE = true;
       impTentative_visited = true;
       do {
-        if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
+        // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
         CHANGE = false;
         TreeNode.tabIncrease();
         ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -219,7 +220,7 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
 
       READY = true;
       this.parent.impTentative(this.childId);
@@ -228,7 +229,7 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
       return impTentative;
     }
     else if (!impTentative_visited) {
-      if (scopeTrace) System.out.println("(intermediate circular demand)");
+      // if (scopeTrace) System.out.println("(intermediate circular demand)");
       impTentative_visited = true;
       TreeNode.tabIncrease();
       ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -237,11 +238,11 @@ class mkScope<T extends haschild_Scope<T>> extends Scope<T> {
       if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
       impTentative = new_impTentative_value;
       impTentative_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
       return impTentative;
     }
     else {
-      if (scopeTrace) System.out.println("(already visited)");
+      // if (scopeTrace) System.out.println("(already visited)");
       return impTentative;
     }
   }
@@ -266,7 +267,7 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
 
   public mkMod(String s) {
     this.s = s;
-    if (scopeTrace) System.out.println(TreeNode.tab() + "Constructed scope " + this.pp());
+    // if (scopeTrace) System.out.println(TreeNode.tab() + "Constructed scope " + this.pp());
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -295,12 +296,12 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
   /* GETTING OWN INHERITED ATTRIBUTES */
 
     public ArrayList<Scope<? extends haschild_Scope<?>>> var() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var demanded");
     if (this.var_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var already computed");
       return this.var;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var not yet computed");
     Boolean interrupted_circle = false;
     if (!this.var_visited) {
       this.var_visited = true;
@@ -317,19 +318,19 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.var_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var done computing");
       return this.var;
     }
     throw new RuntimeException("Circular definition of mkScope.var");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod demanded");
     if (this.mod_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod already computed");
       return this.mod;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod not yet computed");
     Boolean interrupted_circle = false;
     if (!this.mod_visited) {
       this.mod_visited = true;
@@ -346,19 +347,19 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.mod_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod done computing");
       return this.mod;
     }
     throw new RuntimeException("Circular definition of mkScope.mod");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp demanded");
     if (this.imp_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp already computed");
       return this.imp;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp not yet computed");
     Boolean interrupted_circle = false;
     if (!this.imp_visited) {
       this.imp_visited = true;
@@ -375,19 +376,19 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.imp_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp done computing");
       return this.imp;
     }
     throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex demanded");
     if (this.lex_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex already computed");
       return this.lex;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex not yet computed");
     Boolean interrupted_circle = false;
     if (!this.lex_visited) {
       this.lex_visited = true;
@@ -404,7 +405,7 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.lex_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex done computing");
       return this.lex;
     }
     throw new RuntimeException("Circular definition of mkScope.lex");
@@ -415,19 +416,20 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       this.parent.impTentative(this.childId);
-    }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
-    if (impTentative_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
       return impTentative;
     }
-    if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
+    if (impTentative_computed) {
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
+      return impTentative;
+    }
+    // if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
     if (!IN_CIRCLE) {
-      if (scopeTrace) System.out.println("(initial circular demand)");
+      // if (scopeTrace) System.out.println("(initial circular demand)");
       IN_CIRCLE = true;
       impTentative_visited = true;
       do {
-        if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
+        // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
         CHANGE = false;
         TreeNode.tabIncrease();
         ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -439,7 +441,7 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
 
       READY = true;
       this.parent.impTentative(this.childId);
@@ -448,7 +450,7 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
       return impTentative;
     }
     else if (!impTentative_visited) {
-      if (scopeTrace) System.out.println("(intermediate circular demand)");
+      // if (scopeTrace) System.out.println("(intermediate circular demand)");
       impTentative_visited = true;
       TreeNode.tabIncrease();
       ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -457,11 +459,11 @@ class mkMod<T extends haschild_Scope<T>> extends Scope<T> {
       if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
       impTentative = new_impTentative_value;
       impTentative_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
       return impTentative;
     }
     else {
-      if (scopeTrace) System.out.println("(already visited)");
+      // if (scopeTrace) System.out.println("(already visited)");
       return impTentative;
     }
   }
@@ -488,7 +490,7 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
   public mkVar(String s, Type t) {
     this.s = s;
     this.t = t;
-    if (scopeTrace) System.out.println(TreeNode.tab() + "Constructed scope " + this.pp());
+    // if (scopeTrace) System.out.println(TreeNode.tab() + "Constructed scope " + this.pp());
   }
 
   /* SYNTHESIZED ATTRIBUTES */
@@ -517,12 +519,12 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
   /* GETTING OWN INHERITED ATTRIBUTES */
 
     public ArrayList<Scope<? extends haschild_Scope<?>>> var() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var demanded");
     if (this.var_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var already computed");
       return this.var;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var not yet computed");
     Boolean interrupted_circle = false;
     if (!this.var_visited) {
       this.var_visited = true;
@@ -539,19 +541,19 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.var_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".var done computing");
       return this.var;
     }
     throw new RuntimeException("Circular definition of mkScope.var");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> mod() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod demanded");
     if (this.mod_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod already computed");
       return this.mod;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod not yet computed");
     Boolean interrupted_circle = false;
     if (!this.mod_visited) {
       this.mod_visited = true;
@@ -568,19 +570,19 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.mod_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".mod done computing");
       return this.mod;
     }
     throw new RuntimeException("Circular definition of mkScope.mod");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> imp() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp demanded");
     if (this.imp_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp already computed");
       return this.imp;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp not yet computed");
     Boolean interrupted_circle = false;
     if (!this.imp_visited) {
       this.imp_visited = true;
@@ -597,19 +599,19 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.imp_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".imp done computing");
       return this.imp;
     }
     throw new RuntimeException("Circular definition of mkScope.imp");
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> lex() {
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex demanded");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex demanded");
     if (this.lex_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex already computed");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex already computed");
       return this.lex;
     }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex not yet computed");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex not yet computed");
     Boolean interrupted_circle = false;
     if (!this.lex_visited) {
       this.lex_visited = true;
@@ -626,7 +628,7 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
         TreeNode.IN_CIRCLE = true;
       }
       this.lex_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".lex done computing");
       return this.lex;
     }
     throw new RuntimeException("Circular definition of mkScope.lex");
@@ -637,19 +639,20 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       this.parent.impTentative(this.childId);
-    }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
-    if (impTentative_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
       return impTentative;
     }
-    if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
+    if (impTentative_computed) {
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
+      return impTentative;
+    }
+    // if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
     if (!IN_CIRCLE) {
-      if (scopeTrace) System.out.println("(initial circular demand)");
+      // if (scopeTrace) System.out.println("(initial circular demand)");
       IN_CIRCLE = true;
       impTentative_visited = true;
       do {
-        if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
+        // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
         CHANGE = false;
         TreeNode.tabIncrease();
         ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -661,7 +664,7 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
 
       READY = true;
       this.parent.impTentative(this.childId);
@@ -670,7 +673,7 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
       return impTentative;
     }
     else if (!impTentative_visited) {
-      if (scopeTrace) System.out.println("(intermediate circular demand)");
+      // if (scopeTrace) System.out.println("(intermediate circular demand)");
       impTentative_visited = true;
       TreeNode.tabIncrease();
       ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -679,11 +682,11 @@ class mkVar<T extends haschild_Scope<T>> extends Scope<T> {
       if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
       impTentative = new_impTentative_value;
       impTentative_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
       return impTentative;
     }
     else {
-      if (scopeTrace) System.out.println("(already visited)");
+      // if (scopeTrace) System.out.println("(already visited)");
       return impTentative;
     }
   }

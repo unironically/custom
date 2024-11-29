@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Driver {
 
   public static void main(String[] args) {
-    Main m = modules_import_circ();
+    Main m = program4();
     printBinds(m.binds());
   }
 
@@ -440,8 +440,6 @@ public class Driver {
     Main m = new main(ds53);
     return m;
   }
-
-  
 
 }
 

@@ -148,19 +148,20 @@ implements haschild_Ref<mref<T>> {
     if (READY && !impTentative_computed) {
       impTentative_computed = true;
       this.r().res();
-    }
-    if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
-    if (impTentative_computed) {
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
       return impTentative;
     }
-    if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
+    // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative demanded");
+    if (impTentative_computed) {
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative already computed");
+      return impTentative;
+    }
+    // if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".impTentative not yet computed ");
     if (!IN_CIRCLE) {
-      if (scopeTrace) System.out.println("(initial circular demand)");
+      // if (scopeTrace) System.out.println("(initial circular demand)");
       IN_CIRCLE = true;
       impTentative_visited = true;
       do {
-        if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
+        // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative new iteration");
         CHANGE = false;
         TreeNode.tabIncrease();
         ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -172,7 +173,7 @@ implements haschild_Ref<mref<T>> {
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing");
 
       READY = true;
       this.r().res();
@@ -181,7 +182,7 @@ implements haschild_Ref<mref<T>> {
       return impTentative;
     }
     else if (!impTentative_visited) {
-      if (scopeTrace) System.out.println("(intermediate circular demand)");
+      // if (scopeTrace) System.out.println("(intermediate circular demand)");
       impTentative_visited = true;
       TreeNode.tabIncrease();
       ArrayList<Scope<? extends haschild_Scope<?>>> new_impTentative_value = 
@@ -190,11 +191,11 @@ implements haschild_Ref<mref<T>> {
       if (!new_impTentative_value.equals(impTentative)) CHANGE = true;
       impTentative = new_impTentative_value;
       impTentative_visited = false;
-      if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".impTentative done computing, but not set");
       return impTentative;
     }
     else {
-      if (scopeTrace) System.out.println("(already visited)");
+      // if (scopeTrace) System.out.println("(already visited)");
       return impTentative;
     }
   }

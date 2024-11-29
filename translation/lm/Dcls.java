@@ -247,12 +247,12 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
   }
 
   public ArrayList<Scope<? extends haschild_Scope<?>>> impTentative() {
-    if (impTentative_computed) return impTentative;
-    if (READY) {
+    if (READY && !impTentative_computed) {
       impTentative_computed = true;
       this.d.impTentative();
       this.ds.impTentative();
     }
+    if (impTentative_computed) return impTentative;
     if (!IN_CIRCLE) {
       IN_CIRCLE = true;
       impTentative_visited = true;
@@ -268,7 +268,6 @@ implements haschild_Dcl<dclsCons<T>>, haschild_Dcls<dclsCons<T>>
       impTentative_visited = false;
       impTentative_computed = true;
       IN_CIRCLE = false;
-
 
       // final iter
       READY = true;

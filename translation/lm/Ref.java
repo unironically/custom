@@ -247,19 +247,20 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
     if (READY && !res_computed) {
       res_computed = true;
       this.dfa().decls(this, this.lex().get(0));
-    }
-    if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res demanded");
-    if (res_computed) {
-      if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res already computed");
       return res;
     }
-    if(scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".res not yet computed ");
+    //if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res demanded");
+    if (res_computed) {
+      // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res already computed");
+      return res;
+    }
+    //if (scopeTrace) System.out.print(TreeNode.tab() + this.pp() + ".res not yet computed ");
     if (!IN_CIRCLE) {
-      if (scopeTrace) System.out.println("(initial circular demand)");
+      // if (scopeTrace) System.out.println("(initial circular demand)");
       IN_CIRCLE = true;
       res_visited = true;
       do {
-        if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res new iteration");
+        // if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res new iteration");
         CHANGE = false;
         TreeNode.tabIncrease();
         ArrayList<Scope<? extends haschild_Scope<?>>> new_res_value = 
@@ -272,7 +273,7 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
       res_visited = false;
       res_computed = true;
       IN_CIRCLE = false;
-      if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res done computing");
+      //if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res done computing");
 
       READY = true;
       this.dfa().decls(this, this.lex().get(0));
@@ -281,7 +282,7 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
       return res;
     }
     else if (!res_visited) {
-      if (scopeTrace) System.out.println("(intermediate circular demand)");
+      // if (scopeTrace) System.out.println("(intermediate circular demand)");
       res_visited = true;
       TreeNode.tabIncrease();
       ArrayList<Scope<? extends haschild_Scope<?>>> new_res_value = 
@@ -291,11 +292,11 @@ class mkModRef<T extends haschild_Ref<T>> extends Ref<T> {
       if (!new_res_value.equals(res)) CHANGE = true;
       res = new_res_value;
       res_visited = false;
-      if(scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res done computing, but not set");
+      //if (scopeTrace) System.out.println(TreeNode.tab() + this.pp() + ".res done computing, but not set");
       return res;
     }
     else {
-      if (scopeTrace) System.out.println("(already visited)");
+      // if (scopeTrace) System.out.println("(already visited)");
       return res;
     }
   }
